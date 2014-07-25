@@ -1,51 +1,52 @@
 if has('vim_starting')
-   set nocompatible               " Be iMproved
+	" Be iMproved
+	set nocompatible 
 
-   " Required:
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
- endif
+	" Required:
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
- " Required:
- call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
- " Let NeoBundle manage NeoBundle
- " Required:
- NeoBundleFetch 'Shougo/neobundle.vim'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
- " My Bundles here:
- " Refer to |:NeoBundle-examples|.
- " Note: You don't set neobundle setting in .gvimrc!
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
 
- NeoBundle 'Valloric/YouCompleteMe', {
-             \ 'build' : {
-             \    'unix' : './install.sh --clang-completer --system-libclang',
-             \    'cygwin' : './install.sh --clang-completer --system-libclang',
-             \   },
-             \ }
+NeoBundle 'Valloric/YouCompleteMe', {
+			\ 'build' : {
+			\    'unix' : './install.sh --clang-completer --system-libclang',
+			\    'cygwin' : './install.sh --clang-completer --system-libclang',
+			\   },
+			\ }
 
- NeoBundle 'marijnh/tern_for_vim', {
-             \ 'build' : {
-             \     'cygwin' : 'npm install',
-             \     'unix' : 'npm install'
-             \    },
-             \ }
- NeoBundle 'pangloss/vim-javascript'
- NeoBundle 'szw/vim-ctrlspace'
- NeoBundle 'scrooloose/syntastic'
- NeoBundle 'SirVer/ultisnips'
- NeoBundle 'honza/vim-snippets'
- NeoBundle 'mhinz/vim-signify'
- NeoBundle 'bling/vim-airline'
+NeoBundle 'marijnh/tern_for_vim', {
+			\ 'build' : {
+			\     'cygwin' : 'npm install',
+			\     'unix' : 'npm install'
+			\    },
+			\ }
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'szw/vim-ctrlspace'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'mhinz/vim-signify'
+NeoBundle 'bling/vim-airline'
 
- call neobundle#end()
+call neobundle#end()
 
- " Required:
- filetype plugin indent on
+" Required:
+filetype plugin indent on
 
- " If there are uninstalled bundles found on startup,
- " this will conveniently prompt you to install them.
- NeoBundleCheck
- 
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
 let mapleader = ","
  
 " set dirs
@@ -99,7 +100,7 @@ set cursorline
 set splitbelow
 set splitright
 
-" javascrit joXt
+" javascript jox
 let javascript_enable_domhtmlcss = 1
 let g:javascript_conceal = 1
 let g:syntastic_javascript_checkers = ['jshint']
