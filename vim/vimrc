@@ -34,6 +34,8 @@ if has('vim_starting')
  NeoBundle 'scrooloose/syntastic'
  NeoBundle 'SirVer/ultisnips'
  NeoBundle 'honza/vim-snippets'
+ NeoBundle 'mhinz/vim-signify'
+ NeoBundle 'bling/vim-airline'
 
  call neobundle#end()
 
