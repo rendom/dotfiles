@@ -37,7 +37,8 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'bling/vim-airline'
-
+" NeoBundle 'xsbeats/vim-blade'  # pooped?
+NeoBundle 'mattn/emmet-vim'
 call neobundle#end()
 
 " Required:
