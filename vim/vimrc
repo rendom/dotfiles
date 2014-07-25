@@ -1,0 +1,105 @@
+if has('vim_starting')
+   set nocompatible               " Be iMproved
+
+   " Required:
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+ endif
+
+ " Required:
+ call neobundle#begin(expand('~/.vim/bundle/'))
+
+ " Let NeoBundle manage NeoBundle
+ " Required:
+ NeoBundleFetch 'Shougo/neobundle.vim'
+
+ " My Bundles here:
+ " Refer to |:NeoBundle-examples|.
+ " Note: You don't set neobundle setting in .gvimrc!
+
+ NeoBundle 'Valloric/YouCompleteMe', {
+             \ 'build' : {
+             \    'unix' : './install.sh --clang-completer --system-libclang',
+             \    'cygwin' : './install.sh --clang-completer --system-libclang',
+             \   },
+             \ }
+
+ NeoBundle 'marijnh/tern_for_vim', {
+             \ 'build' : {
+             \     'cygwin' : 'npm install',
+             \     'unix' : 'npm install'
+             \    },
+             \ }
+ NeoBundle 'pangloss/vim-javascript'
+ NeoBundle 'szw/vim-ctrlspace'
+ NeoBundle 'scrooloose/syntastic'
+ 
+ call neobundle#end()
+
+ " Required:
+ filetype plugin indent on
+
+ " If there are uninstalled bundles found on startup,
+ " this will conveniently prompt you to install them.
+ NeoBundleCheck
+ 
+"let mapleader = ","
+ 
+" set dirs
+set backupdir=$HOME/.vim/swap/backup//
+set undodir=$HOME/.vim/swap/undo//
+set directory=$HOME/.vim/swap//
+
+"global 
+set t_Co=256
+colorscheme distinguished
+
+syntax on
+set nu
+set history=1000
+set undolevels=1000
+set encoding=utf-8
+set autoindent
+set smartindent
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set nowrap
+set linebreak
+
+set noesckeys
+"set ttimeout
+"set ttimeoutlen=50
+
+set laststatus=2
+
+
+" ignore case in search
+set ignorecase
+set smartcase
+
+set conceallevel=2
+set concealcursor=nc
+
+" Search stuff
+set hlsearch
+set showmatch
+set incsearch
+
+" utf8
+set encoding=utf-8
+
+" highlight cursor line
+set cursorline
+
+" split opening
+set splitbelow
+set splitright
+
+" javascrit joXt
+let javascript_enable_domhtmlcss = 1
+let g:javascript_conceal = 1
+let g:syntastic_javascript_checkers = ['jshint']
+
+set nocompatible
+
+source $HOME/.vim/mappings.vim
