@@ -42,6 +42,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'dockyard/vim-easydir'
 NeoBundle 'rendom/vvt.nu-vim'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 call neobundle#end()
 
@@ -58,6 +59,9 @@ let mapleader = ","
 set backupdir=$HOME/.vim/swap/backup//
 set undodir=$HOME/.vim/swap/undo//
 set directory=$HOME/.vim/swap//
+
+"jumphax
+set iskeyword+=_,$,@,%,#
 
 "global 
 set t_Co=256

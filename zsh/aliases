@@ -22,3 +22,8 @@ alias g='git'
 alias "g?"='git status'
 alias gc='git commit'
 alias ga='git add'
+
+
+
+# Random dev stuff
+alias gob='go build'
