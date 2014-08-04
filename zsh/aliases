@@ -1,0 +1,15 @@
+alias ls='ls --color=always'
+
+alias ll='ls -alh'
+alias l='ll'
+alias !='sudo '
+alias ..='cd ..'
+alias c='clear'
+alias diff='colordiff'
+alias top='htop'
+
+# Git stuff
+alias g='git'
+alias "g?"='git status'
+alias gc='git commit'
+alias ga='git add'
