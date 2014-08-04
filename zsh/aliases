@@ -1,7 +1,16 @@
-alias ls='ls --color=always'
+# Global
+alias -g HE='| head'
+alias -g TA='| tail'
+alias -g GR='| grep'
+alias -g LE='| less'
+alias -g MO='| more'
+alias -g NULL='> /dev/null 2>&1>'
 
+
+alias ls='ls --color=always'
 alias ll='ls -alh'
 alias l='ll'
+
 alias !='sudo '
 alias ..='cd ..'
 alias c='clear'
