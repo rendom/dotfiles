@@ -9,6 +9,7 @@ export GOPATH=~/go
 
 # Programs
 export EDITOR=vim
+export PAGER='less'
 
 #History
 HISTFILE="~/tmp/zhistory"
@@ -19,9 +20,56 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# zsh stuff
+autoload -U colors && colors
+autoload zkbd
+
+zmodload zsh/complist
+
+zstyle ':completion:*' completer _force_rehash _complete _list _oldlist _expand _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' use-cache 'yes'
+zstyle ':completion:*' cache-path $XDG_CACHE_HOME/.zshcache
+zstyle ':completion:*' glob 'yes'
+zstyle ':completion:*' menu select=lg-list select=3
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' verbose 'yes'
+zstyle ':completion:*:descriptis' format "%B-- %d --%b"
+zstyle ':completion:*:messages' format "%B--%F{green%} %d %F{nocolor%}--%b"
+zstyle ':completion:*:warnings' format "%B--%F{red%} no match for: %d %F{nocolor%}--%b"
+zstyle ':completion:*:correctis' format "%B--%F{yellow%} %d %F{nocolor%}-- (errors %e)%b"
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:manuals' separate-sectis 'yes'
+zstyle ':completion:*:optis' descripti 'yes'
+zstyle ':completion:*:optis' auto-descripti '%d'
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion"*"manuals' separate-sections true
+zstyle :compinstall filename '~/.zsh/.zshrc'
+
+[[ ! -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]] && zkbd
+source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
+
+[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
+[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" up-line-or-history
+[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" down-line-or-history
+[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
+[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
+[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+
 autoload -Uz compinit
 compinit
+
+
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#autoload -Uz compinit
+#compinit
 
 
 bindkey -v

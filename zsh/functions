@@ -40,3 +40,11 @@ setprompt() {
 	RPROMPT=$'${vcs_info_msg_0_}'
 }
 setprompt
+
+
+_force_rehash() {
+    (( CURRENT == 1 )) && rehash
+    return 1 # Because we didn't really complete anything
+}
+
+

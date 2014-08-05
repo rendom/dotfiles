@@ -1,4 +1,8 @@
 # Random conf with stuff stolen from c0r73x :)
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+
 source $HOME/.zsh/profile
 source $HOME/.zsh/functions
 source $HOME/.zsh/aliases
