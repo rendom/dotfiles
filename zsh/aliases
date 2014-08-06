@@ -8,8 +8,17 @@ alias -g NULL='> /dev/null 2>&1>'
 alias -g JSON='| python -m json.tool'
 
 
-alias ls='ls --color=always'
-alias ll='ls -alh'
+#alias ls='ls --color=always'
+#alias ll='ls -alh'
+#alias l='ll'
+alias ls='ls -LhFX --color=always --group-directories-first'
+alias lr='ls -R'
+alias ll='ls++ -LhFX --potsf'
+alias la='ll -A'
+alias lx='ll -BX'
+alias lz='ll -rS'
+alias lt='ll -rt'
+alias lm='la | more'
 alias l='ll'
 
 alias !='sudo '
@@ -23,8 +32,11 @@ alias g='git'
 alias "g?"='git status'
 alias gc='git commit'
 alias ga='git add'
+alias gp='git push'
 
+alias svim='sudo vim'
 
+alias livestreamer-cb="livestreamer $(xclip -o) best" 
 
 # Random dev stuff
 alias gob='go build'
