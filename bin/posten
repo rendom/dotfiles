@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+import sys, urllib.request
+import xml.etree.ElementTree as ET
+
+apiUrl="http://server.logistik.posten.se/servlet/PacTrack?kolliid="
+
+if len(sys.argv) < 2:
+    print("\033[91mNo kollid? WTF? ./posten 6661488666SE\033[0m")
+    sys.exit()
+searchString = sys.argv[1]
+
+r = urllib.request.Request(apiUrl+searchString)
+r = urllib.request.urlopen(r)
+response = r.read()
+
+root = ET.fromstring(response)
+
+def printRow(event, error=0):
+    if(error == 1):
+        print("\033[91m", end="")
+        print("[ERROR]---------------------------------------------------------------------")
+    else:
+        print("----------------------------------------------------------------------------")
+    date=event.find("date").text
+    time=event.find("time").text
+    location=event.find("location").text
+    description=event.find("description").text
+    print("Datetime: %s %s " %(date, time))
+    print("Location: %s" %(location))
+    print("Description: \033[0;34m%s \033[0m" %(description))
+    
+    if(error == 1):
+        print("\033[0m")
+
+for event in root[1][0].iter('event'):
+    printRow(event)
+for error in root[1][0].iter('errorevent'):
+    printRow(error,1)
