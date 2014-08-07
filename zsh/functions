@@ -57,7 +57,7 @@ livestr(){
         for stream in $(cat $XDG_CONFIG_HOME/twitch/following); do
             RESULT=$(curl --silent https://api.twitch.tv/kraken/streams/$stream)
             if [[ ! $RESULT =~ "\"stream\":null}" ]]; then
-                LIST="$LIST\n$stream"
+                LIST="$stream\n$LIST"
             fi
         done
         R=$(echo $LIST | dmenu -fn "tamsyn:size=6" -p "Twitch" -i)
