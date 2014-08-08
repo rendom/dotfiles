@@ -7,6 +7,18 @@ alias -g MO='| more'
 alias -g NULL='> /dev/null 2>&1>'
 alias -g JSON='| python -m json.tool'
 
+better_cd(){
+  builtin cd "$@" 2> /dev/null && return 0
+
+  # fallback to autojump if cd fails
+  new_path="$(autojump $@)"
+  if [ -n "$new_path" ]
+    then builtin cd "$new_path"
+    else echo cannot cd to "$@"
+  fi
+}
+
+alias cd='better_cd'
 
 #alias ls='ls --color=always'
 #alias ll='ls -alh'

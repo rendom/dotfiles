@@ -3,9 +3,10 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
-source $HOME/.zsh/profile
+source $HOME/.zsh/autojump
 source $HOME/.zsh/functions
 source $HOME/.zsh/aliases
+source $HOME/.zsh/profile
 
 # Plugins
 #for f in $HOME/.zsh/plugins/*.zsh; do
