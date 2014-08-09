@@ -33,7 +33,8 @@ alias lt='ll -rt'
 alias lm='la | more'
 alias l='ll'
 
-alias !='sudo '
+alias !="sudo"
+alias ...="cd ../.."
 alias ..='cd ..'
 alias c='clear'
 alias diff='colordiff'
