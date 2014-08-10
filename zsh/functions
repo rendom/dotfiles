@@ -48,24 +48,6 @@ _force_rehash() {
 }
 
 
-# Twitch + Livestreamer <3
-livestr(){
-    if [ ! -z "$1" ]; then
-        R=$1
-    else
-        LIST=""
-        for stream in $(cat $XDG_CONFIG_HOME/twitch/following); do
-            RESULT=$(curl --silent https://api.twitch.tv/kraken/streams/$stream)
-            if [[ ! $RESULT =~ "\"stream\":null}" ]]; then
-                LIST="$stream\n$LIST"
-            fi
-        done
-        R=$(echo $LIST | dmenu -fn "tamsyn:size=6" -p "Twitch" -i)
-    fi
-    [ -z "$R" ] || livestreamer http://twitch.tv/$R best
-
-}
-
 
 
 
