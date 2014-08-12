@@ -2,6 +2,7 @@
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
+export MPV_HOME=$HOME/.config/mpv
 
 source $HOME/.zsh/autojump
 source $HOME/.zsh/functions
