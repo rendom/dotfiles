@@ -19,6 +19,7 @@ better_cd(){
 }
 
 alias cd='better_cd'
+alias rm='mv -f --backup=numbered --target-directory ~/trash/'
 
 #alias ls='ls --color=always'
 #alias ll='ls -alh'
@@ -39,6 +40,7 @@ alias ..='cd ..'
 alias c='clear'
 alias diff='colordiff'
 alias top='htop'
+alias weechat='weechat-curses'
 
 # Git stuff
 alias g='git'
