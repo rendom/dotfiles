@@ -33,6 +33,8 @@ alias lz='ll -rS'
 alias lt='ll -rt'
 alias lm='la | more'
 alias l='ll'
+tree='tree -Cl'
+t='tree'
 
 alias !="sudo"
 alias ...="cd ../.."
