@@ -1,6 +1,6 @@
 if has('vim_starting')
 	" Be iMproved
-	set nocompatible 
+	set nocompatible
 
 	" Required:
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -39,10 +39,17 @@ NeoBundle 'mhinz/vim-signify'
 NeoBundle 'bling/vim-airline'
 " NeoBundle 'xsbeats/vim-blade'  # pooped?
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'fatih/vim-go'
 NeoBundle 'dockyard/vim-easydir'
 NeoBundle 'rendom/vvt.nu-vim'
 NeoBundle 'Lokaltog/vim-easymotion'
+
+
+if has("unix")
+	let s:uname = system("uname")
+	if s:uname != "Darwin\n"
+		NeoBundle 'fatih/vim-go'
+	endif
+endif
 
 call neobundle#end()
 
@@ -54,7 +61,7 @@ filetype plugin indent on
 NeoBundleCheck
 
 let mapleader = ","
- 
+
 " set dirs
 set backupdir=$HOME/.vim/swap/backup//
 set undodir=$HOME/.vim/swap/undo//
@@ -63,7 +70,7 @@ set directory=$HOME/.vim/swap//
 "jumphax
 set iskeyword+=_,$,@,%,#
 
-"global 
+"global
 set t_Co=256
 colorscheme distinguished
 
