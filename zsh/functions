@@ -6,6 +6,12 @@ function todo(){
 	fi
 }
 
+movieMode(){
+    xset -dpms &
+    xset s noblank &
+    xset s off
+}
+
 # https://github.com/MrElendig/dotfiles-alice/blob/master/.zshrc
 autoload -U colors zsh/terminfo
 colors

@@ -6,7 +6,6 @@ alias -g LE='| less'
 alias -g MO='| more'
 alias -g NULL='> /dev/null 2>&1>'
 alias -g JSON='| python -m json.tool'
-
 better_cd(){
   builtin cd "$@" 2> /dev/null && return 0
 
