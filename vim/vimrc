@@ -37,11 +37,13 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'c0r73x/vimdir.vim'
 " NeoBundle 'xsbeats/vim-blade'  # pooped?
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'dockyard/vim-easydir'
 NeoBundle 'rendom/vvt.nu-vim'
 NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'digitaltoad/vim-jade'
 
 
 if has("unix")
@@ -82,6 +84,7 @@ set encoding=utf-8
 set autoindent
 set smartindent
 set shiftwidth=4
+set expandtab
 set tabstop=4
 set softtabstop=4
 set nowrap

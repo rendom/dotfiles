@@ -50,6 +50,12 @@ alias ping='getHostname =ping'
 alias dig='getHostname =dig'
 alias whois='getHostname =whois'
 
+movieMode(){
+    xset -dpms &
+    xset s noblank &
+    xset s off
+}
+
 # https://github.com/MrElendig/dotfiles-alice/blob/master/.zshrc
 autoload -U colors zsh/terminfo
 colors
