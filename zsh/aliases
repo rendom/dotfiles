@@ -20,18 +20,26 @@ better_cd(){
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
 
-#alias ls='ls --color=always'
-#alias ll='ls -alh'
-#alias l='ll'
-alias ls='ls -LhFX --color=always --group-directories-first'
-alias lr='ls -R'
-alias ll='ls++ -LhFX --potsf'
-alias la='ll -A'
-alias lx='ll -BX'
-alias lz='ll -rS'
-alias lt='ll -rt'
-alias lm='la | more'
-alias l='ll'
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias ls='ls -LhFX --color=always --group-directories-first'
+    alias lr='ls -R'
+    alias ll='ls++ -LhFX --potsf'
+    alias la='ll -A'
+    alias lx='ll -BX'
+    alias lz='ll -rS'
+    alias lt='ll -rt'
+    alias lm='la | more'
+    alias l='ll'
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    alias l='ls -1'
+    alias la='ls -lhAF'
+    alias ll='ls -lhF'
+    alias lt="ls -lhtrF"
+	alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+fi
+
+tree='tree -Cl'
+t='tree'
 
 alias !="sudo"
 alias ...="cd ../.."
@@ -50,7 +58,9 @@ alias gp='git push'
 
 alias svim='sudo vim'
 
-alias livestreamer-cb="livestreamer $(xclip -o) best" 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias livestreamer-cb="livestreamer $(xclip -o) best"
+fi
 
 # Random dev stuff
 alias gob='go build'
