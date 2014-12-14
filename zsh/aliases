@@ -18,6 +18,10 @@ better_cd(){
   fi
 }
 
+
+#alias ping='getHostname =ping'
+#alias dig='getHostname =dig'
+
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
 
@@ -37,6 +41,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias ll='ls -lhF'
     alias lt="ls -lhtrF"
 	alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+	alias 'wakeup'='pmset -g log|grep -e " Sleep  " -e " Wake  " | tail -n10'
+	alias php='/Applications/MAMP/bin/php/php5.5.10/bin/php'
 fi
 
 tree='tree -Cl'

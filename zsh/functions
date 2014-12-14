@@ -6,6 +6,50 @@ function todo(){
 	fi
 }
 
+#function pping(){
+	#ping $(echo $1 | perl -i -pe 's/(https?:\/\/)//g' | perl -i -pe 's/\/.?+$//g')
+#	ping $(echo $1 | perl -i -pe 's/^(?:https?:\/\/)([^\/]*).*/\1/mig')
+#}
+
+
+#function getHostname() {
+#	if [ $# -ge 2 ]; then
+#		local host="$(echo ${@: -1} | perl -pe 's/^https?:\/\/([^\/]*).*/\1/mig')"
+#		eval "$1 $host ${@:2:$# -1}"
+#	fi
+#}
+
+function getip(){
+	IPADDRS=$(dig +short "$@")
+	echo $IPADDRS
+	echo 'cmd+v'
+	echo $IPADDRS | pbcopy
+}
+
+function getHostname() {
+	if [ $# -ge 2 ]; then
+		_args=("$@")
+		local out=''
+		local host=''
+
+		for a in "${_args[@]:1}"; do
+			if [[ $a =~ ^(https?:\/\/)?([^\/]*) ]]; then
+				out="$out $(echo $a \
+					 | perl -pe 's/^(https?:\/\/)?([^\/]*).*/$2/mig')"
+			else
+				out="$out $a"
+			fi
+		done
+	fi
+
+	eval "$1 $out"
+}
+
+
+alias ping='getHostname =ping'
+alias dig='getHostname =dig'
+alias whois='getHostname =whois'
+
 # https://github.com/MrElendig/dotfiles-alice/blob/master/.zshrc
 autoload -U colors zsh/terminfo
 colors
@@ -29,9 +73,9 @@ setprompt() {
 	fi
 
 	# Check if we are on SSH or not
-	if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
+	if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
 		eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
-	else 
+	else
 		eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
 	fi
 	# set the prompt
@@ -51,4 +95,4 @@ _force_rehash() {
 
 
 
-#  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et : 
+#  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :
