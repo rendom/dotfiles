@@ -17,6 +17,10 @@ better_cd(){
   fi
 }
 
+httpheader(){
+    curl -s -D - $1 -o /dev/null
+}
+
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
 
