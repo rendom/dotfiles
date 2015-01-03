@@ -30,6 +30,8 @@ NeoBundle 'marijnh/tern_for_vim', {
 			\     'unix' : 'npm install'
 			\    },
 			\ }
+
+
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'szw/vim-ctrlspace'
 NeoBundle 'scrooloose/syntastic'
@@ -44,6 +46,8 @@ NeoBundle 'dockyard/vim-easydir'
 NeoBundle 'rendom/vvt.nu-vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'tpope/vim-fugitive'
 
 
 if has("unix")
