@@ -48,6 +48,13 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'kien/ctrlp.vim'
+
+
+"css stuff
+NeoBundle 'skammer/vim-css-color'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'groenewege/vim-less'
 
 
 if has("unix")
@@ -137,6 +144,8 @@ let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 2
 
+"vvt
+let g:vvt_browser_command = 'echo "%URL%" | xclip'
 
 set nocompatible
 
