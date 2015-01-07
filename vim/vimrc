@@ -76,8 +76,8 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-let mapleader = ","
-
+let mapleader = "\<space>"
+nnoremap <space> <nop>
 " set dirs
 set backupdir=$HOME/.vim/swap/backup//
 set undodir=$HOME/.vim/swap/undo//
@@ -167,5 +167,8 @@ call unite#custom#profile('default', 'context', {
 " 2}}}
 
 set nocompatible
-
+set norelativenumber
+set nocursorline
+"set nolazyredraw
+"set nottyfast
 source $HOME/.vim/mappings.vim
