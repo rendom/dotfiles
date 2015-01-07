@@ -60,12 +60,12 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 
-"if has("unix")
-"	let s:uname = system("uname")
-"	if s:uname != "Darwin\n"
-"		NeoBundle 'fatih/vim-go'
-"	endif
-"endif
+if has("unix")
+	let s:uname = system("uname")
+	if s:uname != "Darwin\n"
+        let g:vvt_browser_command = 'echo "%URL%" | xclip'
+	endif
+endif
 
 call neobundle#end()
 
@@ -146,9 +146,6 @@ let g:UltiSnipsExpandTrigger         = "<C-l>"
 let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 2
-
-"vvt
-let g:vvt_browser_command = 'echo "%URL%" | xclip'
 
 " unite {{{2
  let g:unite_source_buffer_time_format = "%Y-%m-%d %H:%M:%S "
