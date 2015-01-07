@@ -40,7 +40,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'c0r73x/vimdir.vim'
-" NeoBundle 'xsbeats/vim-blade'  # pooped?
+NeoBundle 'xsbeats/vim-blade' 
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'dockyard/vim-easydir'
 NeoBundle 'rendom/vvt.nu-vim'
@@ -48,21 +48,24 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kien/ctrlp.vim'
 
 
 "css stuff
 NeoBundle 'skammer/vim-css-color'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'groenewege/vim-less'
+NeoBundle 'fatih/vim-go'
 
+"Unite
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim'
 
-if has("unix")
-	let s:uname = system("uname")
-	if s:uname != "Darwin\n"
-		NeoBundle 'fatih/vim-go'
-	endif
-endif
+"if has("unix")
+"	let s:uname = system("uname")
+"	if s:uname != "Darwin\n"
+"		NeoBundle 'fatih/vim-go'
+"	endif
+"endif
 
 call neobundle#end()
 
@@ -146,6 +149,22 @@ let g:UltiSnipsUsePythonVersion      = 2
 
 "vvt
 let g:vvt_browser_command = 'echo "%URL%" | xclip'
+
+" unite {{{2
+ let g:unite_source_buffer_time_format = "%Y-%m-%d %H:%M:%S "
+ let g:unite_source_grep_command       = 'ag'
+ let g:unite_source_grep_default_opts  = '--nocolor --follow --nogroup --column'
+  let g:unite_source_find_default_opts  = '-L'
+  let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --column -g ""'
+let g:unite_source_grep_recursive_opt = ''
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#profile('default', 'context', {
+            \    'start_insert': 1,
+            \    'direction': 'botright',
+            \    'auto_size': 1
+            \ })
+" 2}}}
 
 set nocompatible
 

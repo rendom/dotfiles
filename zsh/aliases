@@ -39,6 +39,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias lm='la | more'
     alias l='ll'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
     alias l='ls -1'
     alias la='ls -lhAF'
     alias ll='ls -lhF'
