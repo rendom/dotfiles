@@ -39,8 +39,8 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'xsbeats/vim-blade'
 NeoBundle 'c0r73x/vimdir.vim'
-NeoBundle 'xsbeats/vim-blade' 
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'dockyard/vim-easydir'
 NeoBundle 'rendom/vvt.nu-vim'
@@ -48,10 +48,11 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-fugitive'
-
+NeoBundle 'vim-scripts/HTML-AutoCloseTag'
+NeoBundle 'sheerun/vim-polyglot'
 
 "css stuff
-NeoBundle 'skammer/vim-css-color'
+"NeoBundle 'skammer/vim-css-color'  " breaks html?
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
