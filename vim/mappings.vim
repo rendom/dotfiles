@@ -6,8 +6,12 @@ nnoremap <C-H> <C-W><C-H>
 
 nnoremap , ;
 
+"unite hax
 nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
 nnoremap <silent> <leader>t :<C-U>Unite file_rec/async:!<cr>
 nnoremap <silent> <leader>g :<C-U>Unite grep<cr>
 nnoremap <silent> <leader>l :<C-U>Unite line<cr>
+
+" reset search
+nmap <leader>/ :let @/ = ""<CR>
 
