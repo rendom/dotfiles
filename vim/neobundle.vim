@@ -37,7 +37,9 @@ NeoBundle 'szw/vim-ctrlspace'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'mhinz/vim-signify'
+"NeoBundle 'mhinz/vim-signify'
+NeoBundle 'tomtom/quickfixsigns_vim'
+NeoBundle 'talek/obvious-resize'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xsbeats/vim-blade'
 NeoBundle 'c0r73x/vimdir.vim'
@@ -60,6 +62,9 @@ NeoBundle 'fatih/vim-go'
 "Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
+
+
+NeoBundle 'mbbill/undotree'
 
 if has("unix")
 	let s:uname = system("uname")
