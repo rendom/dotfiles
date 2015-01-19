@@ -61,3 +61,15 @@ nnoremap <silent> <C-j> :ObviousResizeDown<CR>
 nnoremap <silent> <C-h> :ObviousResizeLeft<CR>
 nnoremap <silent> <C-l> :ObviousResizeRight<CR>
 
+nmap - <Plug>(choosewin)
+nmap <leader>- <Plug>(choosewin)
+
+" paste stuff
+"vnoremap y "ay
+"vnoremap Y "ay
+"vnoremap p "ap
+"vnoremap P "ap
+"nnoremap y "ay
+"nnoremap Y "ay
+"nnoremap p "ap
+"nnoremap P "ap

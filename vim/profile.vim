@@ -39,7 +39,7 @@ set incsearch
 set encoding=utf-8
 
 " highlight cursor line
-set cursorline
+"set cursorline
 
 " split opening
 set splitbelow
@@ -80,3 +80,4 @@ set norelativenumber
 set nocursorline
 "set nolazyredraw
 "set nottyfast
+
