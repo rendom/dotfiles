@@ -52,6 +52,8 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 't9md/vim-choosewin'
+NeoBundle 'editorconfig/editorconfig-vim'
 
 "css stuff
 "NeoBundle 'skammer/vim-css-color'  " breaks html?
@@ -64,7 +66,6 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 
 
-NeoBundle 'mbbill/undotree'
 
 if has("unix")
 	let s:uname = system("uname")

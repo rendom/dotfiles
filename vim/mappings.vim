@@ -52,8 +52,8 @@ noremap <right> >>
 vnoremap <left> <<
 vnoremap <right> >>
 
-"undotree
-nmap <leader>u :UndotreeToggle<CR>
+"choosewin
+nmap - <Plug>(choosewin)
 
 "resize
 nnoremap <silent> <C-k> :ObviousResizeUp<CR>
