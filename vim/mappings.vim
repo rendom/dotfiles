@@ -52,8 +52,8 @@ noremap <right> >>
 vnoremap <left> <<
 vnoremap <right> >>
 
-"undotree
-nmap <leader>u :UndotreeToggle<CR>
+"choosewin
+nmap - <Plug>(choosewin)
 
 "resize
 nnoremap <silent> <C-k> :ObviousResizeUp<CR>
@@ -61,7 +61,6 @@ nnoremap <silent> <C-j> :ObviousResizeDown<CR>
 nnoremap <silent> <C-h> :ObviousResizeLeft<CR>
 nnoremap <silent> <C-l> :ObviousResizeRight<CR>
 
-nmap - <Plug>(choosewin)
 nmap <leader>- <Plug>(choosewin)
 
 " paste stuff
@@ -73,3 +72,13 @@ nmap <leader>- <Plug>(choosewin)
 "nnoremap Y "ay
 "nnoremap p "ap
 "nnoremap P "ap
+
+"go stuff
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+

@@ -11,6 +11,7 @@ set t_Co=256
 
 set shell=/bin/zsh
 
-source $HOME/.vim/neobundle.vim
+"source $HOME/.vim/neobundle.vim
+source $HOME/.vim/vimplug.vim
 source $HOME/.vim/profile.vim
 source $HOME/.vim/mappings.vim
