@@ -1,6 +1,7 @@
 # Random conf with stuff stolen from c0r73x :)
 
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 export MPV_HOME=$HOME/.config/mpv
 
@@ -15,14 +16,10 @@ fi
 source $HOME/.zsh/profile
 
 # Plugins
-#for f in $HOME/.zsh/plugins/*.zsh; do
-#	source $f;
-#done
-
-source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+for f in $HOME/.zsh/plugins/*.zsh; do
+	source $f;
+done
 source $HOME/.zsh/style
-source $HOME/.zsh/plugins/livestreamer-twitch.zsh
-
 
 ponysay --quote
 

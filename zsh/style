@@ -34,3 +34,4 @@ ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS+=('!')
 ZSH_HIGHLIGHT_KEYWORD_KEYWORDS+=('rm -rf *' 'fg=white,bold,bg=red')
 ZSH_HIGHLIGHT_KEYWORD_KEYWORDS+=('rm -fr *' 'fg=white,bold,bg=red')
 
+#  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=syntax et :
