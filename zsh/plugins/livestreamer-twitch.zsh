@@ -1,4 +1,5 @@
 # Twitch + Livestreamer <3
+# curl -H 'Accept: application/vnd.twitchtv.v3+json' -X GET "https://api.twitch.tv/kraken/streams?channel=lirik,esl_sc2"
 _livestr_get_following(){
 	cat $XDG_CONFIG_HOME/twitch/following
 }
