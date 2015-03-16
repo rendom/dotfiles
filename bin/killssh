@@ -1,0 +1,25 @@
+#!/bin/sh
+IFS=$'\n'
+options=($(who -a | grep pts))
+
+select opt in "${options[@]}"
+do
+    pts=$(echo $opt | perl -pe 's/.*(pts\/[0-9]+).*/\1/')
+    pid=$(ps -aux | grep sshd | grep -v grep | grep $pts | grep ssh | perl -pe 's/.*?([0-9]+).*/\1/')
+    ps -aux | grep $pts
+    echo $pid
+    while true; do
+        read -p "are you sure you want to kill this ssh session? [yN]" yn
+        case $yn in
+            [Yy]* )
+                echo killing $pid
+                kill $pid
+                exit
+                ;;
+            * )
+                echo aborting
+                exit
+                ;;
+        esac
+    done
+done
