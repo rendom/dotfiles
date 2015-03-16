@@ -1,31 +1,37 @@
+#!/bin/zsh
 # Twitch + Livestreamer <3
-# curl -H 'Accept: application/vnd.twitchtv.v3+json' -X GET "https://api.twitch.tv/kraken/streams?channel=lirik,esl_sc2"
-_livestr_get_following(){
-	cat $XDG_CONFIG_HOME/twitch/following
-}
-
-livestr(){
-    if [ ! -z "$1" ]; then
-        R=$1
-    else
-        LIST=""
-        for stream in $(_livestr_get_following); do
-            RESULT=$(curl --silent https://api.twitch.tv/kraken/streams/$stream)
-            if [[ ! $RESULT =~ "\"stream\":null}" ]]; then
-                LIST="$stream\n$LIST"
-            fi
-        done
-        R=$(echo $LIST | dmenu -fn "tamsyn:size=6" -p "Twitch" -i)
+_livestr_get_following() {
+    if [ -f $XDG_CONFIG_HOME/twitch/following ]; then
+        /bin/cat $XDG_CONFIG_HOME/twitch/following
     fi
-    [ -z "$R" ] || livestreamer http://twitch.tv/$R best
+}
+
+_livestr() {
+    if (( CURRENT != 2 )); then
+        return 0
+    fi
+
+    local -a LIST
+    local CSLIST=$(_livestr_get_following | tr -s "\n" ",")
+    local RESULT="$(curl -s "https://api.twitch.tv/kraken/streams?channel=$CSLIST")"
+
+    for stream in $(_livestr_get_following); do
+        local ISONLINE="$(echo $RESULT | sed -n "/\"name\":\"$stream\"/p")"
+        if [ ! -z "$ISONLINE" ]; then
+            LIST+=("${stream}:ONLINE")
+        else
+            LIST+=("${stream}:OFFLINE")
+        fi
+    done
+
+    _describe -t LIST 'streams' LIST
+
+    return 0
+}
+
+twitch() {
+    [ -z "$1" ] || livestreamer http://twitch.tv/$1 best
 
 }
 
-
-_livestr(){
-	compadd `_livestr_get_following`
-}
-
-
-
-compdef _livestr livestr
+compdef _livestr twitch

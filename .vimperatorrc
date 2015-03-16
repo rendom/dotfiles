@@ -1,0 +1,58 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+highlight Bell border: 0 none; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+highlight CmdLine background: #0c0c0c; color: #404040;
+highlight CmdLine>* font-family: Tamsyn;
+highlight CompDesc color: #404040; width: 50%;
+highlight CompIcon width: 8px; height: 8px; padding-right: 2px;
+highlight CompIcon>img width: 8px; height: 8px; vertical-align: middle;
+highlight CompItem height:8px; margin: 0; padding: 0;
+highlight CompItem[selected] color: #197885;
+highlight CompMsg margin: 0px;
+highlight CompResult width: 25%; overflow: hidden;
+highlight CompTitle color: #404040; font-weight: bold;
+highlight CompTitle>* padding: 0;
+highlight ContentSeparator border:none;
+highlight ErrorMsg color: #872e2e; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+highlight Filter color: #197885;
+highlight FrameIndicator background-color: #0c0c0c; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+highlight Function color: #196271;
+highlight Hint color: #0c0c0c; background: #d8ce32; border: solid 1px #0c0c0c;font-size: 8pt; font-family: Tamsyn;padding:2px;
+highlight HintActive background: #679254;
+highlight HintElem "background: #0c0c0c; color: #679254;
+highlight InfoMsg color: #57783d; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+highlight LineNr color: #197885;
+highlight Message white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;font-size: 8pt; font-family: Tamsyn;
+highlight ModeMsg color: #404040; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+highlight MoreMsg color: #404040; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+highlight NonText color: #202020; padding-left: 2px;font-size: 8pt; font-family: Tamsyn;
+highlight Normal color: #404040; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+highlight Number color: #b27d12;
+highlight Prompt display: none;
+highlight PromptText font-size: 8pt; font-family: Tamsyn; height: 8px;
+highlight Question color: #197885; background: #0c0c0c; font-weight: bold;font-size: 8pt; font-family: Tamsyn;
+highlight StatusLine color: #404040; background: #0c0c0c; font-size: 8pt; font-family: Tamsyn; height: 8px;
+highlight String color: #679254;
+highlight Tag color: #672337;
+highlight Title color: #606060;
+highlight URL text-decoration: underline; color: #197885;
+highlight WarningMsg color: #872e2e; background: #0c0c0c;font-size: 8pt; font-family: Tamsyn;
+nnoremap <A-j> <C-d>
+nnoremap <A-k> <C-u>
+nnoremap <A-h> :bprevious<Return>
+nnoremap <A-l> :bnext<Return>
+nnoremap O :tabopen<Space>
+nnoremap H :back<Return>
+nnoremap L :forward<Return>
+nnoremap = :zoom<Space>100<Return>
+set complete=l
+set defsearch=duckduckgo
+set hintchars=aoeuidhtns
+set status=ssl,input,location,bookmark,history,tabcount,position
+style! -name=tab chrome://* <<EOF
+.tabbrowser-strip {
+    background                         : #002b36 !important;
+  }
+EOF
+
+" vim: set ft=vimperator:
