@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+cl=$(aplay -l | awk -F \  '{ if($1 == "card") a[$3]++ } END { for (b in a) { print b } }')
+card=$(echo "$cl" | $DMENU -fn "$font" -p "Card:")
+
+if [[ ! -z $card ]]; then
+    cn="${card%%:*}"
+    pkill mopidy
+    echo "defaults.pcm.rate_converter \"samplerate_best\"
+
+pcm.!default {
+    type hw
+    card $card
+}
+
+ctl.!default {
+    type hw
+    card $card
+}
+    " > $HOME/.asoundrc
+    mopidy &
+fi

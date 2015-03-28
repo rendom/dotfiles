@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+cl=$(pamixer --list-sinks | awk -F \"  '{ a[$4]++ } END { for (b in a) { print b}}')
+card=$(echo "$cl" | $DMENU -fn "$font" -p "Card:")
+
+if [[ ! -z $card ]]; then
+    cn=$(pamixer --list-sinks | grep "$card" | cut -c1)
+    pacmd set-default-sink $cn
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+
+for c in $(herbstclient attr clients); do
+    if [[ $c == 0x* ]]; then
+        id=${c//./}
+        title=$(herbstclient attr clients.${id}.title)
+        class=$(herbstclient attr clients.${id}.class)
+        output="$output$id $class - $title\n"
+    fi
+done
+window=$(echo -e $output | $DMENU -fn "$font" -p "Jump To:")
+herbstclient jumpto $(echo $window | cut -f1 -d' ')

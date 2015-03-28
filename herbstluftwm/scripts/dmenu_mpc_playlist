@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+ID=`mpc playlist --format "%id%: %artist% - %title%"| sed -e "s/^>/ /" | $DMENU -fn "$font" -i -p "MPD:" | grep -P -o "^\d+" `
+
+echo $ID
+if [[ ! -z $ID ]]; then
+	ID=`awk -v ID=$ID "BEGIN { print ID+1 }"`
+	mpc --no-status play $ID
+fi

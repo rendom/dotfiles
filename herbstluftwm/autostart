@@ -1,0 +1,242 @@
+#!/bin/bash
+#forked @c0r73x hlwm config.
+
+killall herbstclient 2>/dev/null
+
+function hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+#xsetroot -solid '#5A8E3A'
+#xsetroot -solid '#000'
+
+# remove all existing keybindings
+hc keyunbind --all
+
+# keybindings
+Mod=Mod4
+hc keybind $Mod-Shift-q quit
+hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Shift-c close
+hc keybind $Mod-Return spawn urxvtc
+
+# tags
+TAG_NAMES=( {1..5} )
+TAG_KEYS=( {1..5} 0 )
+
+hc rename default "${TAG_NAMES[0]}" || true
+for i in ${!TAG_NAMES[@]} ; do
+    hc add "${TAG_NAMES[$i]}"
+    key="${TAG_KEYS[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+# cycle through tags
+#hc keybind $Mod-period use_index +1
+#hc keybind $Mod-comma  use_index -1
+hc keybind $Mod-Alt-Right use_index +1
+hc keybind $Mod-Alt-Left  use_index -1
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+
+# layouting
+hc keybind $Mod-i spawn $SCRIPTS/dmenu_wallpaper
+hc keybind $Mod-o spawn $SCRIPTS/dmenu_soundcard_pulse
+#hc keybind $Mod-g spawn $SCRIPTS/dmenu_games
+hc keybind $Mod-t spawn $SCRIPTS/dmenu_jumpto
+hc keybind $Mod-b spawn $SCRIPTS/dmenu_bring
+hc keybind $Mod-q remove
+hc keybind $Mod-r spawn $DMENU_RUN -fn "$font"
+hc keybind $Mod-m spawn $SCRIPTS/dmenu_mpc_playlist -fn "$font"
+hc keybind $Mod-space cycle_layout 1
+hc keybind $Mod-minus split vertical 0.5
+hc keybind $Mod-less split horizontal 0.5
+hc keybind $Mod-comma split horizontal 0.5
+hc keybind $Mod-s floating toggle
+hc keybind $Mod-f fullscreen toggle
+hc keybind $Mod-p pseudotile toggle
+
+# resizing
+RESIZESTEP=0.05
+hc keybind $Mod-Control-Left resize left +$RESIZESTEP
+hc keybind $Mod-Control-Down resize down +$RESIZESTEP
+hc keybind $Mod-Control-Up resize up +$RESIZESTEP
+hc keybind $Mod-Control-Right resize right +$RESIZESTEP
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+#hc keybind $Mod-Tab         cycle_all +1
+#hc keybind $Mod-Shift-Tab   cycle_all -1
+#hc keybind $Mod-c cycle
+hc keybind $Mod-h focus left
+hc keybind $Mod-j focus down
+hc keybind $Mod-k focus up
+hc keybind $Mod-l focus right
+hc keybind $Mod-Shift-h shift left
+hc keybind $Mod-Shift-j shift down
+hc keybind $Mod-Shift-k shift up
+hc keybind $Mod-Shift-l shift right
+hc keybind $Mod-Control-h resize left +$RESIZESTEP
+hc keybind $Mod-Control-j resize down +$RESIZESTEP
+hc keybind $Mod-Control-k resize up +$RESIZESTEP
+hc keybind $Mod-Control-l resize right +$RESIZESTEP
+
+## focus
+hc keybind $Mod-Tab        cycle_all +1
+hc keybind $Mod-Shift-Tab  cycle_all -1
+hc keybind $Mod-c cycle
+hc keybind $Mod-Left  focus left
+hc keybind $Mod-Down  focus down
+hc keybind $Mod-Up    focus up
+hc keybind $Mod-Right focus right
+hc keybind $Mod-Shift-Left  shift left
+hc keybind $Mod-Shift-Down  shift down
+hc keybind $Mod-Shift-Up    shift up
+hc keybind $Mod-Shift-Right shift right
+
+# Media keys
+hc keybind XF86ScreenSaver spawn xset dpms force off
+hc keybind XF86AudioPlay spawn mpc toggle > /dev/null 2>&1
+hc keybind XF86AudioNext spawn mpc next > /dev/null 2>&1
+hc keybind XF86AudioPrev spawn mpc prev > /dev/null 2>&1
+hc keybind XF86AudioStop spawn mpc > /dev/null 2>&1
+
+hc keybind XF86AudioMute spawn amixer set Master toggle
+hc keybind XF86AudioLowerVolume spawn amixer set Master 1- unmute 
+hc keybind XF86AudioRaiseVolume spawn amixer set Master 1+ unmute
+
+hc keybind XF86MonBrightnessUp spawn xbacklight -inc 15%
+hc keybind XF86MonBrightnessDown spawn xbacklight -dec 15%
+# colors
+hc set window_border_inner_color "$black"
+hc set frame_border_normal_color "$background"
+hc set frame_border_active_color "$cyan"
+
+hc set frame_bg_normal_color "$black"
+hc set frame_bg_active_color "$black"
+
+hc set window_border_normal_color "#000"
+hc set window_border_active_color "$cyan"
+
+hc set window_border_urgent_color "$dred"
+
+hc set frame_border_width 0
+hc set window_border_width 3
+hc set window_border_inner_width 2
+hc set always_show_frame 0
+hc set frame_gap 2
+hc set window_gap 0
+hc set frame_padding 0
+
+# settings
+hc set frame_bg_transparent 1
+hc set focus_follows_mouse 1
+hc set raise_on_click 1
+hc set raise_on_focus 1
+hc set focus_follows_shift 1
+hc set tree_style  "╾│ ├└╼─┐"
+hc set update_dragged_clients 1
+
+# rules
+#hc unrule -F
+#hc rule class=XTerm tag=3 # move all xterms to tag 3
+#hc rule focus=off # normally do not focus new clients
+# give focus to most common terminals
+hc unrule --all
+hc rule focus=on
+hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
+hc rule class~'.*Screenkey' manage=off
+
+# unlock, just to be sure
+hc unlock
+hostname="$(hostname)"
+
+# do multi monitor setup here, e.g.
+#if [ $hostname == "foo" ] || [ $hostname == "baar" ]; then
+#    hc remove_monitor 1
+#    hc move_monitor 0 1920x1080+0+0
+#    hc use "${TAG_NAMES[0]}"
+#   hc add_monitor 1920x1080+1920+0 "${TAG_NAMES[1]}"
+#elif [ $hostname == "ws" ]; then
+    #hc remove_monitor 1
+    #hc move_monitor 0 1680x1050+0+0
+    #hc use "${TAG_NAMES[0]}"
+    #hc add_monitor 1920x1080+1680+0 "${TAG_NAMES[1]}"
+#fi
+
+OLDIFS=$IFS
+IFS=$'\r\n' monitors=($(xrandr | egrep -E "\sconnected [0-9]+"))
+primary=$(xrandr | egrep -E "\sconnected primary [0-9]+")
+
+if [ ! -z $primary ]; then 
+    monitors=( "$primary" "${monitors[@]}" )
+fi
+
+for m in $(herbstclient list_monitors | cut -d: -f1); do
+    if [ $m -gt 0 ]; then
+        hc remove_monitor $m
+    fi
+done
+
+c=${#monitors[@]}
+i=0
+
+while [ "$i" -lt "$c" ]; do
+    res=$(echo ${monitors[$i]} | sed -r 's/.*connected (primary )?([0-9]+x[0-9]+\+[0-9]+\+[0-9]+).*/\2/')
+
+    if [ $i -eq 0 ]; then 
+        hc move_monitor $i "$res"
+        hc use "${TAG_NAMES[$i]}"
+    else
+        hc add_monitor "$res" "${TAG_NAMES[$i]}"
+    fi
+
+    let "i++"
+done
+IFS=$OLDIFS
+
+
+$FEH "$WPDIR/.wallpaper" &
+trap 'herbstclient emit_hook quit_panel' TERM
+hc emit_hook quit_panel
+
+pkill ruby
+mpdnotify restart &
+
+for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+    dpi=`xdpyinfo | /bin/grep 'resolution:' | /bin/grep -o '[0-9]\+' | head -n 1`
+    if [[ $dpi -lt 96 ]]; then
+        dpi=96
+    fi
+
+    pheight=`echo "12 * ($dpi / 96)" | bc`
+    hc pad $monitor $pheight 0 0 0
+
+    geometry=($(herbstclient monitor_rect "$monitor"))
+    if [ -z "$geometry" ] ;then
+        echo "Invalid monitor $monitor"
+    fi
+    # geometry has the format: WxH+X+Y
+    x=${geometry[0]}
+    y=${geometry[1]}
+    panel_width=${geometry[2]}
+
+    $HOME/gitstuff/github/panel/panel | dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
+    #$XDG_CONFIG_HOME/herbstluftwm/panel.rb $monitor | 
+    #    dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
+done
+
+hc spawn urxvtc

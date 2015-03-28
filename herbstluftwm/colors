@@ -1,0 +1,25 @@
+#!/bin/bash
+
+imgpath1="/usr/share/icons/stlarch_icons"
+imgpath2="/usr/share/icons/sm4tik"
+
+foreground="`$HOME/bin/getcolor foreground`"
+background="`$HOME/bin/getcolor background`"
+
+white="`$HOME/bin/getcolor color7`"
+darkgray="`$HOME/bin/getcolor color8`"
+black="`$HOME/bin/getcolor color0`"
+
+yellow="`$HOME/bin/getcolor color11`"
+red="`$HOME/bin/getcolor color9`"
+blue="`$HOME/bin/getcolor color12`"
+cyan="`$HOME/bin/getcolor color14`"
+green="`$HOME/bin/getcolor color10`"
+magenta="`$HOME/bin/getcolor color13`"
+
+dblue="`$HOME/bin/getcolor color4`"
+dyellow="`$HOME/bin/getcolor color3`"
+dred="`$HOME/bin/getcolor color1`"
+dgreen="`$HOME/bin/getcolor color2`"
+dcyan="`$HOME/bin/getcolor color6`"
+dmagenta="`$HOME/bin/getcolor color5`"

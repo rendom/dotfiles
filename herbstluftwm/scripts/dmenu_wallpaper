@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+WP=`ls $WPDIR | $DMENU -fn "$font" -p "Wallpaper:"`
+if [[ ! -z $WP ]]; then
+    $(ln -fs $WPDIR/$WP $WPDIR/.wallpaper)
+    $FEH "$WPDIR/.wallpaper"
+fi

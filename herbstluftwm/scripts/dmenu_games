@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+
+game=`ls $HOME/games/bin | $DMENU -fn "$font" -p "Games:"`
+if [[ ! -z $game ]]; then
+    $game &
+fi
