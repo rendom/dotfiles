@@ -79,3 +79,5 @@ fi
 
 # Random dev stuff
 alias gob='go build'
+
+belongsto='equery belongs -e'
