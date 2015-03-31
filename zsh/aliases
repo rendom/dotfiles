@@ -22,6 +22,9 @@ httpheader(){
     curl -s -D - $1 -o /dev/null
 }
 
+function finder() { find . -iname "*$1*" }
+alias f='finder'
+
 #alias ping='getHostname =ping'
 #alias dig='getHostname =dig'
 

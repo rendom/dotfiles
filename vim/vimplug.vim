@@ -37,6 +37,8 @@ Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'xsbeats/vim-blade', { 'for': ['blade', 'php']}
 
+Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
+
 "Golang
 Plug 'fatih/vim-go', { 'for': ['go'] }
 
