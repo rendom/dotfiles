@@ -1,0 +1,26 @@
+#!/bin/bash
+
+. $XDG_CONFIG_HOME/herbstluftwm/functions
+
+while true
+do
+    for cif in ${INTERFACES[@]}; do
+        if [[ "$(cat /sys/class/net/$cif/carrier)" -eq "1" ]]; then
+            ul=`cat /sys/class/net/$cif/statistics/tx_bytes`
+            dl=`cat /sys/class/net/$cif/statistics/rx_bytes`
+
+            pul=`cat /dev/shm/tx 2> /dev/null`
+            pdl=`cat /dev/shm/rx 2> /dev/null`
+
+            echo $ul > /dev/shm/tx
+            echo $dl > /dev/shm/rx
+
+            ulbps=$(awk -v scale=2 -v a=$ul -v b=$pul 'BEGIN { printf "%.*f\n", scale, (a-b)/1024 }')
+            dlbps=$(awk -v scale=2 -v a=$dl -v b=$pdl 'BEGIN { printf "%.*f\n", scale, (a-b)/1024 }')
+
+            echo $ulbps > /dev/shm/ulbps
+            echo $dlbps > /dev/shm/dlbps
+        fi
+    done
+    sleep 1
+done

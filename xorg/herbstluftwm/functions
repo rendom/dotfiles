@@ -1,0 +1,208 @@
+#!/bin/bash
+# vim: set ts=4 sw=4 tw=0 et ft=sh:
+
+. ~/.config/herbstluftwm/colors
+
+# CONFIG
+#font="-misc-fixed-*-r-*--7-*-*-*-*-*-*-*"
+#dzfont="tamsyn 6"
+#font="tamsyn:size=6"
+font="`xrdb -query | grep dzen2.font | sed -r 's/.*:\s+([A-Za-z0-9\ ]*)/\1/'`"
+dzfont=$font
+dmo="-nb $background -nf $foreground -sf $dcyan -sb $background -h 11"
+DMENU="dmenu -i $dmo"
+DMENU_RUN="dmenu_run -i $dmo"
+WPDIR="$HOME/images/wallpapers"
+SCRIPTS="$HOME/.config/herbstluftwm/scripts"
+FEH="feh --bg-fill"
+#FEH="hsetroot -center"
+iconcolor="^fg($dcyan)^bg()"
+long_string_cutoff=45
+sep=""
+
+INTERFACES=("eth0" "wlan0") # Fixa automagiskt
+
+#sep="^bg()^fg($bloack)::^fg()"
+
+# FUNCTIONS
+colorize()
+{
+    local color="$red"
+    if [[ $1 -ge 80 ]]; then
+        color="$dgreen"
+    elif [[ $1 -ge 60 ]]; then
+        color="$green"
+    elif [[ $1 -ge 40 ]]; then
+        color="$yellow"
+    elif [[ $1 -ge 20 ]]; then
+        color="$dyellow"
+    elif [[ $1 -ge 10 ]]; then
+        color="$dred"
+    fi
+    echo "$color"
+}
+rcolorize()
+{
+    local color="$dgreen"
+    if [[ $1 -ge 80 ]]; then
+        color="$dred"
+    elif [[ $1 -ge 60 ]]; then
+        color="$red"
+    elif [[ $1 -ge 40 ]]; then
+        color="$dyellow"
+    elif [[ $1 -ge 20 ]]; then
+        color="$yellow"
+    elif [[ $1 -ge 10 ]]; then
+        color="$green"
+    fi
+    echo "$color"
+}
+function GetMixer() {
+    Mixer="Front"
+    if [[ -z "`amixer get $Mixer 2> /dev/null | grep Playback`" ]]; then
+        Mixer="Master"
+        if [[ -z "`amixer get $Mixer 2> /dev/null | grep Playback`" ]]; then
+            Mixer="PCM"
+        fi
+    fi
+
+    echo "$Mixer"
+}
+function uniq_linebuffered() {
+    awk '$0 != l { print ; l=$0 ; fflush(); }' "$@"
+}
+herbstags() {
+    TAGS=($(herbstclient tag_status $monitor))
+    for i in "${TAGS[@]}" ; do
+        tag="${i:1}"
+        case ${i:0:1} in
+            '#') echo -n "\f8$tag " ;;
+            '+') echo -n "\f8$tag " ;;
+            ':') echo -n "\f9$tag " ;;
+            '!') echo -n "\f1$tag " ;;
+            *) #echo "^bg($black)$tag" ;;
+        esac
+    done
+    echo -n "\f9"
+}
+wintitle() {
+    local title="$(xprop -id $(xprop -root _NET_ACTIVE_WINDOW | cut -d' ' -f5) _NET_WM_NAME | sed 's/_NET_WM_NAME.*= "\(.*\)"/\1/')"
+    echo -n "$(cut -c -$long_string_cutoff <<<$title)"
+}
+volume() {
+    local mixer="$(GetMixer)"
+    local stat=$(amixer sget $mixer | awk '/\[on\]/{print $4}')
+    if [ ! -z "$stat" ]; then
+        local vol=$(amixer sget $mixer | awk -F\[ '/\[/ { sub(/%\]\ /, ""); print $2 }' | head -n 1)
+        local stat="\\f8\\f9 $vol% "
+    else
+        local stat="\\f8\\f1 MUTE "
+    fi
+    echo -n "$stat"
+}
+
+drives() {
+    local disks="$(df -h | awk -F ' ' '/(dev\/sd|\/media)/ { if(! match($6,"boot")) {printf($6";"$4";"$5" ")}}')"
+    local output=""
+    echo -n "$iconcolor^i($imgpath1/file1.xbm)^bg() "
+    for d in $disks; do
+        local path="$(echo -n $d | cut -d\; -f 1)"
+        local avail="$(echo -n $d | cut -d\; -f 2 | sed "s/[A-Z]/ ^fg($darkgray)&iB/")"
+        local proc="$(echo -n $d | cut -d\; -f 3 | cut -d'%' -f 1)"
+        echo -n "$output^fg()$path ^fg($white)$proc% ^fg($darkgray)$avail "
+    done
+}
+
+processor() {
+    local freq="$(cpupower frequency-info | awk -F\  '/current CPU/ { sub(/\./,"",$6); print " "$5$6" " }')"
+    local cpu="$((100 - $(printf "%.0f" $(cat /dev/shm/cpu | tail -n 1 | awk {'print $13'}))))"
+    echo -n "$iconcolor^i($imgpath1/cpu2.xbm)^bg()^fg($white) ${cpu}%^fg($darkgray)$freq"
+}
+
+memory() {
+    local fm=$(free -m)
+    local tot=$(echo -n "$fm" | awk -F ' ' '/Mem:/{print $2}')
+    local mem=$(echo -n "$fm" | awk -F ' ' '/cache:/{print $3}')
+    local proc=$(awk -v a=$mem -v b=$tot 'BEGIN { printf("%d\n",(a/b)*100) }')
+
+    echo -n "$iconcolor^i($imgpath1/mem2.xbm)^bg()^fg($white) $proc% ^fg($darkgray)$mem MiB"
+}
+
+mpcshow() {
+    case "$(mpc | head -2 | tail -1 | awk '{print $1}' | sed 's/\[\(.*\)\]/\1/g')" in
+        playing)
+            local icon="\\f8\\f9 "
+            local song="$(mpc current)"
+        ;;
+        *)
+            local icon="\\f8\\f1 "
+            local song=" N/A "
+        ;;
+    esac
+    echo -n "$icon$(cut -c -$long_string_cutoff <<<$song)"
+}
+
+battery() {
+    if hash acpi 2>/dev/null; then
+        local batt=$(acpi)
+        local ac="$(echo -n "$batt" | grep Charging)"
+        local proc="$(echo -n "$batt" | awk -F ' ' '{print $4}' | cut -d '%' -f 1)"
+        local time="$(echo -n "$batt" | awk -F ' ' '{print $5}' | cut -d ':' -f 1-2)"
+        if [[ ! -z "$time" ]]; then
+            time=" $time"
+        fi
+
+        local icon="^i($imgpath1/batt1full.xbm)"
+        if [[ ! -z "$ac" ]]; then
+            icon="^i($imgpath1/ac15.xbm)"
+        fi
+        echo -n "$iconcolor$icon^bg() ^fg($white)$proc%^fg($darkgray)$time"
+    fi
+}
+
+network() {
+    local icon="^i($imgpath2/net_wired.xbm)"
+    local out="^fg($darkgray)Offile^fg()"
+    for cif in ${INTERFACES[@]}; do
+        if [[ "$(cat /sys/class/net/$cif/carrier)" -eq "1" ]]; then
+            local ip=$(ifconfig $cif | awk -F\  '/inet / {print $2 }')
+            if [[ -z "$ip" ]]; then
+                ip=$(ifconfig $cif | awk -F\  '/inet6/ {print $2 }')
+            fi
+            if [[ ! -z "$ip" ]]; then
+                local speed=
+                if hash iwconfig 2>/dev/null; then
+                    local essid=$(iwconfig $cif | awk -F '"' '/ESSID/ {print $2}')
+                    if [[ ! -z "$essid" ]]; then
+                        local quality=$(iwconfig $cif | awk -F '=' '/Quality/ {print $2}')
+                        local proc="$(echo -n $quality | awk '{ split($1,q,"/"); printf("%d",(q[1]/q[2])*100); }')"
+                        icon="^i($imgpath1/wireless5.xbm)^fg()"
+                        essid="^fg($white)$proc% ^fg($darkgray)$essid^fg()"
+                        speed=$(iwconfig $cif | grep Bit | sed -re 's#.*Bit Rate=([0-9.]*) ([a-z\/]+).*#\1 \2#ig')
+                    fi
+                else
+                    speed=$(ethtool $cif 2> /dev/null | grep Speed | sed -re 's#.*Speed: ([0-9]*)([\/a-z]*).*#\1 \2#ig')
+                    icon="^i($imgpath2/net_wired.xbm)^fg()"
+                fi
+
+                local ulbps=`cat /dev/shm/ulbps`
+                local dlbps=`cat /dev/shm/dlbps`
+
+                speed="^fg($darkgray)${speed} $iconcolor^i($imgpath1/downarrow1.xbm)^bg()^fg($white) ${dlbps}^fg($darkgray) KiB $iconcolor^i($imgpath1/uparrow1.xbm)^bg()^fg($white) ${ulbps}^fg($darkgray) KiB"
+                out="$essid ^fg($white)$ip $speed"
+                break
+            fi
+        fi
+    done
+    echo -n "$iconcolor$icon^bg() $out"
+}
+
+pacman() {
+    packages=`cat /dev/shm/updates`
+    echo -n "$iconcolor^i($imgpath2/pacman.xbm)^bg() "
+    if [ $packages -ne 0 ]; then
+        echo -n "^fg($white)$packages ^fg($darkgray)package(s)"
+    else
+        echo -n "^fg($darkgray)No new packages"
+    fi
+}
