@@ -50,7 +50,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias lt="ls -lhtrF"
 	alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 	alias 'wakeup'='pmset -g log|grep -e " Sleep  " -e " Wake  " | tail -n10'
-	alias php='/Applications/MAMP/bin/php/php5.5.18/bin/php'
+	alias php='/Applications/MAMP/bin/php/php5.5.22/bin/php'
     #alias brutald00m="/Applications/GZDoom.app/Contents/MacOS/GZDoom ~/Downloads/brutal19\ \(1\)/brutal19.pk3"
     alias brutald00m="/Applications/Zandronum.app/Contents/MacOS/zandronum ~/Downloads/brutal19\ \(1\)/brutal19.pk3"
 fi
@@ -104,8 +104,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	
 	            alias emerge='sudo emerge'
 	            alias update='emerge -1 portage && emerge -auDN world'
-	            alias postupdate='emerge @preserved-rebuild; \
-	                emerge --depclean; sudo revdep-rebuild'
+	            alias postupdate='emerge @preserved-rebuild; emerge --depclean; sudo revdep-rebuild'
 	            alias newuse='emerge -auD --newuse @world'
 	        else
 	            alias cave='sudo cave'
