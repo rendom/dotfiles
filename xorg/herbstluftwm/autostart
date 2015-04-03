@@ -50,7 +50,7 @@ hc keybind $Mod-o spawn $SCRIPTS/dmenu_soundcard_pulse
 hc keybind $Mod-t spawn $SCRIPTS/dmenu_jumpto
 hc keybind $Mod-b spawn $SCRIPTS/dmenu_bring
 hc keybind $Mod-q remove
-hc keybind $Mod-r spawn $DMENU_RUN -fn "$font"
+hc keybind $Mod-r spawn dmenu_run -fn tamsyn:size=6
 hc keybind $Mod-m spawn $SCRIPTS/dmenu_mpc_playlist -fn "$font"
 hc keybind $Mod-space cycle_layout 1
 hc keybind $Mod-minus split vertical 0.5
