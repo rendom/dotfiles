@@ -97,6 +97,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	    if [[ "`uname -r`" =~ 'gentoo' ]]; then
 	        alias fix='sudo glsa-check -f affected'
 	        alias belongsto='equery belongs -e'
+            #belongsto='equery belongs -e'
 	        alias portcache='sudo CCACHE_DIR="/var/tmp/ccache" ccache -s'
 	
 	        if [[ ! -e /usr/bin/cave ]]; then
