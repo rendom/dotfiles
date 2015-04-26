@@ -20,6 +20,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
+Plug 'tpope/vim-surround'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
