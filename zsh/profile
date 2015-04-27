@@ -7,6 +7,7 @@ export LS_COLORS
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$home/.gem/ruby/2.1.0/bin:$GOPATH/bin:$HOME/.nodenpm/bin:$PATH
 
+
 # Programs
 export EDITOR=vim
 export PAGER='less'

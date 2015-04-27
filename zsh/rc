@@ -9,6 +9,8 @@ source $HOME/.zsh/autojump
 source $HOME/.zsh/functions
 source $HOME/.zsh/aliases
 
+FPATH=/usr/local/share/zsh/site-functions:$FPATH
+
 if [ -e $HOME/.zsh/local ]; then
 	source $HOME/.zsh/local
 fi

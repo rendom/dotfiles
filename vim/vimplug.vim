@@ -27,13 +27,14 @@ Plug 'marijnh/tern_for_vim', {
             \ 'do' : 'npm install'
             \ }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 
 "webdev
 "NeoBundle 'skammer/vim-css-color'  " breaks html?
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
 Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
-Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html'] }
+Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'xsbeats/vim-blade', { 'for': ['blade', 'php']}
 

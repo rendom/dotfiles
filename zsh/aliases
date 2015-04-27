@@ -65,7 +65,7 @@ alias c='clear'
 alias diff='colordiff'
 alias top='htop'
 alias weechat='weechat-curses'
-alias diff2='icdiff'
+alias diff2='icdiff --line-numbers'
 
 # Git stuff
 alias g='git'
