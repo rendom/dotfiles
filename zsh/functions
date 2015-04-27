@@ -101,8 +101,19 @@ _force_rehash() {
     return 1 # Because we didn't really complete anything
 }
 
+#Git branch + fzf
+gb() {
+    local branches branch
+    branches=$(git branch) &&
+    branch=$(echo "$branches" | fzf +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //")
+}
 
-
-
+gcommit() {
+    local commits selectedCommits
+    commits=$(git status -s) &&
+    selectedCommits=$(echo "${commits}" | fzf -m -e) &&
+    git commit $(echo "${selectedCommits}" | sed "s/.* //")
+}
 
 #  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :
