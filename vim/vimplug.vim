@@ -22,6 +22,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdtree'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
