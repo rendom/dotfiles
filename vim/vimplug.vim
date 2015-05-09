@@ -21,6 +21,7 @@ Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
