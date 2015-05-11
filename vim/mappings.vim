@@ -83,3 +83,4 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
 
+au FileType javascript nmap <Leader>r :Autoformat<CR>

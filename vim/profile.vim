@@ -151,5 +151,5 @@ let g:formatprg_args_javascript = '
             \ --brace-style=collapse
             \ -k
             \ -x
-            \ -w 78
+            \ -w 120
             \ -f -'

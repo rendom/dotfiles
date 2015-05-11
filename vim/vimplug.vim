@@ -25,6 +25,7 @@ Plug 'tpope/vim-surround'
 "Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
+Plug 'Chiel92/vim-autoformat'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
