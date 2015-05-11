@@ -59,21 +59,75 @@ let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 2
 
+
+
+" unite {{{1
+nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
+nnoremap <silent> <leader>t :exec "Unite ".UniteGetSource()<cr>
+nnoremap <silent> <leader>g :<C-U>Unite grep<cr>
+nnoremap <silent> <leader>l :<C-U>Unite line<cr>
+nnoremap <silent> <leader>q :<C-U>Unite qflist<cr>
+" 1}}}
 " unite {{{2
- let g:unite_source_buffer_time_format = "%Y-%m-%d %H:%M:%S "
- let g:unite_source_grep_command       = 'ag'
- let g:unite_source_grep_default_opts  = '--nocolor --follow --nogroup --column'
-  let g:unite_source_find_default_opts  = '-L'
-  let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --column -g ""'
+let g:unite_source_buffer_time_format  = '%Y-%m-%d %H:%M:%S '
+let g:unite_source_grep_command        = 'ag'
+let g:unite_source_grep_default_opts   = '--nocolor --follow --nogroup --column'
+let g:unite_source_find_default_opts   = '-L'
+let g:unite_source_rec_max_cache_files = 0
+let g:unite_redraw_hold_candidates     = 50000
+let g:unite_source_rec_async_command   = 'ag
+            \ --follow
+            \ --nocolor
+            \ --nogroup
+            \ --column
+            \ -g ""'
+
 let g:unite_source_grep_recursive_opt = ''
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#profile('default', 'context', {
+silent! call unite#custom#profile(
+            \ 'default', 'context', {
             \    'start_insert': 1,
             \    'direction': 'botright',
             \    'auto_size': 1
             \ })
+
+
+silent! call unite#custom#source(
+            \ 'buffer,file_rec,file_rec/async,file_rec/git',
+            \ 'required_pattern_length', 2
+            \ )
+
+silent! call unite#custom#source(
+            \ 'buffer,file_rec,file_rec/async,file_rec/git',
+            \ 'matchers',
+            \ [
+            \   'converter_relative_word',
+            \   'matcher_fuzzy',
+            \   'ignore_globs'
+            \ ])
 " 2}}}
+function! UniteGetSource() " {{{2
+    " If inside git dir, do file_rec/git, else file_rec/async
+    if exists('b:gd') && (b:gd ==# '' || b:gd =~# '/$')
+        unlet b:gd
+    endif
+
+    if !exists('b:gd')
+        let dir = s:ExtractGitProject()
+        if dir !=# ''
+            let b:gd = dir
+        endif
+    endif
+    return b:gd !=# '' ? 'file_rec/git' : 'file_rec/async:!'
+endfunction
+" 2}}}
+
+function! s:ExtractGitProject() " {{{2
+    let b:gd = finddir('.git', ';')
+    return b:gd
+endfunction
+" 2}}}
+
 
 "vim go
 let g:go_fmt_command = "goimports"
@@ -89,3 +143,13 @@ set nocursorline
 "set nolazyredraw
 "set nottyfast
 
+let g:formatprg_javascript      = 'js-beautify'
+let g:formatprg_args_javascript = '
+            \ --type js
+            \ -i
+            \ -j
+            \ --brace-style=collapse
+            \ -k
+            \ -x
+            \ -w 78
+            \ -f -'

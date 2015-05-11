@@ -30,3 +30,4 @@ if [ -e /etc/profile.d/fzf.zsh ]; then
     source /etc/profile.d/fzf.zsh
 fi
 # vim: set ft=zsh :
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -15,3 +15,6 @@ set shell=/bin/zsh
 source $HOME/.vim/vimplug.vim
 source $HOME/.vim/profile.vim
 source $HOME/.vim/mappings.vim
+set rtp+=~/.fzf
+set backspace=2 
+set synmaxcol=150

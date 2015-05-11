@@ -21,12 +21,16 @@ Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
 Plug 'tpope/vim-surround'
+"Plug 'Shougo/neocomplete.vim'
+"Plug 'Raimondi/delimitMate'
+
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
             \ 'for' : ['javascript'],
             \ 'do' : 'npm install'
             \ }
+Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 
@@ -37,7 +41,7 @@ Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
 Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
-Plug 'xsbeats/vim-blade', { 'for': ['blade', 'php']}
+"Plug 'xsbeats/vim-blade', { 'for': ['blade', 'php']}
 
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 
