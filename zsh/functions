@@ -115,5 +115,11 @@ gcommit() {
     selectedCommits=$(echo "${commits}" | fzf -m -e) &&
     git commit $(echo "${selectedCommits}" | sed "s/.* //")
 }
+scrotupl(){
+   scrot 'scrotupl_scrot.png' -e 'imgupload $f && rm ~/scrotupl_scrot.png' 
+}
+dragupl(){
+    scrot -s 'scrotupl_scrot.png' -e 'imgupload $f && rm ~/scrotupl_scrot.png'
+}
 
 #  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :

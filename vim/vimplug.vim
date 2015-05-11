@@ -23,7 +23,8 @@ Plug 'kopischke/vim-fetch'
 Plug 'tpope/vim-surround'
 "Plug 'Shougo/neocomplete.vim'
 "Plug 'Raimondi/delimitMate'
-
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdtree'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
