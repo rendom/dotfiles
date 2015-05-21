@@ -1,9 +1,10 @@
 call plug#begin('~/.vim/bundle')
 
 "NeoBundle 'mhinz/vim-signify'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
 "Plug 'szw/vim-ctrlspace'
 "Plug 'vim-scripts/cSyntaxAfter'
+Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -26,6 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
 Plug 'Chiel92/vim-autoformat'
+Plug 'drmikehenry/vim-fixkey'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
@@ -43,9 +45,10 @@ Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
 Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
-"Plug 'xsbeats/vim-blade', { 'for': ['blade', 'php']}
 
+"PHP
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 
 "Golang
 Plug 'fatih/vim-go', { 'for': ['go'] }

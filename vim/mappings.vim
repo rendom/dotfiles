@@ -5,13 +5,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 nnoremap , ;
-
-""unite hax
-"nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
-"nnoremap <silent> <leader>t :<C-U>Unite file_rec/async:!<cr>
-"nnoremap <silent> <leader>g :<C-U>Unite grep<cr>
-"nnoremap <silent> <leader>l :<C-U>Unite line<cr>
-
 nnoremap <Tab> %
 
 let pairs = { ":" : ":",
@@ -84,3 +77,35 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 
 
 au FileType javascript nmap <Leader>r :Autoformat<CR>
+
+
+
+" alt mappings to make life easier 
+nnoremap <A-a> <C-a>
+nnoremap <A-x> <C-x>
+nnoremap <A-j> <C-d>zz
+nnoremap <A-k> <C-u>zz
+nnoremap <A-n> :cnext<cr>
+nnoremap <A-p> :cprevious<cr>
+
+nnoremap <C-n> :cnext<cr>
+nnoremap <C-p> :cprevious<cr>
+
+" better command-line editing 
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-h> <t_kl>
+cnoremap <C-l> <t_kr>
+
+cnoremap <A-j> <t_kd>
+cnoremap <A-k> <t_ku>
+cnoremap <A-h> <t_kl>
+cnoremap <A-l> <t_kr>
+
+"neocomplete
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
