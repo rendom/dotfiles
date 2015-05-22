@@ -4,6 +4,8 @@ call plug#begin('~/.vim/bundle')
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
 "Plug 'szw/vim-ctrlspace'
 "Plug 'vim-scripts/cSyntaxAfter'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
@@ -36,7 +38,8 @@ Plug 'marijnh/tern_for_vim', {
             \ }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
+
 
 "webdev
 "NeoBundle 'skammer/vim-css-color'  " breaks html?
@@ -47,6 +50,7 @@ Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
 
 "PHP
+Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 
