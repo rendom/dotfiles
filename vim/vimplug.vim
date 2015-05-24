@@ -42,7 +42,6 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
 
 
 "webdev
-"NeoBundle 'skammer/vim-css-color'  " breaks html?
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
 Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
