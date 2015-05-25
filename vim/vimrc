@@ -1,7 +1,14 @@
-" set dirs
-set backupdir=$HOME/.vim/swap/backup//
-set undodir=$HOME/.vim/swap/undo//
-set directory=$HOME/.vim/swap//
+if $XDG_CACHE_HOME ==# ''
+    let $XDG_CACHE_HOME=$HOME.'/.cache'
+    let $XDG_CONFIG_HOME=$HOME.'/.config'
+endif
+
+if !isdirectory(expand('$XDG_CACHE_HOME/vim'))
+    silent !mkdir $XDG_CACHE_HOME/vim > /dev/null 2>&1
+    silent !mkdir $XDG_CACHE_HOME/vim/backup > /dev/null 2>&1
+    silent !mkdir $XDG_CACHE_HOME/vim/undo > /dev/null 2>&1
+    silent !mkdir $XDG_CACHE_HOME/vim/tags > /dev/null 2>&1
+endif
 
 "jumphax
 set iskeyword+=_,$,@,%,#
@@ -15,6 +22,8 @@ set shell=/bin/zsh
 source $HOME/.vim/vimplug.vim
 source $HOME/.vim/profile.vim
 source $HOME/.vim/mappings.vim
-"set rtp+=~/.fzf
-set backspace=2 
-set synmaxcol=150
+source $HOME/.vim/autocmd.vim
+
+set backupdir=$XDG_CACHE_HOME/vim/backup//
+set undodir=$XDG_CACHE_HOME/vim/undo//
+set directory=$XDG_CACHE_HOME/vim//

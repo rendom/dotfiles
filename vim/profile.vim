@@ -16,6 +16,9 @@ set softtabstop=4
 set nowrap
 set linebreak
 
+set backspace=2 
+set synmaxcol=150
+
 set noesckeys
 set ttimeout
 set ttimeoutlen=50
@@ -192,16 +195,28 @@ if !exists('g:neocomplete#force_omni_input_patterns')
 endif
 
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType c,cpp setlocal omnifunc=ccomplete#Complete
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-if !filereadable(getcwd().'/.tern-project')
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-else
-    autocmd FileType javascript setlocal omnifunc=tern#Complete
+"easy tags
+let g:easytags_file = expand('$XDG_CACHE_HOME/vim/tags/') . substitute(getcwd(),'/','%', 'g').'.tags'
+
+" let g:easytags_dynamic_files        = 2
+let g:easytags_auto_update            = 1 
+let g:easytags_auto_highlight         = 1 
+let g:easytags_include_members        = 1 
+let g:easytags_dynamic_files          = 1 
+let g:easytags_autorecurse            = 0 
+let g:easytags_suppress_report        = 1 
+let g:easytags_suppress_ctags_warning = 1 
+let g:easytags_async                  = 1 
+let g:easytags_resolve_links          = 1 
+let g:easytags_syntax_keyword         = 'always'
+let g:easytags_on_cursorhold          = 1 
+let g:easytags_always_enabled         = 1 
+"let g:easytags_events                 = ['BufWritePost', 'BufReadPost']
+
+if len(matchstr(getcwd(), '^'.$HOME)) > 0 
+  if getcwd() !=# $HOME
+      let g:easytags_autorecurse = 1 
+  endif
 endif
+

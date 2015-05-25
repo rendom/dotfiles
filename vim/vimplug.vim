@@ -1,9 +1,8 @@
 call plug#begin('~/.vim/bundle')
 
-"NeoBundle 'mhinz/vim-signify'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
-"Plug 'szw/vim-ctrlspace'
 "Plug 'vim-scripts/cSyntaxAfter'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
@@ -22,12 +21,11 @@ Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
 Plug 'tpope/vim-surround'
-"Plug 'Shougo/neocomplete.vim'
-"Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree'
-Plug 'Chiel92/vim-autoformat'
 Plug 'drmikehenry/vim-fixkey'
+Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
+Plug 'Chiel92/vim-autoformat', { 'on' : 'Autoformat' }
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
@@ -36,10 +34,10 @@ Plug 'marijnh/tern_for_vim', {
             \ }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
+
 
 "webdev
-"NeoBundle 'skammer/vim-css-color'  " breaks html?
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
 Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
@@ -47,8 +45,11 @@ Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
 
 "PHP
+Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
+
 
 "Golang
 Plug 'fatih/vim-go', { 'for': ['go'] }
