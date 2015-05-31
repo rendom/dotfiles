@@ -1,3 +1,9 @@
+snippet icon "Svg icon"
+<svg class="${1:icon}">
+	<use xlink:href="/images/icons.svg#$1"></use>
+</svg>
+endsnippet
+
 snippet App-abort
 App::abort(${1:code}, ${2:message}, ${3:headers})
 endsnippet

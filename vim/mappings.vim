@@ -79,14 +79,27 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType javascript nmap <Leader>r :Autoformat<CR>
 
 
-
-" alt mappings to make life easier 
+" alt mappings to make life easier
 nnoremap <A-a> <C-a>
 nnoremap <A-x> <C-x>
-nnoremap <A-j> <C-d>zz
-nnoremap <A-k> <C-u>zz
+
+
+if has("macunix")
+    nnoremap <C-j> <C-d>zz
+    nnoremap <C-k> <C-u>zz
+    vnoremap <C-j> <C-d>zz
+    vnoremap <C-k> <C-u>zz
+else
+    nnoremap <A-j> <C-d>zz
+    nnoremap <A-k> <C-u>zz
+    vnoremap <A-j> <C-d>zz
+    vnoremap <A-k> <C-u>zz
+endif
+
 nnoremap <A-n> :cnext<cr>
 nnoremap <A-p> :cprevious<cr>
+nnoremap <A-h> <C-O>
+nnoremap <A-l> <C-I>
 
 nnoremap <C-n> :cnext<cr>
 nnoremap <C-p> :cprevious<cr>
