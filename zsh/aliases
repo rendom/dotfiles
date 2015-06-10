@@ -67,6 +67,7 @@ alias diff='colordiff'
 alias top='htop'
 alias weechat='weechat-curses'
 alias diff2='icdiff --line-numbers'
+alias path='echo $PATH | tr -s ":" "\n"'
 
 # Git stuff
 alias g='git'
