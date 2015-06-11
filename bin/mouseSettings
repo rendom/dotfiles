@@ -1,0 +1,12 @@
+#/bin/sh
+
+dacd=3 # Device Accel Constant Deceleration
+davs=1 # Device Accel Velocity Scaling
+
+
+mouseList=$(xinput | perl -ne'print "$1\n" if /⎜\s+↳\s+Razer.+id=(\d+)/g')
+while read m; do
+    xinput --set-prop $m "Device Accel Constant Deceleration" $dacd
+    xinput --set-prop $m "Device Accel Velocity Scaling" $davs
+done <<< "$mouseList"
+
