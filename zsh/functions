@@ -122,4 +122,27 @@ dragupl(){
     scrot -s 'scrotupl_scrot.png' -e 'imgupload $f && rm ~/scrotupl_scrot.png'
 }
 
+
+#Stream @ twitch.
+reaming() {
+    INRES="1920x1080" # input resolution
+    OUTRES="1920x1080" # output resolution
+    FPS="20"
+    GOP="40" # i-frame interval, should be double of FPS, 
+    GOPMIN="20" 
+    THREADS="2" 
+    CBR="1000k" 
+    QUALITY="ultrafast"  
+    AUDIO_RATE="44100"
+    STREAM_KEY="$1" # use the terminal command `streaming streamkeyhere` to stream your video to twitch or justin
+    SERVER="live-fra" 
+
+    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f lavfi -i aevalsrc=0 -c:v copy -c:a libvo_aacenc -f flv -ac 2 -ar $AUDIO_RATE \
+        -vcodec libx264 -g $GOP -keyint_min $GOPMIN -b $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p\
+        -s $OUTRES -preset $QUALITY -tune film -threads $THREADS -strict normal \
+        -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
+}
+
+
+
 #  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :
