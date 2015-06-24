@@ -69,6 +69,16 @@ alias weechat='weechat-curses'
 alias diff2='icdiff --line-numbers'
 alias path='echo $PATH | tr -s ":" "\n"'
 
+#grc hax
+alias cal='grc cal -m -y --color=always'
+alias configure='grc configure'
+alias './configure'='grc ./configure'
+#alias make='grc make'
+#alias gcc='grc gcc'
+#alias g++='grc g++'
+#alias c++='grc c++'
+#alias cc='grc cc'
+
 # Git stuff
 alias g='git'
 alias "g?"='git status'

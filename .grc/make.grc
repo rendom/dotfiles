@@ -1,0 +1,15 @@
+regexp=.*warning:.*
+colours=yellow
+-
+
+regexp=^make\[(\d+)\].*$
+colours=magenta, bold magenta
+-
+
+regexp=^(g|c)(c|\+\+)
+colours=white, white
+-
+
+regexp=(-o)\s(\S+\.o)?(\S+)?
+colours=default, blue, bold blue, underline bold blue
+count=more

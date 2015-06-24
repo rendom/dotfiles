@@ -1,0 +1,10 @@
+regexp=^(checking).*\.\.\.\s(yes$|done$)?(no$)?(.*$)
+colours=default, blue, bold green, red, bold white
+-
+
+regexp=^(configure)
+colours=default, green
+-
+
+regexp=^(config.status)
+colours=default, cyan

@@ -1,0 +1,25 @@
+regexp=(Mo|Tu|We|Th|Fr)
+colours=cyan
+count=more
+-
+
+regexp=Sa
+colours=green
+count=more
+-
+
+regexp=Su
+colours=red
+count=more
+-
+
+regexp=\d{4}
+colours=bold white, bold white
+-
+
+regexp=(January|February|March|April|May|June|July|August|September|October|November|December)
+colours=bold white, bold white
+-
+
+regexp=(Sa|\d{1,2})\s+(Su|\d{1,2}?\s)$
+colours=none,green,red
