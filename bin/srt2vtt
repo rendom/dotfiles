@@ -1,5 +1,6 @@
 #!/bin/sh
 # https://github.com/lbtm/srt2vtt
+
 srt2vtt() {
         SRT="$1"
         CHARSET=$(file -bi $1 | awk -F= '{ print $2 }')
