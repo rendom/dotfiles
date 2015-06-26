@@ -1,0 +1,13 @@
+#!/bin/sh
+
+mkv2mp4() {
+    MKV="$1"
+    OUT="$2"
+    if [ -z "$OUT" ]; then
+        OUT="${MKV%.*}".mp4
+    fi
+    ffmpeg -i $MKV -vcodec copy -acodec copy $OUT
+    echo $OUT
+}
+
+mkv2mp4 $@
