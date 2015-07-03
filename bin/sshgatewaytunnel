@@ -1,0 +1,10 @@
+#/bin/sh
+
+read -p 'Target user@host: ' TARGET_HOST
+read -p 'Target port: ' TARGET_PORT
+read -p 'Gateway user@host: ' GATEWAY_HOST 
+read -p 'Gateway port: ' GATEWAY_PORT 
+read -p 'Local port (16660): ' TUNNEL_PORT
+TUNNEL_PORT="${TUNNEL_PORT:=16660}"
+
+ssh -N -L $TUNNEL_PORT:$TARGET_HOST:$TARGET_PORT $GATEWAY_HOST -P$GATEWAY_PORT 
