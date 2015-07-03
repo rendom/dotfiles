@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/bundle')
 
 "Plug 'vim-scripts/cSyntaxAfter'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
@@ -21,7 +21,7 @@ Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
 Plug 'drmikehenry/vim-fixkey'
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }

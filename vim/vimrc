@@ -17,7 +17,7 @@ set iskeyword+=_,$,@,%,#
 set t_Co=256
 
 set shell=/bin/zsh
-
+set wildmenu
 "source $HOME/.vim/neobundle.vim
 source $HOME/.vim/vimplug.vim
 source $HOME/.vim/profile.vim

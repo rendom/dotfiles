@@ -220,3 +220,16 @@ if len(matchstr(getcwd(), '^'.$HOME)) > 0
   endif
 endif
 
+
+if has("macunix")
+    let g:vvt_browser_command = 'echo "%URL%" | pbcopy'
+    function! CopyShit(line1, line2)
+        let foo = getline(a:line1, a:line2)
+        let ret = system('pbcopy', foo)
+    endfunction
+
+    command! -range CopyShit <line1>,<line2>call SourceRange()
+endif
+
+
+

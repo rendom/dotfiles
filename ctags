@@ -9,12 +9,14 @@
 --exclude=tmp
 --exclude=target
 --exclude=vendor/bundle
+--exclude=vendor
 --exclude=public
 --exclude=bundle
 --exclude=build
 --exclude=temp
 --exclude=lib
 --exclude=node_modules
+--exclude=app/classes
 
 --langdef=js
 --langmap=js:.js
