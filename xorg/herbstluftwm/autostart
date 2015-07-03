@@ -112,9 +112,14 @@ hc keybind XF86AudioNext spawn mpc next > /dev/null 2>&1
 hc keybind XF86AudioPrev spawn mpc prev > /dev/null 2>&1
 hc keybind XF86AudioStop spawn mpc > /dev/null 2>&1
 
-hc keybind XF86AudioMute spawn amixer set Master toggle
-hc keybind XF86AudioLowerVolume spawn amixer set Master 1- unmute 
-hc keybind XF86AudioRaiseVolume spawn amixer set Master 1+ unmute
+# Alsa stuff
+# hc keybind XF86AudioMute spawn amixer set Master toggle
+# hc keybind XF86AudioLowerVolume spawn amixer set Master 1- unmute 
+# hc keybind XF86AudioRaiseVolume spawn amixer set Master 1+ unmute
+
+hc keybind XF86AudioMute spawn $SCRIPTS/sound.sh mute                                                                          │
+hc keybind XF86AudioLowerVolume spawn $SCRIPTS/sound.sh down                                                                   │
+hc keybind XF86AudioRaiseVolume spawn $SCRIPTS/sound.sh up 
 
 hc keybind XF86MonBrightnessUp spawn xbacklight -inc 15%
 hc keybind XF86MonBrightnessDown spawn xbacklight -dec 15%
