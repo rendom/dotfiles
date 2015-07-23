@@ -122,27 +122,42 @@ dragupl(){
     scrot -s 'scrotupl_scrot.png' -e 'imgupload $f && rm ~/scrotupl_scrot.png'
 }
 
-
-#Stream @ twitch.
-reaming() {
+twitch_start_stream() {
     INRES="1920x1080" # input resolution
     OUTRES="1920x1080" # output resolution
-    FPS="20"
-    GOP="40" # i-frame interval, should be double of FPS, 
-    GOPMIN="20" 
-    THREADS="2" 
-    CBR="1000k" 
-    QUALITY="ultrafast"  
+    FPS="30" # target FPS
+    GOP="60" # i-frame interval, should be double of FPS, 
+    GOPMIN="30" # min i-frame interval, should be equal to fps, 
+    THREADS="6" # max 6
+    CBR="5000k" # constant bitrate (should be between 1000k - 3000k)
+    QUALITY="medium"  # one of the many FFMPEG preset
     AUDIO_RATE="44100"
-    STREAM_KEY="$1" # use the terminal command `streaming streamkeyhere` to stream your video to twitch or justin
-    SERVER="live-fra" 
+    STREAM_KEY="$1" # use the terminal command Streaming streamkeyhere to stream your video to twitch or justin
+    SERVER="live-arn" # twitch server in frankfurt, see http://bashtech.net/twitch/ingest.php for list
+    KEY_FRAME=2
 
-    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f lavfi -i aevalsrc=0 -c:v copy -c:a libvo_aacenc -f flv -ac 2 -ar $AUDIO_RATE \
-        -vcodec libx264 -g $GOP -keyint_min $GOPMIN -b $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p\
-        -s $OUTRES -preset $QUALITY -tune film -threads $THREADS -strict normal \
+    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f alsa -i pulse -f flv -ac 2 -ar $AUDIO_RATE \
+        -vcodec libx264 -force_key_frames "expr:gte(t,n_forced*$KEY_FRAME)" -g $GOP -keyint_min $GOPMIN -b:v $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p\
+        -s $OUTRES -preset $QUALITY -tune film -acodec libmp3lame -threads $THREADS -strict normal \
+        -force_key_frames "expr:gte(t,n_forced*2)" \
         -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
 }
 
+function calc() {
+    awk "BEGIN { print $* }" ;
+}
 
+function portopen(){
+    if [ $# -eq 2 ]; then
+        nc -z -w5 $1 $2
+        if [ "$?" -eq 1 ]; then
+            echo "$1:$2 [nothing]"
+        else 
+            echo "$1:$2 [listening]"
+        fi
+    else
+        echo "portopen <host> <port>"
+    fi
+}
 
 #  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :
