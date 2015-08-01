@@ -30,8 +30,13 @@ _livestr() {
 }
 
 twitch() {
-    [ -z "$1" ] || livestreamer http://twitch.tv/$1 best
-
+    if [[ -n "$1" ]]; then
+        if [[ $1 =~ "^https?\:\/\/.+" ]]; then
+            livestreamer $1 best
+        else
+            livestreamer http://twitch.tv/$1 best
+        fi
+    fi
 }
 
 compdef _livestr twitch
