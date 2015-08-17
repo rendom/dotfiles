@@ -27,3 +27,5 @@ source $HOME/.vim/autocmd.vim
 set backupdir=$XDG_CACHE_HOME/vim/backup//
 set undodir=$XDG_CACHE_HOME/vim/undo//
 set directory=$XDG_CACHE_HOME/vim//
+
+set completeopt-=preview

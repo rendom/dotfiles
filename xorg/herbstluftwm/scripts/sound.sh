@@ -3,12 +3,15 @@
 case "$1" in
     up)
         pamixer --increase 4
+        pamixer --sink 0 --increase 4
         ;;
     down)
         pamixer --decrease 4
+        pamixer --sink 0 --decrease 4
         ;;
     mute)
         pamixer --toggle-mute
+        pamixer --sink 0 --toggle-mute
         ;;
 esac
 

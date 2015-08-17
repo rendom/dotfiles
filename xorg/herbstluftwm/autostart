@@ -49,7 +49,7 @@ hc keybind $Mod-o spawn $SCRIPTS/dmenu_soundcard_pulse
 #hc keybind $Mod-g spawn $SCRIPTS/dmenu_games
 hc keybind $Mod-t spawn $SCRIPTS/dmenu_jumpto
 hc keybind $Mod-b spawn $SCRIPTS/dmenu_bring
-hc keybind $Mod-p spawn passmenu
+hc keybind $Mod-p spawn passmenu -fn "$font"
 hc keybind $Mod-q remove
 hc keybind $Mod-r spawn dmenu_run -fn tamsyn:size=6
 hc keybind $Mod-m spawn $SCRIPTS/dmenu_mpc_playlist -fn "$font"

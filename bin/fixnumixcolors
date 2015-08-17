@@ -1,0 +1,15 @@
+#!/bin/sh
+
+COLOR='blue'
+
+pushd /usr/share/icons/Numix
+
+IFS=$'\r\n'
+FILES=$(find -iname "$COLOR-*")
+
+for file in $FILES; do
+    target=$(echo $file | sed -r "s/$COLOR-//")
+    sudo ln -sf $(basename $file) $target
+done
+
+popd

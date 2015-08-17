@@ -74,6 +74,7 @@ au FileType go nmap <leader>B <Plug>(go-build)
 au FileType go nmap <leader>T <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>i <Plug>(go-info)
 
 
 au FileType javascript nmap <Leader>r :Autoformat<CR>
