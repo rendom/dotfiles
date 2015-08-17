@@ -143,6 +143,8 @@ reaming() {
         -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
 }
 
-
+precmd () {
+    print -Pn "\e]1;%n@%M:${PWD/#$HOME/~}\a"
+}
 
 #  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$1"]; then
+    echo "Pass filename.."
+    exit 1
+fi
+
+SEPARATOR=${2-","}
+
+head -n1 $1 | tr $SEPARATOR "\n" | nl -v 0
