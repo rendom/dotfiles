@@ -1,15 +1,12 @@
 # commands to ignore
 cmdignore=(
-    pacmixer
-    vimdir
-    zathura
-#    htop
-    tmux
-#    top
-    vim
-    sxiv
-    wine
-    ncmpcpp
+    htop 
+    tmux 
+    top 
+    vim 
+    sxiv 
+    wine 
+    ncmpcpp 
     weechat-curses
     rtorrent
     weechat
@@ -20,32 +17,12 @@ cmdignore=(
     journalctl
     watch
     tail
-    man
-    ping
-    livestreamer
-    youtube-viewer
 )
-
-function human_time() {
-    local tmp=$1
-    local years=$(( tmp / 60 / 60 / 24 / 365))
-    local months=$(( tmp / 60 / 60 / 24 / 30))
-    local days=$(( tmp / 60 / 60 / 24 ))
-    local hours=$(( tmp / 60 / 60 % 24 ))
-    local minutes=$(( tmp / 60 % 60 ))
-    local seconds=$(( tmp % 60 ))
-    (( $years > 0 )) && echo -n "${years} years "
-    (( $months > 0 )) && echo -n "${months} months "
-    (( $days > 0 )) && echo -n "${days} days "
-    (( $hours > 0 )) && echo -n "${hours} hours "
-    (( $minutes > 0 )) && echo -n "${minutes} minutes "
-    echo "${seconds} seconds"
-}
 
 # end and compare timer, notify-send if needed
 function notifyosd-precmd() {
     retval=$?
-    if [[ ! -f /usr/bin/notify-send ]];then
+    if [[ ! -f /usr/bin/notify-send ]];then 
         return
     fi
 
@@ -59,27 +36,22 @@ function notifyosd-precmd() {
         if [ $retval -gt 0 ]; then
             cmdstat="with warning"
             sndstat="/usr/share/sounds/gnome/default/alerts/sonar.ogg"
-            icon='status/dialog-error'
+            icon='dialog-warning'
             stat="critical"
         else
             cmdstat="successfully"
             sndstat="/usr/share/sounds/gnome/default/alerts/glass.ogg"
-            icon='status/dialog-information'
+            icon='dialog-information'
             stat="normal"
         fi
         if [ ! -z "$cmd" -a $cmd_time -gt 10 ]; then
-            time_string="$(human_time $cmd_time)"
             if [ ! -z $SSH_TTY ] ; then
-                title="$cmd_basename on `hostname` completed $cmdstat"
                 notify-send -i $icon -u $stat \
-                    "$title" \
-                    "<b>$title</b>\n$cmd\n\n$time_string\n"
+                    "$cmd_basename on `hostname` completed $cmdstat" "<u>$cmd_basename on `hostname` completed $cmdstat</u>\n\"$cmd\" took $cmd_time seconds" 
                 #play -q $sndstat
             else
-                title="$cmd_basename completed $cmdstat"
                 notify-send -i $icon -u $stat \
-                    "$title" \
-                    "<b>$title</b>\n$cmd\n$time_string\n"
+                    "$cmd_basename completed $cmdstat" "<u>$cmd_basename completed $cmdstat</u>\n\"$cmd\" took $cmd_time seconds" 
                 #play -q $sndstat
             fi
         fi
@@ -93,7 +65,7 @@ precmd_functions+=( notifyosd-precmd )
 # get command name and start the timer
 function notifyosd-preexec() {
     cmd=$1
-    cmd_basename=${${cmd:s/sudo //}[(ws: :)1]}
+    cmd_basename=${${cmd:s/sudo //}[(ws: :)1]} 
     cmd_start=`date +%s`
 }
 

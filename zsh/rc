@@ -9,7 +9,8 @@ source $HOME/.zsh/autojump
 source $HOME/.zsh/functions
 source $HOME/.zsh/aliases
 
-FPATH=/usr/local/share/zsh/site-functions:$FPATH
+#fpath=/usr/local/share/zsh/site-functions:$fpath
+ fpath=(~/.zsh/plugins /usr/local/share/zsh/site-functions $fpath)
 
 if [ -e $HOME/.zsh/local ]; then
 	source $HOME/.zsh/local
@@ -24,7 +25,7 @@ for f in $HOME/.zsh/plugins/*.zsh; do
 done
 source $HOME/.zsh/style
 
-ponysay --quote
+#    ponysay --quote
 
 if [ -e /etc/profile.d/fzf.zsh ]; then
     source /etc/profile.d/fzf.zsh
