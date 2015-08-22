@@ -9,7 +9,7 @@
 #font="tamsyn:size=6"
 font="`xrdb -query | grep dzen2.font | sed -r 's/.*:\s+([A-Za-z0-9\ ]*)/\1/'`"
 dzfont=$font
-dmo="-nb $background -nf $foreground -sf $dcyan -sb $background -h 11"
+dmo="-nb $background -nf $foreground -sf $dcyan -sb $background" #height 11
 DMENU="dmenu -i $dmo"
 DMENU_RUN="dmenu_run -i $dmo"
 WPDIR="$HOME/images/wallpapers"

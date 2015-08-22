@@ -219,8 +219,14 @@ $FEH "$WPDIR/.wallpaper" &
 trap 'herbstclient emit_hook quit_panel' TERM
 hc emit_hook quit_panel
 
-pkill ruby
+#mkdir -p /run/user/$UID/herbstluftwm
+#for f in /run/user/$UID/herbstluftwm/*.pid; do
+#    kill $(cat $f)
+#done
+
 mpdnotify restart &
+
+
 
 for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     dpi=`xdpyinfo | /bin/grep 'resolution:' | /bin/grep -o '[0-9]\+' | head -n 1`
@@ -240,7 +246,8 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     y=${geometry[1]}
     panel_width=${geometry[2]}
 
-    $HOME/gitstuff/github/panel/panel | dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
+    #$HOME/gitstuff/github/panel/panel | dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
+    $HOME/gitstuff/github/panel/panel --monitor=$monitor | lemonbar -f"tamsyn-6" -g$panel_width+$x &
     #$XDG_CONFIG_HOME/herbstluftwm/panel.rb $monitor | 
     #    dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
 done
