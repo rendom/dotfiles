@@ -30,5 +30,11 @@ source $HOME/.zsh/style
 if [ -e /etc/profile.d/fzf.zsh ]; then
     source /etc/profile.d/fzf.zsh
 fi
+
+# Add support for tracking time spent in the shell (Timing app)
+PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND="${PROMPT_COMMAND} ${PROMPT_TITLE}; "
+
+
 # vim: set ft=zsh :
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

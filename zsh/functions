@@ -143,6 +143,10 @@ twitch_start_stream() {
         -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
 }
 
+precmd () {
+    print -Pn "\e]1;%n@%M:${PWD/#$HOME/~}\a"
+}
+
 function calc() {
     awk "BEGIN { print $* }" ;
 }
