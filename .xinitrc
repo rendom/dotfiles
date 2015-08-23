@@ -1,15 +1,6 @@
 #!/bin/sh
 xrdb -load .Xresources
 
-#fonts
-#/etc/X11/xinit/xinitrc.d/infinality-settings
-#xset +fp /usr/share/fonts/artwiz-fonts/
-#xset +fp /usr/share/fonts/misc/
-#xset +fp /usr/share/fonts/TTF/
-#xset +fp /usr/share/fonts/local/
-
-#xset fp rehash
-
 #vars
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -28,25 +19,16 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-
-
-#mouse @ /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
-#$HOME/gitstuff/dotfiles/bin/mouseSettings
-
 # xpad instead..
 #xboxdrv -c $HOME/.xboxdrv -s --mimic-xpad --deadzone 10% &
 
 setxkbmap se
 
-#init shit
 #mopidy &
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 
 urxvtd &
-#compton --config $HOME/.compton.conf &
-#compton --backend glx --config $HOME/.compton.conf &
-#compton --backend glx --config $HOME/.compton.conf --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method exchange &
 compton --backend glx &
 
 pulseaudio --start &
@@ -54,4 +36,3 @@ nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'
 nvidia-settings --load-config-only
 
 ssh-agent herbstluftwm
-
