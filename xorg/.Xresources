@@ -15,7 +15,7 @@ Xft.rgba: rgb
 
 Xcursor.theme: Adwaita
 
-dzen2.font: tamsyn:size=6, xft:Noto Sans Kannada
+dzen2.font: tamsyn:size=6
 
 URxvt.pointerBlank: true
 
@@ -41,7 +41,7 @@ URxvt.eightBitInput: false
 URxvt.metaSendsEscape: true
 URxvt.modifier: alt
 
-URxvt.keysym.Escape: \033\007
+!URxvt.keysym.Escape: \033\007
 
 URxvt.scrollBar:false
 URxvt.scrollstyle:rxvt
@@ -69,7 +69,7 @@ URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
 
 URxvt.keysym.C-1: command:\033]710;xft:tamsyn:size=6,xft:NotoSansKannada\007\033]711;xft:tamsyn:size=6,xft:NotoSansKannada\007\033]712;xft:tamsyn:size=6,xft:NotoSansKannada\007\033]713;xft:tamsyn:size=6,xft:NotoSansKannada\007
-URxvt.keysym.C-2: command:\033]710;xft:terminus:size=6,xft:NotoSansKannada\007\033]711;xft:terminus:size=6,xft:NotoSansKannada\007\033]712;xft:terminus:size=6,xft:NotoSansKannada\007\033]713;xft:terminus:size=6,xft:NotoSansKannada\007
+URxvt.keysym.C-2: command:\033]710;xft:berry:size=5,xft:NotoSansKannada\007\033]711;xft:berry:size=5,xft:NotoSansKannada\007\033]712;xft:berry:size=5,xft:NotoSansKannada\007\033]713;xft:berry:size=5,xft:NotoSansKannada\007
 URxvt.keysym.C-3: command:\033]710;xft:terminus:size=7,xft:NotoSansKannada\007\033]711;xft:terminus:size=7,xft:NotoSansKannada\007\033]712;xft:terminus:size=7,xft:NotoSansKannada\007\033]713;xft:terminus:size=7,xft:NotoSansKannada\007
 URxvt.keysym.C-4: command:\033]710;xft:terminus:size=8,xft:NotoSansKannada\007\033]711;xft:terminus:size=8,xft:NotoSansKannada\007\033]712;xft:terminus:size=8,xft:NotoSansKannada\007\033]713;xft:terminus:size=8,xft:NotoSansKannada\007
 URxvt.keysym.C-5: command:\033]710;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007\033]711;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007\033]712;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007\033]713;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007
