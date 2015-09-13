@@ -47,7 +47,7 @@ urxvtd &
 #compton --config $HOME/.compton.conf &
 #compton --backend glx --config $HOME/.compton.conf &
 #compton --backend glx --config $HOME/.compton.conf --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method exchange &
-compton --backend glx &
+compton &
 
 pulseaudio --start &
 nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'
