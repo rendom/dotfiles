@@ -1,0 +1,25 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my $total = 0;
+
+foreach my $arg (@ARGV) {
+    if(my @dices = $arg =~ /\d+d(?:100|20|12|10|8|6|4|2)/smg) {
+        foreach my $dice (@dices) {
+            my @throw = $dice =~ /(\d+)d(\d+)/;
+            my @rolls;
+            for (my $i = 0; $i < $throw[0]; $i++) {
+                my $roll = int(rand($throw[1])) + 1;
+                $total += $roll;
+                push(@rolls, $roll);
+            }
+
+            print "Roll:\t$dice\t[".join(',',@rolls)."]\n";
+        }
+    }
+}
+
+print "\nTotal: $total\n";
+
