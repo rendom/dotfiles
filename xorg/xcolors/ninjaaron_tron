@@ -1,0 +1,27 @@
+! color scheme
+*background: #101010
+*foreground: #88ddff
+! Black + DarkGrey
+*color0:  #334444
+*color8:  #496666
+! Red
+*color1:  #ff8855
+*color9:  #ff956f
+! Green
+*color2:  #5effaf
+*color10: #aaffcc
+! Yellow
+*color3:  #ffff77
+*color11: #ffffa9
+! Blue
+*color4:  #5eaaff
+*color12: #99ccff
+! Mangenta
+*color5:  #ff8888
+*color13: #ff99bb
+! Cyan
+*color6:  #55ffff
+*color14: #aaffff
+! LightGrey + White
+*color7:  #ffffee
+*color15: #ffffff

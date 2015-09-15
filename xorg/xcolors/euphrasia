@@ -1,0 +1,51 @@
+!! euphrasia colours by bohoomil, 10.2012
+
+!! fg / bg for .Xdefaults / .Xresources 
+! URxvt*background:  #090C19
+! URxvt*foreground:  #E6E6E6
+! URxvt*cursorColor: #1AAA13
+
+*background: #D0CECB
+*foreground: #090C19
+
+! black
+*color0:  #222222
+! dark grey
+*color8:  #646464
+
+! red
+*color1:  #BE1919
+! bright red
+*color9:  #DC2F32 
+
+! green
+*color2:  #1AAA13
+! bright green
+*color10: #5DCE33
+
+! yellow
+*color3:  #FFAA3E
+! bright yellow
+*color11: #FADD2D
+
+! blue
+*color4:  #3A57D7
+! bright blue
+*color12: #507CFF
+
+! magenta
+*color5:  #BE007F
+! bright magenta
+*color13: #E671D3
+
+! cyan
+*color6:  #258F8F
+! bright cyan
+*color14: #4DC5DC
+
+! light grey
+*color7:  #808080
+! white
+*color15: #DBDDE4
+
+! vim:ft=xdefaults

@@ -1,0 +1,31 @@
+! jwr low contrast
+
+!black
+*color0: #1b1d1e
+*color8: #343737
+
+!red
+*color1: #f92673
+*color9: #ff5996
+!green
+*color2: #86b413
+*color10: #b8e354
+!yellow
+*color3: #fdb436
+*color11: #feed6a
+!blue
+*color4: #55c5d6
+*color12: #8ceeff
+!magenta
+*color5: #8952fe
+*color13: #9c6efe
+!cyan
+*color6: #465457
+*color14: #899ca1
+!white
+*color7: #ccccc7
+*color15: #ffffff
+
+*borderColor: #343434
+*background: #000000
+*foreground: #ffffff
