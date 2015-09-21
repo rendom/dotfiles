@@ -5,7 +5,7 @@ export LS_COLORS
 
 # Env
 export GOPATH=$HOME/go
-export PATH=/usr/local/bin:$HOME/bin:$home/.gem/ruby/2.1.0/bin:$GOPATH/bin:$HOME/.nodenpm/bin:$PATH
+export PATH=/usr/local/bin:$HOME/bin:$GOPATH/bin:$HOME/.nodenpm/bin:$PATH
 
 
 # Programs

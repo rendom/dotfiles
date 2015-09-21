@@ -49,6 +49,7 @@ Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
+Plug 'mkusher/padawan.vim', { 'for': ['php'] }
 
 
 "Golang

@@ -232,4 +232,8 @@ if has("macunix")
 endif
 
 
-
+let $PATH=$PATH . ':' . expand('~/.composer/vendor/bin')
+let g:padawan#composer_command = "php /usr/local/bin/composer.phar"
+let g:neocomplete#force_omni_input_patterns = {}
+let g:neocomplete#force_omni_input_patterns.php =
+\ '\h\w*\|[^- \t]->\w*'
