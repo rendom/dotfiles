@@ -1,1 +1,1 @@
-/Users/nojjan/gitstuff/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
