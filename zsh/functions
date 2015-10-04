@@ -1,3 +1,6 @@
+GITSTAT=''
+
+
 function todo(){
 	if [ -e ./.todo.txt ]; then
 		vim ./.todo.txt
@@ -63,38 +66,6 @@ movieMode(){
 # https://github.com/MrElendig/dotfiles-alice/blob/master/.zshrc
 autoload -U colors zsh/terminfo
 colors
-setprompt() {
-	# load some modules
-	setopt prompt_subst
-
-	# make some aliases for the colours: (coud use normal escap.seq's too)
-	for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-		eval PR_$color='%{$fg[${(L)color}]%}'
-	done
-	PR_NO_COLOR="%{$terminfo[sgr0]%}"
-
-	# Check the UID
-	if [[ $UID -ge 1000 ]]; then # normal user
-		eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
-		eval PR_USER_OP='${PR_GREEN}%#${PR_NO_COLOR}'
-	elif [[ $UID -eq 0 ]]; then # root
-		eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
-		eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
-	fi
-
-	# Check if we are on SSH or not
-	if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-		eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
-	else
-		eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
-	fi
-	# set the prompt
-	PS1=$'${PR_CYAN}[${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}][${PR_BLUE}%~${PR_CYAN}]${PR_USER_OP} '
-	PS2=$'%_>'
-	RPROMPT=$'${vcs_info_msg_0_}'
-}
-setprompt
-
 
 _force_rehash() {
     (( CURRENT == 1 )) && rehash
@@ -143,9 +114,364 @@ twitch_start_stream() {
         -bufsize $CBR "rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
 }
 
-precmd () {
-    print -Pn "\e]1;%n@%M:${PWD/#$HOME/~}\a"
+
+function __git_ps1_show_upstream () # {{{1
+{
+    local key value
+    local svn_remote svn_url_pattern count n
+    local upstream="git" legacy="" verbose=1 name=""
+
+    svn_remote=()
+    # get some config options from git-config
+    local output="$(git config -z \
+                --get-regexp '^(svn-remote\..*\.url)$' \
+                2>/dev/null | tr '\0\n' '\n ')"
+
+    while read -r key value; do
+        case "$key" in
+            svn-remote.*.url)
+                svn_remote[$((${#svn_remote[@]} + 1))]="$value"
+                svn_url_pattern="$svn_url_pattern\\|$value"
+                # default upstream is SVN if available, else git
+                upstream="svn+git" 
+                ;;
+        esac
+    done <<< "$output"
+
+    # parse configuration values
+    for option in ${GIT_PS1_SHOWUPSTREAM}; do
+        case "$option" in
+            git|svn) upstream="$option" ;;
+                verbose) verbose=1 ;;
+            legacy)  legacy=1  ;;
+            name)    name=1 ;;
+        esac
+    done
+
+    # Find our upstream
+    case "$upstream" in
+        git)    upstream="@{upstream}" ;;
+        svn*)
+            # get the upstream from the "git-svn-id: ..." in a commit message
+            # (git-svn uses essentially the same procedure internally)
+            local -a svn_upstream
+            svn_upstream=($(git log \
+                        --first-parent -1 \
+                        --grep="^git-svn-id: \(${svn_url_pattern#??}\)" \
+                        2>/dev/null))
+
+            if [[ 0 -ne ${#svn_upstream[@]} ]]; then
+                svn_upstream=${svn_upstream[${#svn_upstream[@]} - 2]}
+                svn_upstream=${svn_upstream%@*}
+                local n_stop="${#svn_remote[@]}"
+                for ((n=1; n <= n_stop; n++)); do
+                    svn_upstream=${svn_upstream#${svn_remote[$n]}}
+                done
+
+                if [[ -z "$svn_upstream" ]]; then
+                    # default branch name for checkouts with no layout:
+                    upstream=${GIT_SVN_ID:-git-svn}
+                else
+                    upstream=${svn_upstream#/}
+                fi
+            elif [[ "svn+git" = "$upstream" ]]; then
+                upstream="@{upstream}"
+            fi
+            ;;
+    esac
+    # Find how many commits we are ahead/behind our upstream
+
+    if [[ -z "$legacy" ]]; then
+        count="$(git rev-list --count --left-right \
+                "$upstream"...HEAD 2>/dev/null)"
+    else
+        # produce equivalent output to --count for older versions of git
+        local commits
+        if commits="$(git rev-list --left-right "$upstream"...HEAD 2>/dev/null)"
+        then
+            local commit behind=0 ahead=0
+            for commit in $commits; do
+                case "$commit" in
+                    "<"*) ((behind++)) ;;
+                    *)    ((ahead++))  ;;
+                esac
+            done
+            count="$behind $ahead"
+        else
+            count=""
+        fi
+    fi
+
+    # calculate the result
+    if [[ -z "$verbose" ]]; then
+        case "$count" in
+            "") # no upstream
+                p="%F{gray}:%F{black}N" ;;
+            0[[:blank:]]*0) # equal to upstream
+                p="%F{gray}:%F{white}=" ;;
+            0[[:blank:]]*) # ahead of upstream
+                p="%F{gray}:%F{green}>" ;;
+            *[[:blank:]]0) # behind upstream
+                p="%F{gray}:%F{red}<" ;;
+            *)      # diverged from upstream
+                p="%F{gray}:%F{magenta}<>" ;;
+        esac
+    else
+        case "$count" in
+            "") # no upstream
+                p="%F{gray}:%F{black}N" ;;
+            0[[:blank:]]*0) # equal to upstream
+                p="" ;; #p="%F{gray}:%F{white}=" ;;
+            0[[:blank:]]*) # ahead of upstream
+                p="%F{gray}:%F{green}${count#*[[:blank:]]*}" ;;
+            *[[:blank:]]0) # behind upstream
+                p="%F{gray}:%F{red}${count%[[:blank:]]*}" ;;
+            *)      # diverged from upstream
+                p="%F{gray}:%F{green}${count#*[[:blank:]]*}"
+                p="%F{gray}:%F{magenta}-"
+                p="%F{gray}:%F{red}${count%[[:blank:]]*}"
+                ;;
+        esac
+        # if [[ -n "$count" && -n "$name" ]]; then
+        #     p="$p $(git rev-parse --abbrev-ref "$upstream" 2>/dev/null)"
+        # fi
+    fi
+    echo "$p"
 }
+# 1}}}
+function __git_ps1 () # {{{1
+{
+    local t="%F{green}"
+    local g="$(git rev-parse --git-dir 2>/dev/null)"
+    if [ -n "$g" ]; then
+        local r
+        local c=""
+        local b
+        local f=""
+
+        local st="`git status \
+                    --short \
+                    --ignore-submodules=dirty 2> /dev/null \
+                    | awk '/^./ {print $1}'`"
+
+        [[ $st == *'A'*  ]] && c="%F{blue%}+$c" && t="%F{gray}"
+        [[ $st == *'??'* ]] && c="%F{white%}?$c"
+        [[ $st == *'M'*  ]] && c="%F{yellow%}~$c" && t="%F{gray}"
+        [[ $st == *'D'*  ]] && c="%F{red%}-$c" && t="%F{gray}"
+        [[ $st == *'!!'* ]] && c="%F{8}!$c"
+
+        local fd=`stat -c %Y $g/FETCH_HEAD 2> /dev/null`
+        [[ -z $fd ]] && fd=`stat -c %Y $g/HEAD 2> /dev/null`
+
+        if [ ! -z $fd ]; then
+            local nd=`date +%s 2> /dev/null`
+
+            if [ `expr $nd - $fd` -ge 86400 ]; then
+                f="%F{red}!"
+            fi
+        else
+            f="%F{yellow}?"
+        fi
+
+
+        if [ -d "$g/../.dotest" ] ; then
+            if test -f "$g/../.dotest/rebasing" ; then
+                t="%F{cyan}"
+                r="|REBASE"
+            elif test -f "$g/../.dotest/applying" ; then
+                t="%F{cyan}"
+                r="|AM"
+            else
+                t="%F{cyan}"
+                r="|AM/REBASE"
+            fi
+            b="$(git symbolic-ref HEAD 2>/dev/null)"
+        elif [ -f "$g/.dotest-merge/interactive" ] ; then
+            t="%F{blue}"
+            r="|REBASE-i"
+            b="$(cat "$g/.dotest-merge/head-name")"
+        elif [ -d "$g/.dotest-merge" ] ; then
+            t="%F{blue}"
+            r="|REBASE-m"
+            b="$(cat "$g/.dotest-merge/head-name")"
+        elif [ -f "$g/MERGE_HEAD" ] ; then
+            t="%F{red}"
+            r="|MERGING"
+            b="$(git symbolic-ref HEAD 2>/dev/null)"
+        else
+            if [ -f "$g/BISECT_LOG" ] ; then
+                r="|BISECTING"
+            fi
+            if ! b="$(git symbolic-ref HEAD 2>/dev/null)" ; then
+                if ! b="$(git describe --exact-match HEAD 2>/dev/null)" ; then
+                    b="$(cut -c1-7 "$g/HEAD")..."
+                fi
+            fi
+        fi
+        local GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
+        local pu="`git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH \
+                    --oneline 2> /dev/null`"
+        if [ ! -z $pu ]; then
+            t="%F{yellow}"
+        fi
+
+        p="`__git_ps1_show_upstream`"
+        if [ -n "$1" ]; then
+            printf "$1" " $f$t${b##refs/heads/}$r$c$p"
+        else
+            printf "%s" " $f$t${b##refs/heads/}$r$c$p"
+        fi
+    fi
+}
+
+function vcs_prompt() {
+    o=`__git_svn_ps1`
+    [ -z $o ] && o=`__hg_ps1`
+
+    echo "$o"
+}
+
+function __hg_ps1() {
+    local t="%F{green}"
+    local g="$(hg -q stat > /dev/null 2>&1; echo $?)"
+    if [ $g -eq 0 ]; then
+        local c=""
+        local r=""
+        local f=""
+
+        local st="`hg status 2> /dev/null | awk '/^./ {print $1}'`"
+        [[ $st == *'A'* ]] && c="%F{blue%}+$c" && t="%F{gray}"
+        [[ $st == *'?'* ]] && c="%F{white%}?$c"
+        [[ $st == *'M'* ]] && c="%F{yellow%}~$c" && t="%F{gray}"
+        [[ $st == *'R'* ]] && c="%F{red%}-$c" && t="%F{gray}"
+        [[ $st == *'!'* ]] && c="%F{8}!$c"
+
+        f="$(hg sum | grep update | cut -d\  -f2 | bc -l)"
+        if [ $f -ge 1 ]; then
+            t="%F{yellow}"
+            r="%F{black}:%F{red}$f"
+        fi
+
+        printf "%s" " ${t}$(hg branch)$r$c"
+    fi
+}
+
+function __git_svn_ps1() {
+    local s=
+    g=`__git_ps1`
+
+    local t="%F{green}"
+    local sp=' '
+    local ep=''
+    url=`svn info 2> /dev/null | awk '/^URL:/ {print $2}'`
+    if [ -z $url ]; then
+        url=`git svn info 2> /dev/null | awk '/^URL:/ {print $2}'`
+        t="%F{gray}(%F{green}"
+        sp=''
+        ep='%F{gray})'
+    fi
+
+    if [ ! -z $url ]; then
+        b=`__svn_branch $url`
+        [ -z $b ] && b='root'
+        r="`__svn_rev ${b} ${t}`"
+        s="$sp$r$ep"
+    fi
+    echo "$g$s"
+}
+
+# Outputs the current trunk, branch, or tag {{{2
+function __svn_branch() {
+    local url=$1
+
+    root=`svn info 2> /dev/null | awk '/Repository Root:/ {print $3}'`
+    if [ -z $root ]; then
+        root=`git svn info 2> /dev/null | awk '/Repository Root:/ {print $3}'`
+    fi
+
+    if [[ $url =~ /branches/ ]]; then
+        echo $url | sed -e 's#^.*/branches/\(.*\)/.*$#\1#'
+    elif [[ $url =~ /tags/ ]]; then
+        echo $url | sed -e 's#^.*/tags/\(.*\)/.*$#\1#'
+    else
+        echo ${url##$root} | sed -e 's#^/\([a-zA-Z0-9_]*\).*$#\1#'
+    fi
+}
+
+# Outputs the current revision {{{2
+function __svn_rev() {
+    local t=$2
+    local c=""
+    local r #="`svn info | awk '/Revision:/ {print ":" $2}'`"
+    local st="`svn st 2> /dev/null | awk '/^./ {print $1}'`"
+    if [ -z $st ]; then
+        st="`git diff --name-status remotes/git-svn  2> /dev/null \
+            | awk '/^./ {print $1}'`"
+    fi
+    [[ $st == *'A'*  ]] && c="%F{blue%}+$c" && t="%F{gray}"
+    [[ $st == *'?'* ]] && c="%F{white%}?$c"
+    [[ $st == *'M'*  ]] && c="%F{yellow%}~$c" && t="%F{gray}"
+    [[ $st == *'D'*  ]] && c="%F{red%}-$c" && t="%F{gray}"
+    [[ $st == *'!'* ]] && c="%F{8}!$c"
+    echo "$t$1$r$c"
+}
+
+function precmd () {
+    print -Pn "\e]1;%n@%M:${PWD/#$HOME/~}\a"
+    
+    sep=`[ $? -ne 0 ] && echo "%b%F{1}" || echo "%b%F{8}"`
+
+    RETURN="%(?..%F{9}%B!%b%f%F{1}%?%f )"
+    JOBS="%(1j.%K{1}%F{235}%B%j%b%f%k .)"
+
+    case "$TERM" in
+    screen*)
+        # set screen title
+        print -Pn "\ek`whoami` %~\e\\"
+            # set xterm title
+            print -Pn "\e]2;`whoami` %~\a" ;;
+        rxvt*|xterm*)
+            print -Pn "\e]2;`whoami` %~\a" ;;
+    esac
+
+    dircolour="`[ -w "\`pwd\`" ] && echo 7 || echo 1`"
+    VIMODE='%F{2}'
+    GITSTAT="`vcs_prompt` "
+}
+
+autoload -U colors zsh/terminfo
+colors
+function setprompt(){
+    setopt prompt_subst
+
+    # make some aliases for the colours: (coud use normal escap.seq's too)
+    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+        eval PR_$color='%{$fg[${(L)color}]%}'
+    done
+    PR_NO_COLOR="%{$terminfo[sgr0]%}"
+
+    # Check the UID
+    if [[ $UID -ge 1000 ]]; then # normal user
+        eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
+        eval PR_USER_OP='${PR_GREEN}%#${PR_NO_COLOR}'
+    elif [[ $UID -eq 0 ]]; then # root
+        eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
+        eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
+    fi
+
+    # Check if we are on SSH or not
+    if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
+        eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
+    else
+        eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
+    fi
+    # set the prompt
+    PS1=$'${PR_CYAN}[${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}][${PR_BLUE}%~${PR_CYAN}]${GITSTAT}${PR_USER_OP} '
+    PS2=$'%_>'
+    #RPROMPT=$'${vcs_info_msg_0_}'
+}
+setprompt
+
 
 function calc() {
     awk "BEGIN { print $* }" ;
