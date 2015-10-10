@@ -93,7 +93,7 @@ alias ga='git add'
 alias gaa='git add .'
 alias gp='git push'
 alias gf='git fetch'
-alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commi"
+alias gls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 
 alias svim='sudo vim'
