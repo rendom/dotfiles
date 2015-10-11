@@ -87,7 +87,7 @@ alias mycli='PAGER="grcat ~/.grc/mysql.grc | less -RSFXin" mycli'
 
 # Git stuff
 alias g='git'
-alias "g?"='git status'
+alias "g?"='git status -sb'
 alias gc='git commit -m '
 alias ga='git add'
 alias gaa='git add .'
@@ -125,6 +125,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	
 	        if [[ ! -e /usr/bin/cave ]]; then
 	            alias check='sudo layman -S && sudo eix-sync && sudo glsa-check -l'
+                alias checkfulhax='sudo layman -s fulhax'
 	
 	            alias emerge='sudo emerge'
 	            alias update='emerge -1 portage && emerge -auDN world'
