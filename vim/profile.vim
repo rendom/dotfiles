@@ -25,6 +25,8 @@ set ttimeoutlen=50
 
 set laststatus=2
 
+" no lagg :O
+set re=1
 
 " ignore case in search
 set ignorecase
