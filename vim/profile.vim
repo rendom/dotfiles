@@ -1,7 +1,7 @@
 let mapleader = "\<space>"
 nnoremap <space> <nop>
 
-colorscheme distinguished
+colorscheme molokai
 syntax on
 set nu
 set history=1000
@@ -50,6 +50,17 @@ set encoding=utf-8
 set splitbelow
 set splitright
 
+
+" foldstuff
+set foldmethod=syntax
+set foldenable
+set foldlevel=100
+let g:vimsyn_folding='af'
+
+" php hax
+let g:php_folding=1
+let g:php_sql_query=1
+
 " javascript jox
 let javascript_enable_domhtmlcss = 1
 let g:javascript_conceal = 1
@@ -80,12 +91,15 @@ let g:unite_source_grep_default_opts   = '--nocolor --follow --nogroup --column'
 let g:unite_source_find_default_opts   = '-L'
 let g:unite_source_rec_max_cache_files = 0
 let g:unite_redraw_hold_candidates     = 50000
-let g:unite_source_rec_async_command   = 'ag
-            \ --follow
-            \ --nocolor
-            \ --nogroup
-            \ --column
-            \ -g ""'
+let g:unite_source_rec_async_command   =  [
+            \ 'ag',
+            \ '--follow',
+            \ '--nocolor',
+            \ '--nogroup',
+            \ '--column',
+            \ '-g',
+            \ '',
+            \ ]
 
 let g:unite_source_grep_recursive_opt = ''
 
@@ -145,8 +159,8 @@ let g:go_highlight_structs = 1
 set nocompatible
 set norelativenumber
 set nocursorline
-"set nolazyredraw
-"set nottyfast
+set nolazyredraw
+set nottyfast
 
 let g:formatprg_javascript      = 'js-beautify'
 let g:formatprg_args_javascript = '
@@ -239,3 +253,24 @@ let g:padawan#composer_command = "php /usr/local/bin/composer.phar"
 let g:neocomplete#force_omni_input_patterns = {}
 let g:neocomplete#force_omni_input_patterns.php =
 \ '\h\w*\|[^- \t]->\w*'
+
+
+
+let g:choosewin_overlay_enable = 1
+let g:choosewin_color_overlay = {
+            \ 'gui'   : ['blue', 'blue' ],
+            \ 'cterm' : [ 'blue', 'blue' ]
+            \}
+let g:choosewin_color_overlay_current = {
+            \ 'gui'   : ['red', 'red' ],
+            \ 'cterm' : [ 'red', 'red' ]
+            \}
+let g:choosewin_color_land = {
+            \ 'gui'   : ['yellow', 'yellow' ],
+            \ 'cterm' : [ 'yellow', 'yellow' ]
+            \}
+let g:choosewin_overlay_enable          = 1
+let g:choosewin_overlay_clear_multibyte = 1
+let g:choosewin_blink_on_land           = 0 " dont' blink at land
+let g:choosewin_statusline_replace      = 0 " don't replace statusline
+let g:choosewin_tabline_replace         = 0 " don't replace tabline
