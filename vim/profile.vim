@@ -274,3 +274,65 @@ let g:choosewin_overlay_clear_multibyte = 1
 let g:choosewin_blink_on_land           = 0 " dont' blink at land
 let g:choosewin_statusline_replace      = 0 " don't replace statusline
 let g:choosewin_tabline_replace         = 0 " don't replace tabline
+
+
+let s:compile_commands = ''
+if len(matchstr(getcwd(), '^'.$HOME)) > 0
+    if getcwd() !=# $HOME
+        let s:compile_commands = system('find '.getcwd().' -maxdepth 4 -name compile_commands.json | head -n 1')
+        let s:compile_commands = substitute(s:compile_commands, "\n", '', 'g')
+    endif
+endif
+
+
+"c++
+let s:compile_commands = ''
+if len(matchstr(getcwd(), '^'.$HOME)) > 0
+    if getcwd() !=# $HOME
+        let s:compile_commands = system('find '.getcwd().' -maxdepth 4 -name compile_commands.json | head -n 1')
+        let s:compile_commands = substitute(s:compile_commands, "\n", '', 'g')
+    endif
+endif
+
+
+let g:syntastic_cpp_compiler_options      = ' -std=c++11'
+let g:syntastic_cpp_config_file           = '.clang_complete'
+
+let s:num_cores = substitute(system('nproc'), "\n", '', 'g')
+if s:compile_commands !=# ''
+    let g:syntastic_c_checkers = [
+                \ 'cppcheck',
+                \ 'cpplint',
+                \ 'clang_check',
+                \ 'clang_tidy' ]
+
+    let g:syntastic_c_clang_check_post_args =
+                \ '-p='.fnamemodify(s:compile_commands, ':h')
+    let g:syntastic_c_clang_tidy_post_args =
+                \ '-p='.fnamemodify(s:compile_commands, ':h')
+
+    let g:syntastic_cpp_clang_check_post_args =
+                \ '-extra-arg=-std=c++14 '.
+                \ g:syntastic_c_clang_check_post_args
+    let g:syntastic_cpp_clang_tidy_post_args =
+                \ '-checks="*" '.
+                \ '-extra-arg=-std=c++14 '.
+                \ g:syntastic_c_clang_tidy_post_args
+else
+    let g:syntastic_c_checkers = [
+                \ 'cppcheck',
+                \ 'cpplint',
+                \ 'gcc' ]
+endif
+
+" Vim-clang
+let g:clang_auto  = 0
+
+let g:clang_diagsopt = ''
+let g:clang_c_completeopt = 'menu'
+let g:clang_cpp_completeopt = 'menu'
+let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+
+if s:compile_commands !=# ''
+    let g:clang_compilation_database = fnamemodify(s:compile_commands, ':h')
+endif

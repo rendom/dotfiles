@@ -134,5 +134,7 @@ nnoremap za zazz
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<c-e>'
 
+nmap <silent> <leader>ff :FSHere<cr>
+
 " fu ex mode
 nmap Q <Nop>
