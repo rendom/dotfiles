@@ -17,7 +17,7 @@ set nowrap
 set linebreak
 
 set backspace=2 
-set synmaxcol=150
+set synmaxcol=80
 
 set noesckeys
 set ttimeout
@@ -161,6 +161,29 @@ set norelativenumber
 set nocursorline
 set nolazyredraw
 set nottyfast
+
+
+let g:formatdef_custom_cpp = '"astyle
+            \ -A3
+            \ -S
+            \ -w
+            \ -Y
+            \ -m1
+            \ -xC78
+            \ -xL
+            \ -p
+            \ -U
+            \ -k3
+            \ -W3
+            \ -j
+            \ -c
+            \ -xy
+            \ -xp
+            \ -xw
+            \ -f"'
+let g:formatters_cpp = ['custom_cpp']
+let g:formatters_c   = ['custom_cpp']
+let g:formatters_java   = ['custom_cpp']
 
 let g:formatprg_javascript      = 'js-beautify'
 let g:formatprg_args_javascript = '

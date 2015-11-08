@@ -77,8 +77,8 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-info)
 
 
-au FileType javascript nmap <Leader>r :Autoformat<CR>
-
+"au FileType javascript nmap <Leader>r :Autoformat<CR>
+map <silent> <leader>r :call Reformat()<cr>
 
 " alt mappings to make life easier
 nnoremap <A-a> <C-a>
