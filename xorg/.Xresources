@@ -80,4 +80,5 @@ URxvt.keysym.C-9: command:\033]710;xft:SourceCodeProMedium:size=11,xft:NotoSansK
 URxvt.keysym.C-0: command:\033]710;xft:SourceCodeProMedium:size=12,xft:Noto Sans Kannada\007\033]711;xft:SourceCodeProMedium:size=12,xft:Noto Sans Kannada\007\033]712;xft:SourceCodeProMedium:size=12,xft:Noto Sans Kannada\007\033]713;xft:SourceCodeProMedium:size=12,xft:Noto Sans Kannada\007
 
 URxvt.background:rgba:0c0c/0c0c/0c0c/fafa
-#include "xcolors/colorfulcolors"
+!#include "xcolors/colorfulcolors"
+#include "xcolors/hybrid"
