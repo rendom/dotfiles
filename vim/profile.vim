@@ -348,6 +348,26 @@ else
                 \ 'gcc' ]
 endif
 
+
+let g:syntastic_cpp_checkers = g:syntastic_c_checkers
+let g:syntastic_c_cppcheck_post_args =
+            \ '-j ' . s:num_cores . ' --enable=all --inconclusive'
+
+let g:syntastic_cpp_cppcheck_post_args =
+            \ g:syntastic_c_cppcheck_post_args
+
+let g:syntastic_c_cpplint_args =
+            \ '--filter=' .
+            \ '-whitespace,' .
+            \ '-legal/copyright,' .
+            \ '-readability/utf8'
+
+let g:syntastic_cpp_cpplint_args = g:syntastic_c_cpplint_args
+
+
+
+
+
 " Vim-clang
 let g:clang_auto  = 0
 
