@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/bundle')
 
 "Plug 'vim-scripts/cSyntaxAfter'
-"Plug 'xolox/vim-easytags'
-"Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
@@ -27,6 +27,8 @@ Plug 'drmikehenry/vim-fixkey'
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Chiel92/vim-autoformat', { 'on' : 'Autoformat' }
 Plug 'AndrewRadev/linediff.vim'
+Plug 'justmao945/vim-clang', { 'for' : ['c', 'cpp'] }
+Plug 'derekwyatt/vim-fswitch', { 'for' : ['c', 'cpp'] }
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {

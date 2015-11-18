@@ -24,7 +24,7 @@ httpheader(){
 
 function finder() { find . -iname "*$1*" }
 alias f='finder'
-
+alias cls="echo -ne '\033c'"
 #alias ping='getHostname =ping'
 #alias dig='getHostname =dig'
 

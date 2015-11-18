@@ -77,8 +77,8 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-info)
 
 
-au FileType javascript nmap <Leader>r :Autoformat<CR>
-
+"au FileType javascript nmap <Leader>r :Autoformat<CR>
+map <silent> <leader>r :call Reformat()<cr>
 
 " alt mappings to make life easier
 nnoremap <A-a> <C-a>
@@ -133,6 +133,8 @@ nnoremap za zazz
 "emmet
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<c-e>'
+
+nmap <silent> <leader>ff :FSHere<cr>
 
 " fu ex mode
 nmap Q <Nop>

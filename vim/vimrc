@@ -20,6 +20,7 @@ set shell=/bin/zsh
 set wildmenu
 "source $HOME/.vim/neobundle.vim
 source $HOME/.vim/vimplug.vim
+source $HOME/.vim/functions.vim
 source $HOME/.vim/profile.vim
 source $HOME/.vim/mappings.vim
 source $HOME/.vim/autocmd.vim

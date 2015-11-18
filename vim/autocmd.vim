@@ -1,4 +1,20 @@
 if has('autocmd')
+
+    augroup fswitch
+        autocmd!
+        autocmd BufEnter *.h let b:fswitchdst  = 'c,cpp'
+        autocmd BufEnter *.h let b:fswitchlocs = '../src,../source'
+
+        autocmd BufEnter *.c let b:fswitchdst  = 'h'
+        autocmd BufEnter *.c let b:fswitchlocs = '../src,../,../include'
+
+        autocmd BufEnter *.hpp let b:fswitchdst  = 'cpp'
+        autocmd BufEnter *.hpp let b:fswitchlocs = '../src,../source'
+
+        autocmd BufEnter *.cpp let b:fswitchdst  = 'hpp,h'
+        autocmd BufEnter *.cpp let b:fswitchlocs = '../src,../,../include'
+    augroup END
+
     augroup omnicomplete
         autocmd!
         if exists('+omnifunc')
@@ -33,3 +49,8 @@ if has('autocmd')
         endif
     augroup END
 endif
+
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
