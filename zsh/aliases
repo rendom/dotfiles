@@ -76,8 +76,8 @@ alias path='echo $PATH | tr -s ":" "\n"'
 
 #grc hax
 alias cal='grc cal -m -y --color=always'
-alias configure='grc configure'
-alias './configure'='grc ./configure'
+#alias configure='grc configure'
+#alias './configure'='grc ./configure'
 alias mycli='PAGER="grcat ~/.grc/mysql.grc | less -RSFXin" mycli'
 #alias make='grc make'
 #alias gcc='grc gcc'

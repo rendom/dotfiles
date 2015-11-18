@@ -26,6 +26,7 @@ Plug 'tpope/vim-repeat'
 Plug 'drmikehenry/vim-fixkey'
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Chiel92/vim-autoformat', { 'on' : 'Autoformat' }
+Plug 'AndrewRadev/linediff.vim'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
@@ -47,9 +48,9 @@ Plug 'mattn/emmet-vim', { 'for': ['html'] }
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
-Plug 'mkusher/padawan.vim', { 'for': ['php'] }
+"Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+"Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
+"Plug 'mkusher/padawan.vim', { 'for': ['php'] }
 
 
 "Golang

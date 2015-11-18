@@ -1,7 +1,8 @@
 let mapleader = "\<space>"
 nnoremap <space> <nop>
 
-colorscheme molokai
+"colorscheme molokai
+colorscheme distinguished
 syntax on
 set nu
 set history=1000
@@ -59,7 +60,7 @@ let g:vimsyn_folding='af'
 
 " php hax
 let g:php_folding=1
-let g:php_sql_query=1
+let g:php_sql_query=0
 
 " javascript jox
 let javascript_enable_domhtmlcss = 1
