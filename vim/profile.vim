@@ -380,3 +380,24 @@ let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
 if s:compile_commands !=# ''
     let g:clang_compilation_database = fnamemodify(s:compile_commands, ':h')
 endif
+
+
+function! MyOnCompleteDone() " {{{2
+    if !exists('v:completed_item') || empty(v:completed_item)
+        return
+    endif
+
+    let complete_str = v:completed_item.word
+    if complete_str ==# ''
+        return
+    endif
+
+    let abbr = v:completed_item.menu
+    let startIdx = match(abbr,'(')
+    let endIdx = match(abbr,')')
+    if endIdx - startIdx > 1
+        echo v:completed_item.menu
+    endif
+endfunction
+
+autocmd CompleteDone * call MyOnCompleteDone()
