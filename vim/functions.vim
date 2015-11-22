@@ -49,3 +49,13 @@ function! s:CppCheck() " {{{2
                 \ '[%f:%l]: (%tnformation) %m,'.
                 \ '[%f:%l]: (%tnconclusive) %m')
 endfunction
+
+let g:goEnvFunc = 0
+function! GoSetEnvirmentVariables() 
+    if g:goEnvFunc == 0
+        if filereadable("Makefile") && match(readfile("Makefile"), "GO15VENDOREXPERIMENT=1")
+            let $GO15VENDOREXPERIMENT = '1'
+            let g:goEnvFunc = 1
+        endif
+    endif
+endfunction
