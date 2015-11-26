@@ -56,3 +56,4 @@ autocmd BufReadPost *
      \ endif
 
 autocmd FileType go call GoSetEnvirmentVariables()
+autocmd FileType php set synmaxcol=120
