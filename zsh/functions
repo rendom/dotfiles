@@ -112,15 +112,15 @@ twitch_start_stream() {
     FPS="30" # target FPS
     GOP="60" # i-frame interval, should be double of FPS, 
     GOPMIN="30" # min i-frame interval, should be equal to fps, 
-    THREADS="6" # max 6
-    CBR="5000k" # constant bitrate (should be between 1000k - 3000k)
+    THREADS="4" # max 6
+    CBR="1000k" # constant bitrate (should be between 1000k - 3000k)
     QUALITY="medium"  # one of the many FFMPEG preset
     AUDIO_RATE="44100"
     STREAM_KEY="$1" # use the terminal command Streaming streamkeyhere to stream your video to twitch or justin
     SERVER="live-arn" # twitch server in frankfurt, see http://bashtech.net/twitch/ingest.php for list
     KEY_FRAME=2
 
-    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f alsa -i pulse -f flv -ac 2 -ar $AUDIO_RATE \
+    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+1920 -f alsa -i pulse -f flv -ac 2 -ar $AUDIO_RATE \
         -vcodec libx264 -force_key_frames "expr:gte(t,n_forced*$KEY_FRAME)" -g $GOP -keyint_min $GOPMIN -b:v $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p\
         -s $OUTRES -preset $QUALITY -tune film -acodec libmp3lame -threads $THREADS -strict normal \
         -force_key_frames "expr:gte(t,n_forced*2)" \
