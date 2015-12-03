@@ -401,3 +401,11 @@ function! MyOnCompleteDone() " {{{2
 endfunction
 
 autocmd CompleteDone * call MyOnCompleteDone()
+
+
+if has("unix")
+	let s:uname = system("uname")
+	if s:uname == "Darwin\n"
+        set clipboard=unnamed
+	endif
+endif
