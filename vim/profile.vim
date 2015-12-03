@@ -403,9 +403,8 @@ endfunction
 autocmd CompleteDone * call MyOnCompleteDone()
 
 
-if has("unix")
-	let s:uname = system("uname")
-	if s:uname == "Darwin\n"
-        set clipboard=unnamed
-	endif
+if has('unnamedplus')
+    set clipboard=unnamedplus,unnamed
+else
+    set clipboard+=unnamed
 endif
