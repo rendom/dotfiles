@@ -7,10 +7,8 @@ export MPV_HOME=$HOME/.config/mpv
 
 source $HOME/.zsh/autojump
 source $HOME/.zsh/functions
-source $HOME/.zsh/aliases
 
-#fpath=/usr/local/share/zsh/site-functions:$fpath
- fpath=(~/.zsh/plugins /usr/local/share/zsh/site-functions $fpath)
+fpath=(~/.zsh/plugins /usr/local/share/zsh/site-functions $fpath)
 
 if [ -e $HOME/.zsh/local ]; then
 	source $HOME/.zsh/local
@@ -23,7 +21,6 @@ source $HOME/.zsh/profile
 for f in $HOME/.zsh/plugins/*.zsh; do
 	source $f;
 done
-source $HOME/.zsh/style
 
 #    ponysay --quote
 
@@ -31,10 +28,21 @@ if [ -e /etc/profile.d/fzf.zsh ]; then
     source /etc/profile.d/fzf.zsh
 fi
 
+source $HOME/.zsh/plugins/zgen/zgen.zsh
+if ! zgen saved; then
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load trapd00r/zsh-syntax-highlighting-filetypes
+    zgen save
+fi
+
+
 # Add support for tracking time spent in the shell (Timing app)
 PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 export PROMPT_COMMAND="${PROMPT_COMMAND} ${PROMPT_TITLE}; "
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source $HOME/.zsh/aliases
+#source $HOME/.zsh/style
 
 # vim: set ft=zsh :
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
