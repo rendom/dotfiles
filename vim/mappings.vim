@@ -138,3 +138,7 @@ nmap <silent> <leader>ff :FSHere<cr>
 
 " fu ex mode
 nmap Q <Nop>
+
+
+" Search @ visual select
+vnoremap // y/<C-R>"<CR>
