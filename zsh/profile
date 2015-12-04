@@ -52,8 +52,8 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion"*"manuals' separate-sections true
 zstyle :compinstall filename '~/.zsh/.zshrc'
 
-[[ ! -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]] && zkbd
-source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
+#[[ ! -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]] && zkbd
+#source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 
 [[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
