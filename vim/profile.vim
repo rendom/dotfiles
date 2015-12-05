@@ -157,13 +157,11 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
-
 set nocompatible
 set norelativenumber
 set nocursorline
 set nolazyredraw
 set nottyfast
-
 
 let g:formatdef_custom_cpp = '"astyle
             \ -A3
