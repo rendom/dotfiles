@@ -31,6 +31,8 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'justmao945/vim-clang', { 'for' : ['c', 'cpp'] }
 Plug 'derekwyatt/vim-fswitch', { 'for' : ['c', 'cpp'] }
 
+Plug 'fboender/bexec'
+
 " Javascript
 Plug 'marijnh/tern_for_vim', {
             \ 'for' : ['javascript'],
