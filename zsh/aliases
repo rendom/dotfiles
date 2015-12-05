@@ -25,12 +25,8 @@ httpheader(){
 function finder() { find . -iname "*$1*" }
 alias f='finder'
 alias cls="echo -ne '\033c'"
-#alias ping='getHostname =ping'
-#alias dig='getHostname =dig'
-
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
-#alias rec="ffcast -s ffmpeg -f x11grab -r 10 -s 1919x1079 -i :0.0 -ab 160k -vcodec libvpx -threads 4 -deadline realtime -cpu-used 0 -qmin 2 -qmax 5 rec-$(date -u +%Y-%m-%d-%s).webm"
 
 rec(){
     ffcast -s % ffmpeg -y -f x11grab -show_region 1 -framerate 15 \
@@ -73,6 +69,10 @@ alias top='htop'
 alias weechat='weechat-curses'
 alias diff2='icdiff --line-numbers'
 alias path='echo $PATH | tr -s ":" "\n"'
+
+#pdnsd
+dnsclear='sudo pdnsd-ctl empty-cache'
+dnsview='sudo pdnsd-ctl dump'
 
 #grc hax
 alias cal='grc cal -m -y --color=always'
