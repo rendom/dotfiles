@@ -71,8 +71,8 @@ alias diff2='icdiff --line-numbers'
 alias path='echo $PATH | tr -s ":" "\n"'
 
 #pdnsd
-dnsclear='sudo pdnsd-ctl empty-cache'
-dnsview='sudo pdnsd-ctl dump'
+alias dnsclear='sudo pdnsd-ctl empty-cache'
+alias dnsview='sudo pdnsd-ctl dump'
 
 #grc hax
 alias cal='grc cal -m -y --color=always'
