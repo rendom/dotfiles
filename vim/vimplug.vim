@@ -30,6 +30,10 @@ Plug 'Chiel92/vim-autoformat', { 'on' : 'Autoformat' }
 Plug 'AndrewRadev/linediff.vim'
 Plug 'justmao945/vim-clang', { 'for' : ['c', 'cpp'] }
 Plug 'derekwyatt/vim-fswitch', { 'for' : ['c', 'cpp'] }
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-eunuch'
+Plug 'ironhouzi/vim-stim'
+Plug 'rstacruz/vim-closer'
 
 Plug 'fboender/bexec'
 
