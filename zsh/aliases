@@ -46,7 +46,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias l='ll'
     alias addon-sdk="cd /opt/addon-sdk-git && source bin/activate; cd -"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
     alias l='ls -1'
     alias la='ls -lhAF'
     alias ll='ls -lhF'
