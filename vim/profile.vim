@@ -221,7 +221,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\|\h\w*::\|\(new\|use\|extends\|implements\)\s'
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\|\h\w*::\|\(new\|use\|extends\|implements\)\s'
 let g:neocomplete#sources#omni#input_patterns.c = 
           \ '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = 
@@ -261,6 +261,7 @@ endif
 
 
 if has("macunix")
+    let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'breakpoints']
     let g:vvt_browser_command = 'echo "%URL%" | pbcopy'
     function! CopyShit(line1, line2)
         let foo = getline(a:line1, a:line2)
@@ -274,8 +275,8 @@ endif
 let $PATH=$PATH . ':' . expand('~/.composer/vendor/bin')
 let g:padawan#composer_command = "php /usr/local/bin/composer.phar"
 let g:neocomplete#force_omni_input_patterns = {}
-let g:neocomplete#force_omni_input_patterns.php =
-\ '\h\w*\|[^- \t]->\w*'
+"let g:neocomplete#force_omni_input_patterns.php =
+"\ '\h\w*\|[^- \t]->\w*'
 
 
 

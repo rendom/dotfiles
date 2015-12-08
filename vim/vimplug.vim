@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/bundle')
 
 "Plug 'vim-scripts/cSyntaxAfter'
-Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/syntastic'
@@ -57,7 +56,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html'] }
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-"Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 "Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
 "Plug 'mkusher/padawan.vim', { 'for': ['php'] }
 
@@ -72,6 +71,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 if has("unix")
 	let s:uname = system("uname")
 	if s:uname != "Darwin\n"
+        Plug 'xolox/vim-easytags'
         let g:vvt_browser_command = 'echo "%URL%" | xclip'
 	endif
 endif
