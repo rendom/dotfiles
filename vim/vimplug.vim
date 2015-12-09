@@ -33,7 +33,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
 Plug 'ironhouzi/vim-stim'
 Plug 'rstacruz/vim-closer'
-
+Plug 'tpope/vim-sleuth'
 Plug 'fboender/bexec'
 
 " Javascript
