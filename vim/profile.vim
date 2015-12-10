@@ -261,24 +261,17 @@ endif
 
 
 if has("macunix")
-    let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'breakpoints']
-    let g:vvt_browser_command = 'echo "%URL%" | pbcopy'
-    function! CopyShit(line1, line2)
-        let foo = getline(a:line1, a:line2)
-        let ret = system('pbcopy', foo)
-    endfunction
+  let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'breakpoints']
+  let g:vvt_browser_command = 'echo "%URL%" | pbcopy'
+  function! CopyShit(line1, line2)
+    let foo = getline(a:line1, a:line2)
+    let ret = system('pbcopy', foo)
+  endfunction
 
-    command! -range CopyShit <line1>,<line2>call SourceRange()
+  command! -range CopyShit <line1>,<line2>call SourceRange()
+else
+  let g:vvt_browser_command = 'echo "%URL%" | xclip'
 endif
-
-
-let $PATH=$PATH . ':' . expand('~/.composer/vendor/bin')
-let g:padawan#composer_command = "php /usr/local/bin/composer.phar"
-let g:neocomplete#force_omni_input_patterns = {}
-"let g:neocomplete#force_omni_input_patterns.php =
-"\ '\h\w*\|[^- \t]->\w*'
-
-
 
 let g:choosewin_overlay_enable = 1
 let g:choosewin_color_overlay = {

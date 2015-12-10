@@ -69,11 +69,11 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 if has("unix")
-	let s:uname = system("uname")
-	if s:uname != "Darwin\n"
-        Plug 'xolox/vim-easytags'
-        let g:vvt_browser_command = 'echo "%URL%" | xclip'
-	endif
+        let s:uname = system("uname")
+        if s:uname != "Darwin\n"
+                Plug 'xolox/vim-easytags'
+                let g:vvt_browser_command = 'echo "%URL%" | xclip'
+        endif
 endif
 
 " Required:
