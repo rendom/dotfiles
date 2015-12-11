@@ -207,7 +207,7 @@ let g:neocomplete#enable_auto_select                   = 0
 let g:neocomplete#force_overwrite_completefunc         = 1
 let g:neocomplete_enable_fuzzy_completion_start_length = 2
 let g:neocomplete_enable_camel_case_completion         = 0
-let g:neocomplete#enable_auto_delimiter                = 1
+let g:neocomplete#enable_auto_delimiter                = 0
 let g:neocomplete#max_list                             = 10
 
 let g:neocomplete#sources#dictionary#dictionaries = { 'default' : '' }
