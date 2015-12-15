@@ -401,3 +401,7 @@ if has('unnamedplus')
 else
     set clipboard+=unnamed
 endif
+
+let g:bl_no_autoupdate = 1
+let g:bl_pagefiletypes = []
+
