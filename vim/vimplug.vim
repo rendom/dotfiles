@@ -35,6 +35,7 @@ Plug 'ironhouzi/vim-stim'
 Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
 Plug 'fboender/bexec'
+Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
