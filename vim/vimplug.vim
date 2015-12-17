@@ -36,6 +36,7 @@ Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
 Plug 'fboender/bexec'
 Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
+Plug 'wellle/visual-split.vim'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
@@ -57,7 +58,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html'] }
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+"Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 "Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
 "Plug 'mkusher/padawan.vim', { 'for': ['php'] }
 
