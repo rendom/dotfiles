@@ -1,0 +1,255 @@
+priority -50
+
+global !p
+import vim
+
+# Tests for the existence of a variable declared by Vim's filetype detection
+# suggesting the type of shell script of the current file
+def testShell(scope, shell):
+	return vim.eval("exists('" + scope + ":is_" + shell + "')")
+
+# Loops over the possible variables, checking for global variables
+# first since they indicate an override by the user.
+def getShell():
+	for scope in ["g", "b"]:
+		for shell in ["bash", "posix", "sh", "kornshell"]:
+			if testShell(scope, shell) == "1":
+				if shell == "kornshell":
+					return "ksh"
+				if shell == "posix":
+					return "sh"
+				return shell
+	return "sh"
+endglobal
+
+snippet #!
+`!p snip.rv = '#!/bin/' + getShell() + "\n\n" `
+endsnippet
+
+snippet !env "#!/usr/bin/env (!env)"
+`!p snip.rv = '#!/usr/bin/env ' + getShell() + "\n\n" `
+endsnippet
+
+snippet temp "Tempfile"
+${1:TMPFILE}="$(mktemp -t ${2:`!p
+snip.rv = re.sub(r'[^a-zA-Z]', '_', snip.fn) or "untitled"
+`})"
+${3:${4/(.+)/trap "/}${4:rm -f '$${1/.*\s//}'}${4/(.+)/" 0				 # EXIT\n/}${5/(.+)/trap "/}${5:rm -f '$${1/.*\s//}'; exit 1}${5/(.+)/" 2		# INT\n/}${6/(.+)/trap "/}${6:rm -f '$${1/.*\s//}'; exit 1}${6/(.+)/" 1 15	  # HUP TERM\n/}}
+
+endsnippet
+
+snippet case "case .. esac (case)"
+case ${1:word} in
+	${2:pattern} )
+		$0;;
+esac
+endsnippet
+
+snippet elif "elif .. (elif)"
+elif ${2:[[ ${1:condition} ]]}; then
+	${VISUAL:#statements}
+endsnippet
+
+snippet for "for ... done (for)"
+for (( i = 0; i < ${1:10}; i++ )); do
+	${VISUAL:#statements}
+done
+endsnippet
+
+snippet forin "for ... in ... done (forin)"
+for ${1:i}${2/.+/ in /}${2:words}; do
+	${VISUAL:#statements}
+done
+endsnippet
+
+snippet here "here document (here)"
+<<-${2:'${1:TOKEN}'}
+	$0
+${1/['"`](.+)['"`]/$1/}
+endsnippet
+
+snippet if "if ... then (if)"
+if ${2:[[ ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifz "if -z ... then (if empty string)"
+if ${2:[[ -z ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet until "until ... (done)"
+until ${2:[[ ${1:condition} ]]}; do
+	${VISUAL:#statements}
+done
+endsnippet
+
+snippet while "while ... (done)"
+while ${2:[[ ${1:condition} ]]}; do
+	${VISUAL:#statements}
+done
+endsnippet
+
+snippet getopt "gotopt"
+`!p
+snip.rv = ""
+for a in t[1]:
+	if a == 'h':
+		snip+= snip.mkline('function printhelp',indent='')
+		snip+= snip.mkline('{',indent='')
+		snip >> 1
+		snip += snip.mkline('echo "valid options"', indent='')
+		for b in t[1]:
+			if b != ':' and b!='h':
+				snip += snip.mkline('echo "-'+b+' = "', indent='')
+		snip << 1
+		snip+= snip.mkline('}',indent='')
+		snip+= snip.mkline('',indent='')
+`
+while getopts "$1" ${2:c};do
+	case "$$2" in `!p
+snip.rv = ""
+
+for a in t[1]:
+	if a != ':':
+		snip >> 2
+		snip += snip.mkline(a+")", indent='')
+		if a == 'h':
+			snip >> 1
+			snip += snip.mkline('printhelp', indent='')
+			snip += snip.mkline('exit 0', indent='')
+		snip += snip.mkline(";;", indent='') + '\n'
+		snip << 5
+`
+		\?)
+			echo "invalid option $$2"
+			;;
+		:)
+			echo "Option -$OPTARG requires an argument." >&2
+			exit 1
+			;;
+	esac
+done
+
+endsnippet
+
+snippet ifa "if -a ... then (if FILE exists. do not use)"
+if ${2:[[ -a ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifb "if -b ... then (if FILE exists and is a block-special file.)"
+if ${2:[[ -b ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifc "if -c ... then (if FILE exists and is a character-special file.)"
+if ${2:[[ -c ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifd "if -d ... then (if FILE exists and is a directory.)"
+if ${2:[[ -d ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ife "if -e ... then (if FILE exists.)"
+if ${2:[[ -e ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet iff "if -f ... then (if FILE exists and is a regular file.)"
+if ${2:[[ -f ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifg "if -g ... then (if FILE exists and its SGID bit is set.)"
+if ${2:[[ -g ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifh "if -h ... then (if FILE exists and is a symbolic link.)"
+if ${2:[[ -h ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifk "if -k ... then (if FILE exists and its sticky bit is set.)"
+if ${2:[[ -k ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+snippet ifp "if -p ... then (if FILE exists and is a named pipe (FIFO).)"
+if ${2:[[ -p ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifr "if -r ... then (if FILE exists and is readable.)"
+if ${2:[[ -r ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifs "if -s ... then (if FILE exists and has a size greater than zero.)"
+if ${2:[[ -s ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifu "if -u ... then (if FILE exists and its SUID (set user ID) bit is set.)"
+if ${2:[[ -u ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifw "if -w ... then (if FILE exists and is writable.)"
+if ${2:[[ -w ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifx "if -x ... then (if FILE exists and is executable.)"
+if ${2:[[ -x ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifO "if -O ... then (if FILE exists and is owned by the effective user ID.)"
+if ${2:[[ -O ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifG "if -G ... then (if FILE exists and is owned by the effective group ID.)"
+if ${2:[[ -G ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifL "if -L ... then (if FILE exists and is a symbolic link.)"
+if ${2:[[ -L ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifN "if -N ... then (if FILE exists and has been modified since it was last read.)"
+if ${2:[[ -N ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
+
+snippet ifS "if -S ... then (if FILE exists and is a socket.)"
+if ${2:[[ -S ${1:condition} ]]}; then
+	${VISUAL:#statements}
+fi
+endsnippet
