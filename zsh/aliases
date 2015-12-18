@@ -77,7 +77,6 @@ alias dnsview='sudo pdnsd-ctl dump'
 alias cal='grc cal -m -y --color=always'
 #alias configure='grc configure'
 #alias './configure'='grc ./configure'
-alias mycli='PAGER="grcat ~/.grc/mysql.grc | less -RSFXin" mycli'
 #alias make='grc make'
 #alias gcc='grc gcc'
 #alias g++='grc g++'
@@ -98,6 +97,7 @@ alias gshow='git show --stat --oneline'
 alias svim='sudo vim'
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias mycli='PAGER="grcat ~/.grc/mysql.grc | less -RSFXin" mycli'
     alias livestreamer-cb="livestreamer $(xclip -o) best"
 fi
 
