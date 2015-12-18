@@ -15,7 +15,6 @@ while getopts ":h:s:r:" arg; do
             ;;
         s)
             SEPARATOR=$OPTARG
-            echo "HIIIT"
             ;;
         r)
             TAIL=1
