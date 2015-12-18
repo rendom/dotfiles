@@ -1,0 +1,34 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    echo "Pass filename.."
+    exit 1
+fi
+
+TAIL=0
+
+while getopts ":h:s:r:" arg; do
+    case $arg in
+        h)
+            echo "-s seperator \
+                -r tail"
+            ;;
+        s)
+            SEPARATOR=$OPTARG
+            echo "HIIIT"
+            ;;
+        r)
+            TAIL=1
+            ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+SEPARATOR=${SEPARATOR-","}
+if [ "$TAIL" = 0 ]
+then
+    head $1 | column -t -s "$SEPARATOR"
+else
+    tail $1 | column -t -s "$SEPARATOR"
+fi
