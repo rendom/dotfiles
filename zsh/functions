@@ -1,5 +1,8 @@
 GITSTAT=''
 
+function git-add-remote(){
+   git remote add origin "$@"
+}
 
 function todo(){
 	if [ -e ./.todo.txt ]; then
