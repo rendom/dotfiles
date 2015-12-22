@@ -409,5 +409,5 @@ let g:bl_pagefiletypes = []
 " phpfmt stuff
 let g:phpfmt_enable_default_mapping = 0
 let g:phpfmt_on_save = 0
-
+command! PhpFmt call PhpFmtFixFile()
 
