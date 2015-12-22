@@ -18,7 +18,8 @@ set nowrap
 set linebreak
 
 set backspace=2 
-set synmaxcol=80
+set synmaxcol=120
+set colorcolumn=80
 
 set noesckeys
 set ttimeout
