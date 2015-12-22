@@ -406,3 +406,8 @@ endif
 let g:bl_no_autoupdate = 1
 let g:bl_pagefiletypes = []
 
+" phpfmt stuff
+let g:phpfmt_enable_default_mapping = 0
+let g:phpfmt_on_save = 0
+
+
