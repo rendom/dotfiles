@@ -19,7 +19,7 @@ set linebreak
 
 set backspace=2 
 set synmaxcol=120
-set colorcolumn=80
+set colorcolumn=80,120
 
 set noesckeys
 set ttimeout
