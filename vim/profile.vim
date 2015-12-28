@@ -411,3 +411,5 @@ let g:phpfmt_enable_default_mapping = 0
 let g:phpfmt_on_save = 0
 command! PhpFmt call PhpFmtFixFile()
 
+" pls... fu
+highlight htmlItalic term=NONE cterm=NONE gui=NONE
