@@ -24,9 +24,14 @@ httpheader(){
 
 function finder() { find . -iname "*$1*" }
 alias f='finder'
-alias cls="echo -ne '\033c'"
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
+
+if [ -z "$TMUX" ]; then
+    alias cls="echo -ne '\033c'"
+else 
+    alias cls="clear && tmux clear-history"
+fi
 
 rec(){
     ffcast -s % ffmpeg -y -f x11grab -show_region 1 -framerate 15 \
