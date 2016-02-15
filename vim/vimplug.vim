@@ -38,7 +38,7 @@ Plug 'fboender/bexec'
 Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
 Plug 'wellle/visual-split.vim'
 Plug 'phpfmt/vim-phpfmt', { 'for' : ['php'] }
-Plug 'jwalton512/vim-blade', { 'for' : ['php'] }
+Plug 'junegunn/vim-peekaboo'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
