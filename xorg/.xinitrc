@@ -17,7 +17,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export VDPAU_NVIDIA_NO_OVERLAY=1
 export EDITOR="vim"
 export BROWSER="firefox"
-
+export __GL_SYNC_DISPLAY_DEVICE=DV-I-1
+export __VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DVI-I-1
 #export PATH=$PATH:$HOME/bin
 
 
@@ -52,6 +53,7 @@ compton &
 pulseaudio --start &
 nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'
 nvidia-settings --load-config-only
+
 
 ssh-agent herbstluftwm
 
