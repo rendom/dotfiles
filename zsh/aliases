@@ -7,6 +7,10 @@ alias -g MO='| more'
 alias -g VVT='| vvt | xclip'
 alias -g NULL='> /dev/null 2>&1>'
 alias -g JSON='| python -m json.tool'
+
+# Diff remote file
+#vimdiff <(scp server:fil /dev/stdout) fil
+
 better_cd(){
   builtin cd "$@" 2> /dev/null && return 0
 
@@ -21,6 +25,26 @@ better_cd(){
 httpheader(){
     curl -s -D - $1 -o /dev/null
 }
+
+# redirectChain(){
+#     URL=$1
+#     FOLLOW=true
+#     while $FOLLOW; do
+#         echo "URL: $URL"
+#         OUT=$(httpheader $URL)
+#         echo $OUT
+#         REDIRECT=$(echo "$OUT" | perl -lne '/Location: (.+)/ && print $1')
+#         echo $REDIRECT
+#         if [  -z "$REDIRECT" ]; then
+#             echo "HIT"
+#             FOLLOW=false
+#         else
+#             URL=$REDIRECT
+#         fi
+#         echo "------------------------------------------------"
+# 
+#     done
+# }
 
 function finder() { find . -iname "*$1*" }
 alias f='finder'
