@@ -130,6 +130,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias livestreamer-cb="livestreamer $(xclip -o) best"
 fi
 
+
+alias weather='curl http://wttr.in/gothenburg'
+
 # Random dev stuff
 alias gob='go build'
 
