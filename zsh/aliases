@@ -82,6 +82,8 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias dnsclear='sudo pdnsd-ctl empty-cache'
 alias dnsview='sudo pdnsd-ctl dump'
 
+alias gourceVid='gource -1280x720 -s 0.5 --file-idle-time 0 --bloom-multiplier 0.5 --bloom-intensity 0.5 --font-size 30 --multi-sampling --key -o - | ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libvpx -b 10000K -threads 8 out.webm'
+
 #grc hax
 alias cal='grc cal -m -y --color=always'
 #alias configure='grc configure'
