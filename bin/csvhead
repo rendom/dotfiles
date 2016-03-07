@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 if [ -z "$1" ]; then
     echo "Pass filename.."
@@ -6,5 +6,15 @@ if [ -z "$1" ]; then
 fi
 
 SEPARATOR=${2-","}
+TEMP=false
+if [ -n "$3" ]; then
+    TMPFILE=$(mktemp "csvhead-iconv.csv")
+    cat $1 > $TMPFILE
+    DATA="$(iconv -f $3 -t UTF-8 $TMPFILE | head -n1)"
+    rm $TMPFILE
+else
+    DATA="$(head -n1 $1)"
+fi
 
-head -n1 $1 | tr $SEPARATOR "\n" | nl -v 0
+
+echo $DATA | tr $SEPARATOR "\n" | nl -v 0
