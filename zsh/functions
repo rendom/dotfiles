@@ -331,11 +331,16 @@ function __git_ps1 () # {{{1
             t="%F{yellow}"
         fi
 
+        local u="`git config --local user.name`"
+        if [ -z $u ];then
+            u="`git config --global user.name`"
+        fi
+
         p="`__git_ps1_show_upstream`"
         if [ -n "$1" ]; then
-            printf "$1" " $f$t${b##refs/heads/}$r$c$p"
+            printf "$1" " $f$t$u@${b##refs/heads/}$r$c$p"
         else
-            printf "%s" " $f$t${b##refs/heads/}$r$c$p"
+            printf "%s" " $f$t$u@${b##refs/heads/}$r$c$p"
         fi
     fi
 }
