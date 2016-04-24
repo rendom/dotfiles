@@ -13,17 +13,14 @@ function todo(){
 }
 
 function csmodeToggle(){
-    local CSMODE_FILE="$HOME/.csmode"
     local VIBRANCE=0
+    local CSVIBRANCE=800
 
-    if [[ ! -e $CSMODE_FILE ]]; then
-        touch $CSMODE_FILE
-        VIBRANCE=800
-    else
-        rm $CSMODE_FILE
+    if [ ! "$(nvidia-settings -q '[gpu:0]/DigitalVibrance[DFP-4]' | grep $CSVIBRANCE)" ]; then
+        VIBRANCE=$CSVIBRANCE
     fi
 
-    nvidia-settings -a "[gpu:0]/DigitalVibrance[DFP-4]=$VIBRANCE"
+    nvidia-settings -a "[gpu:0]/DigitalVibrance[DFP-4]=$VIBRANCE" > /dev/null
 }
 
 
