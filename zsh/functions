@@ -12,6 +12,25 @@ function todo(){
 	fi
 }
 
+function csmodeToggle(){
+    local CSMODE_FILE="$HOME/.csmode"
+    local VIBRANCE=0
+
+    if [[ ! -e $CSMODE_FILE ]]; then
+        touch $CSMODE_FILE
+        VIBRANCE=800
+    else
+        rm $CSMODE_FILE
+    fi
+
+    nvidia-settings -a "[gpu:0]/DigitalVibrance[DFP-4]=$VIBRANCE"
+}
+
+
+castHax(){
+    livestreamer "$1" best -O | node ~/gitstuff/castnow/index.js - --tomp4 --quite
+}
+
 function curltime(){
     CURLFORMAT="time_namelookup:   %{time_namelookup}
 time_connect:  %{time_connect}
