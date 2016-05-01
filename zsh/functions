@@ -14,7 +14,7 @@ function todo(){
 
 function csmodeToggle(){
     local VIBRANCE=0
-    local CSVIBRANCE=800
+    local CSVIBRANCE=1022
 
     if [ ! "$(nvidia-settings -q '[gpu:0]/DigitalVibrance[DFP-4]' | grep $CSVIBRANCE)" ]; then
         VIBRANCE=$CSVIBRANCE
