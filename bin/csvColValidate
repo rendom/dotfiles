@@ -1,0 +1,51 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Data::Dumper;
+
+my $filename      = $ARGV[0] or die "Pls.. filename";
+my $separator     = ($ARGV[1]) ? quotemeta($ARGV[1]) : ',';
+my $expectedCount = ($ARGV[2]) ? $ARGV[2] : 0;
+my $oldCount      = 0;
+my $failed        = 0;
+
+
+open(my $file, '<', $filename) or die "Problem.. $!";
+my @lines = <$file>;
+close($file);
+
+foreach my $line (@lines) {
+    $line =~ s/\r\n|\n//g;
+    my @cols = split($separator, $line);
+    my $lineCount = @cols;
+
+    if($oldCount ne 0){
+        if($expectedCount ne 0) {
+            if($lineCount ne $expectedCount) {
+                print Dumper(@cols);
+                print "\nFail count\n";
+                $failed=1;
+            }
+        } else {
+            if($lineCount ne $oldCount) {
+                print Dumper(@cols);
+                print "\nCurrent line: $lineCount, Old: $oldCount\n";
+                $failed=1;
+            }
+        }
+    }
+
+    $oldCount = $lineCount;
+}
+
+print "-------------------------------\n";
+
+if($failed eq 0){
+   print "All rows contains $oldCount columns\n"; 
+}
+
+print "\nHeader row:\n";
+print Dumper(split($separator, $lines[0]));
+
