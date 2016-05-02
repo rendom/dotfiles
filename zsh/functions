@@ -12,6 +12,22 @@ function todo(){
 	fi
 }
 
+function csmodeToggle(){
+    local VIBRANCE=0
+    local CSVIBRANCE=1022
+
+    if [ ! "$(nvidia-settings -q '[gpu:0]/DigitalVibrance[DFP-4]' | grep $CSVIBRANCE)" ]; then
+        VIBRANCE=$CSVIBRANCE
+    fi
+
+    nvidia-settings -a "[gpu:0]/DigitalVibrance[DFP-4]=$VIBRANCE" > /dev/null
+}
+
+
+castHax(){
+    livestreamer "$1" best -O | node ~/gitstuff/castnow/index.js - --tomp4 --quite
+}
+
 function curltime(){
     CURLFORMAT="time_namelookup:   %{time_namelookup}
 time_connect:  %{time_connect}
