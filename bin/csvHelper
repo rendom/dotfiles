@@ -1,0 +1,92 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Getopt::Std;
+use Data::Dumper;
+
+$Getopt::Std::STANDARD_HELP_VERSION = 1;
+our $VERSION = 0.1;
+my %options=();
+getopts('hvs:c:', \%options);
+
+sub HELP_MESSAGE {
+    print "\ncsvTool <filename>\n";
+    print "-h\tPrint header row\n";
+    print "-s\tSpecify separator (Default: ,)\n";
+    # print "-c\tConvert to UTF-8\n";
+    print "-v\tValidates column count\n";
+}
+
+
+
+
+my $filename    = $ARGV[0] or die "Pls.. filename";
+my $separator   = ($options{s}) ? $options{s} : ',';
+my $charset     = $options{c};
+my $fileOperator = '<';
+
+open(my $file, $fileOperator, $filename) or die "Error: $!";
+my @lines = <$file>;
+close($file);
+
+
+sub getHeaderRow {
+    return split($separator, $lines[0])
+}
+
+sub printHeader {
+    print prettyPrintRow(getHeaderRow());
+}
+
+sub validateCsv {
+    my $count = getHeaderRow();
+    my $failed = 0;
+
+    foreach my $line (@lines) {
+        $line =~ s/\r\n|\n//g;
+        my @cols = split($separator, $line);
+        my $lineCount = @cols;
+    
+        if($lineCount ne $count) {
+            print "Failed: $lineCount columns expects $count\n";
+            print prettyPrintRow(@cols);
+            $failed=1;
+        }
+    }
+    if($failed eq 1){
+        print "\nHeader row:\n";
+        printHeader();
+        exit 2;
+    } else {
+        print "All rows matched header:\n";
+        printHeader();
+        exit 0;
+    }
+}
+
+sub prettyPrintRow {
+    my @row = @_;
+    my $str = "";
+    foreach my $column (@row) {
+        $column =~ s/\r\n|\n//g;
+        $str .= "$column\t";
+    }
+   
+    $str .= "\n";
+    return $str;
+}
+
+if($options{h}) {
+    printHeader();
+    exit 0;
+} elsif ($options{v}){
+    validateCsv();
+    exit 0;
+} else {
+    foreach my $row (@lines) {
+        print prettyPrintRow(split($separator, $row))
+    }
+}
+ 
