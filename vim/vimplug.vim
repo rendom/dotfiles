@@ -48,7 +48,7 @@ Plug 'marijnh/tern_for_vim', {
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
-
+Plug 'posva/vim-vue'
 
 "webdev
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
