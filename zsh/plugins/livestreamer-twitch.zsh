@@ -1,8 +1,33 @@
 #!/bin/zsh
 # Twitch + Livestreamer <3
+local TWITCH_FOLLOWING_CACHE=$XDG_CONFIG_HOME/twitch_following;
 _livestr_get_following() {
-    if [ -f $XDG_CONFIG_HOME/twitch/following ]; then
-        /bin/cat $XDG_CONFIG_HOME/twitch/following
+    if [ -f $TWITCH_FOLLOWING_CACHE ]; then
+        /bin/cat $TWITCH_FOLLOWING_CACHE
+    else
+        _lvstr_fetch_twitch_following
+    fi
+}
+
+_lvstr_fetch_twitch_following() {
+    local PAGE=0;
+    local OFFSET=0;
+    local LIMIT=100;
+    if [ ! -z "$1" ]; then
+        OFFSET=$((LIMIT*$1));
+        PAGE=$1
+    fi
+
+    local OUT=$(curl --silent\
+        "https://api.twitch.tv/kraken/users/$TWITCHNAME/follows/channels?limit=$LIMIT&offset=$OFFSET")
+
+    local CHANNELS=$(echo $OUT | grep -oP "\"name\":\"\K[^\"]+");
+    local TOTAL=$(echo $OUT | grep -oP "\"_total\":\K[^\,]+");
+
+    echo $CHANNELS | tee -a $TWITCH_FOLLOWING_CACHE
+
+    if [ $OFFSET -le $TOTAL ];then
+        _lvstr_fetch_twitch_following $((PAGE+1))
     fi
 }
 
@@ -19,9 +44,10 @@ _livestr() {
         local ISONLINE="$(echo $RESULT | sed -n "/\"name\":\"$stream\"/p")"
         if [ ! -z "$ISONLINE" ]; then
             LIST+=("${stream}:ONLINE")
-        else
-            LIST+=("${stream}:OFFLINE")
         fi
+        #else
+        #    LIST+=("${stream}:OFFLINE")
+        #fi
     done
 
     _describe -t LIST 'streams' LIST
