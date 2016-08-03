@@ -6,6 +6,8 @@ export LS_COLORS
 # Env
 export GOPATH=$HOME/go
 export PATH=/usr/local/bin:$HOME/bin:$GOPATH/bin:$HOME/.nodenpm/bin:$PATH
+export PYTHONPATH=/usr/lib64/python2.7/site-packages/lldb
+
 
 
 # Programs
@@ -76,3 +78,7 @@ bindkey -v
 bindkey -a u undo
 bindkey -M vicmd "i" vi-insert
 bindkey -M vicmd "/" history-incremental-search-backward
+
+
+[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+bindkey '^?' backward-delete-char
