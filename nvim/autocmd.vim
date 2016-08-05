@@ -15,6 +15,11 @@ if has('autocmd')
         autocmd BufEnter *.cpp let b:fswitchlocs = '../src,../,../include'
     augroup END
 
+    augroup relative
+        autocmd!
+        autocmd BufWritePost,BufReadPre * :Neomake
+    augroup END
+
     augroup omnicomplete
         autocmd!
         if exists('+omnifunc')

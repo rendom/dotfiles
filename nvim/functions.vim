@@ -82,7 +82,7 @@ function! functions#getLocList(bufname) " {{{2
     let l:items = functions#fixList(getloclist(l:bufnr))
     if(!empty(l:items))
         call setloclist(l:bufnr, l:items, 'r')
-        call statusbar#setLocList(l:items)
+        "call statusbar#setLocList(l:items)
 
         return QuickfixsignsUnique(l:items)
     endif
@@ -95,7 +95,7 @@ function! functions#getQFList(bufname) " {{{2
     let l:items = functions#fixList(getqflist())
     if(!empty(l:items))
         call setqflist(l:items, 'r')
-        call statusbar#setQFList(l:items)
+        "call statusbar#setQFList(l:items)
 
         return QuickfixsignsUnique(l:items)
     endif
@@ -123,4 +123,12 @@ function! functions#fixList(list) " {{{2
     return l:list
 endfunction
 " 2}}}
-
+function! functions#setWarningType(entry) " {{{2
+    if a:entry.type ==# ''
+        if a:entry.text =~# 'error'
+            let a:entry.type = 'E'
+        else
+            let a:entry.type = 'W'
+        endif
+    endif
+endfunction

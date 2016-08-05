@@ -1,0 +1,60 @@
+snippet link "link"
+target_link_libraries(${CMAKE_PROJECT_NAME}
+	${1:link}
+	)
+endsnippet
+
+snippet if "if"
+if(${1:VAR} ${2:STREQUAL} "${3:string}")
+	${VISUAL}$0
+endif()
+endsnippet
+
+snippet elseif "else if"
+elseif(${1:VAR} ${2:STREQUAL} "${3:string}")
+	${VISUAL}$0
+endsnippet
+
+snippet else "else"
+else()
+	${VISUAL}$0
+endsnippet
+
+snippet bootstrapcmakeqt "bootstrapcmakeqt"
+cmake_minimum_required(VERSION 2.8)
+
+project(${1:project})
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+
+# remove unneeded stuff here
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Gui REQUIRED)
+find_package(Qt5Quick REQUIRED)
+
+set(COMMON_SRC
+	"source/main.cpp"
+)
+
+include_directories(
+	"source/"
+	${Qt5Core_INCLUDE_DIRS}
+	${Qt5Gui_INCLUDE_DIRS}
+	${Qt5Quick_INCLUDE_DIRS}
+	${CMAKE_CURRENT_BINARY_DIR}
+)
+
+qt5_add_resources(UI_RESOURCES
+	source/resources.qrc
+)
+
+add_executable(${CMAKE_PROJECT_NAME} ${COMMON_SRC} ${UI_RESOURCES})
+
+target_link_libraries(${CMAKE_PROJECT_NAME}
+	Qt5::Core
+	Qt5::Gui
+	Qt5::Quick
+)$0
+endsnippet

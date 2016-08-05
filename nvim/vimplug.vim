@@ -5,6 +5,7 @@ function! DoRemote(arg)
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
+Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
@@ -32,7 +33,6 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Chiel92/vim-autoformat', { 'on' : 'Autoformat' }
 Plug 'AndrewRadev/linediff.vim'
-Plug 'justmao945/vim-clang', { 'for' : ['c', 'cpp'] }
 Plug 'derekwyatt/vim-fswitch', { 'for' : ['c', 'cpp'] }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
