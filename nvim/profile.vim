@@ -174,11 +174,13 @@ let g:go_highlight_structs = 1
 
 
 let g:formatdef_custom_cpp = '"astyle
-            \ -A3
+            \ -A10
             \ -S
+            \ -N
             \ -w
             \ -Y
-            \ -m1
+            \ -H
+            \ -m0
             \ -xC78
             \ -xL
             \ -p
@@ -190,23 +192,81 @@ let g:formatdef_custom_cpp = '"astyle
             \ -xy
             \ -xp
             \ -xw
+            \ -xW
+            \ -xy
+            \ -w
+            \ -Y
+            \ -q
+            \ -z2
             \ -f"'
 let g:formatters_cpp = ['custom_cpp']
 let g:formatters_c   = ['custom_cpp']
 let g:formatters_java   = ['custom_cpp']
 
-let g:formatprg_javascript      = 'js-beautify'
-let g:formatprg_args_javascript = '
+let g:formatdef_custom_javascript = '"js-beautify
             \ --type js
             \ -i
             \ -j
             \ --brace-style=collapse
             \ -k
             \ -x
-            \ -w 120
-            \ -f -'
+            \ -X
+            \ -w 78
+            \ -f -"'
+let g:formatters_javascript = ['custom_javascript']
 
+let g:formatdef_custom_css = '"js-beautify
+            \ --type css
+            \ -i
+            \ -j
+            \ --brace-style=collapse
+            \ -k
+            \ -x
+            \ -w 78
+            \ -f -"'
+let g:formatters_css = ['custom_css']
 
+let g:formatdef_custom_html = '"js-beautify
+            \ --type html
+            \ -i
+            \ -I
+            \ -S
+            \ -j
+            \ --brace-style=collapse
+            \ -k
+            \ -x
+            \ -w 78
+            \ -f -"'
+let g:formatters_html = ['custom_html']
+let g:formatters_eruby  = ['custom_html']
+
+let g:formatdef_custom_perl = '"perltidy
+            \ -l=78
+            \ -i=4
+            \ -cti=0
+            \ -pt=2
+            \ -sbt=2
+            \ -ci=2
+            \ -nsfs
+            \ -nsak=*
+            \ -ce
+            \ -sbl
+            \ -asbl
+            \ -vt=0
+            \ -sot
+            \ -cab=0
+            \ -wba=.
+            \ -boc
+            \ -bbs
+            \ -bbb
+            \ -mbl=1"'
+let g:formatters_perl = ['custom_perl']
+
+let g:formatdef_custom_json = '"jq -M \".\""'
+let g:formatters_json = ['custom_json']
+
+let g:formatdef_custom_ruby = '"rbeautify -s -c 4"'
+let g:formatters_ruby = ['custom_ruby']
 " "Neocomplete
 " let g:neocomplete#enable_at_startup                    = 1
 " let g:neocomplete#enable_smart_case                    = 1
@@ -361,9 +421,9 @@ if filereadable(getcwd() . '/Makefile')
 endif
 
 let g:neomake_place_signs = 0
-let g:neomake_airline = 0
+let g:neomake_airline = 1
 let g:neomake_verbose = 0
-let g:neomake_echo_current_error = 0
+let g:neomake_echo_current_error = 1
 
 let g:neomake_serialize = 0
 let g:neomake_serialize_abort_on_error = 0
