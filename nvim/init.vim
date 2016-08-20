@@ -1,12 +1,12 @@
 set shell=/bin/sh
-set viminfo+=n~/.cache/vim/viminfo
-
 let $PYTHONPATH='/usr/lib64/python2.7/site-packages/lldb'
 
 if $XDG_CACHE_HOME ==# ''
     let $XDG_CACHE_HOME=$HOME.'/.cache'
     let $XDG_CONFIG_HOME=$HOME.'/.config'
 endif
+
+set viminfo+=n$XDG_CACHE_HOME/vim/nviminfo
 
 silent !mkdir -p $XDG_CACHE_HOME/vim/backup > /dev/null 2>&1
 silent !mkdir -p $XDG_CACHE_HOME/vim/undo > /dev/null 2>&1
