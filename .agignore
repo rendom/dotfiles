@@ -35,3 +35,4 @@
 *.gif
 *.dds
 *.pdf
+vendor/

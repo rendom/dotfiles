@@ -63,6 +63,8 @@ Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 "Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 "Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
 "Plug 'mkusher/padawan.vim', { 'for': ['php'] }
+Plug 'konfekt/fastfold'
+Plug 'johnsyweb/vim-makeshift'
 
 
 "Golang

@@ -7,6 +7,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 
+Plug 'floobits/floobits-neovim', { 'do': function('DoRemote') }
+
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
