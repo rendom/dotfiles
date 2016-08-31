@@ -695,7 +695,7 @@ let g:deoplete#sources#clang#std#cpp = 'c++14'
 
 let g:deoplete#enable_debug = 0
 let g:deoplete#sources#clang#debug#log_file = '~/deoplete-clang.log'
-
+set iskeyword-=.
 " Define keyword
 if !exists('g:deoplete#keyword_patterns')
     let g:deoplete#keyword_patterns = {}
