@@ -9,6 +9,7 @@ Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 
 Plug 'floobits/floobits-neovim', { 'do': function('DoRemote') }
 
+"Plug 'pbogut/deoplete-padawan'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -21,7 +22,6 @@ Plug 'bling/vim-airline'
 Plug 'c0r73x/vimdir.vim'
 Plug 'dockyard/vim-easydir'
 Plug 'rendom/vvt.nu-vim'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'rking/ag.vim'
 "Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
@@ -48,7 +48,7 @@ Plug 'wellle/visual-split.vim'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'neomake/neomake'
-Plug 'gilligan/vim-lldb'
+"Plug 'gilligan/vim-lldb'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
