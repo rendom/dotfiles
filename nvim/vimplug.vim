@@ -81,8 +81,9 @@ Plug 'johnsyweb/vim-makeshift'
 Plug 'fatih/vim-go', { 'for': ['go'] }
 
 "Unite
-Plug 'Shougo/unite.vim'
+"Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 
 if has("unix")
         let s:uname = system("uname")
