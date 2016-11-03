@@ -11,6 +11,7 @@ Plug 'flazz/vim-colorschemes'
 
 Plug 'floobits/floobits-neovim', { 'do': function('DoRemote') }
 
+"Plug 'pbogut/deoplete-padawan'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -23,7 +24,6 @@ Plug 'bling/vim-airline'
 Plug 'c0r73x/vimdir.vim'
 Plug 'dockyard/vim-easydir'
 Plug 'rendom/vvt.nu-vim'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'rking/ag.vim'
 "Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
@@ -50,7 +50,7 @@ Plug 'wellle/visual-split.vim'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'neomake/neomake'
-Plug 'gilligan/vim-lldb'
+"Plug 'gilligan/vim-lldb'
 
 " Javascript
 Plug 'marijnh/tern_for_vim', {
@@ -83,9 +83,9 @@ Plug 'johnsyweb/vim-makeshift'
 Plug 'fatih/vim-go', { 'for': ['go'] }
 
 "Unite
-Plug 'Shougo/unite.vim'
+"Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 
 if has("unix")
         let s:uname = system("uname")

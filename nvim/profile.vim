@@ -92,77 +92,101 @@ let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 3
 
+call denite#custom#var('file_rec', 'command',
+      \ ['ag', '--follow', '--nocolor', '--nogroup', '--column', '-g', ''])
 
+call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+call denite#custom#map('_', "\<esc>", 'enter_mode:normal')
 
-" unite {{{1
-nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
-nnoremap <silent> <leader>t :exec "Unite ".UniteGetSource()<cr>
-nnoremap <silent> <leader>g :<C-U>Unite grep<cr>
-nnoremap <silent> <leader>l :<C-U>Unite line<cr>
-nnoremap <silent> <leader>q :<C-U>Unite qflist<cr>
-" 1}}}
-" unite {{{2
-let g:unite_source_buffer_time_format  = '%Y-%m-%d %H:%M:%S '
-let g:unite_source_grep_command        = 'ag'
-let g:unite_source_grep_default_opts   = '--nocolor --follow --nogroup --column'
-let g:unite_source_find_default_opts   = '-L'
-let g:unite_source_rec_max_cache_files = 0
-let g:unite_redraw_hold_candidates     = 50000
-let g:unite_source_rec_async_command   =  [
-            \ 'ag',
-            \ '--follow',
-            \ '--nocolor',
-            \ '--nogroup',
-            \ '--column',
-            \ '-g',
-            \ '',
-            \ ]
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command',
+      \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
-let g:unite_source_grep_recursive_opt = ''
+call denite#custom#option('default', 'prompt', '>')
 
-silent! call unite#custom#profile(
-            \ 'default', 'context', {
-            \    'start_insert': 1,
-            \    'direction': 'botright',
-            \    'auto_size': 1
-            \ })
+nnoremap <silent> <leader>b :<C-U>Denite buffer<cr>
+nnoremap <silent> <leader>t :<C-U>Denite file_rec<cr>
+nnoremap <silent> <leader>g :<C-U>Denite grep<cr>
+nnoremap <silent> <leader>l :<C-U>Denite line<cr>
+nnoremap <silent> <leader>q :<C-U>Denite qflist<cr>
 
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#var('grep', 'separator', [])
+call denite#custom#var('grep', 'default_opts',
+        \ ['--nocolor', '--follow', '--nogroup', '--column'])
 
-silent! call unite#custom#source(
-            \ 'buffer,file_rec,file_rec/async,file_rec/git',
-            \ 'required_pattern_length', 2
-            \ )
-
-silent! call unite#custom#source(
-            \ 'buffer,file_rec,file_rec/async,file_rec/git',
-            \ 'matchers',
-            \ [
-            \   'converter_relative_word',
-            \   'matcher_fuzzy',
-            \   'ignore_globs'
-            \ ])
-" 2}}}
-function! UniteGetSource() " {{{2
-    " If inside git dir, do file_rec/git, else file_rec/async
-    if exists('b:gd') && (b:gd ==# '' || b:gd =~# '/$')
-        unlet b:gd
-    endif
-
-    if !exists('b:gd')
-        let dir = s:ExtractGitProject()
-        if dir !=# ''
-            let b:gd = dir
-        endif
-    endif
-    return b:gd !=# '' ? 'file_rec/git' : 'file_rec/async:!'
-endfunction
-" 2}}}
-
-function! s:ExtractGitProject() " {{{2
-    let b:gd = finddir('.git', ';')
-    return b:gd
-endfunction
-" 2}}}
+" " unite {{{1
+" nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
+" nnoremap <silent> <leader>t :exec "Unite ".UniteGetSource()<cr>
+" nnoremap <silent> <leader>g :<C-U>Unite grep<cr>
+" nnoremap <silent> <leader>l :<C-U>Unite line<cr>
+" nnoremap <silent> <leader>q :<C-U>Unite qflist<cr>
+" " 1}}}
+" " unite {{{2
+" let g:unite_source_buffer_time_format  = '%Y-%m-%d %H:%M:%S '
+" let g:unite_source_grep_command        = 'ag'
+" let g:unite_source_grep_default_opts   = '--nocolor --follow --nogroup --column'
+" let g:unite_source_find_default_opts   = '-L'
+" let g:unite_source_rec_max_cache_files = 0
+" let g:unite_redraw_hold_candidates     = 50000
+" let g:unite_source_rec_async_command   =  [
+"             \ 'ag',
+"             \ '--follow',
+"             \ '--nocolor',
+"             \ '--nogroup',
+"             \ '--column',
+"             \ '-g',
+"             \ '',
+"             \ ]
+" 
+" let g:unite_source_grep_recursive_opt = ''
+" 
+" silent! call unite#custom#profile(
+"             \ 'default', 'context', {
+"             \    'start_insert': 1,
+"             \    'direction': 'botright',
+"             \    'auto_size': 1
+"             \ })
+" 
+" 
+" silent! call unite#custom#source(
+"             \ 'buffer,file_rec,file_rec/async,file_rec/git',
+"             \ 'required_pattern_length', 2
+"             \ )
+" 
+" silent! call unite#custom#source(
+"             \ 'buffer,file_rec,file_rec/async,file_rec/git',
+"             \ 'matchers',
+"             \ [
+"             \   'converter_relative_word',
+"             \   'matcher_fuzzy',
+"             \   'ignore_globs'
+"             \ ])
+" " 2}}}
+" function! UniteGetSource() " {{{2
+"     " If inside git dir, do file_rec/git, else file_rec/async
+"     if exists('b:gd') && (b:gd ==# '' || b:gd =~# '/$')
+"         unlet b:gd
+"     endif
+" 
+"     if !exists('b:gd')
+"         let dir = s:ExtractGitProject()
+"         if dir !=# ''
+"             let b:gd = dir
+"         endif
+"     endif
+"     return b:gd !=# '' ? 'file_rec/git' : 'file_rec/async:!'
+" endfunction
+" " 2}}}
+" 
+" function! s:ExtractGitProject() " {{{2
+"     let b:gd = finddir('.git', ';')
+"     return b:gd
+" endfunction
+" " 2}}}
 
 
 "vim go
@@ -699,7 +723,7 @@ let g:deoplete#sources#clang#std#cpp = 'c++14'
 
 let g:deoplete#enable_debug = 0
 let g:deoplete#sources#clang#debug#log_file = '~/deoplete-clang.log'
-
+set iskeyword-=.
 " Define keyword
 if !exists('g:deoplete#keyword_patterns')
     let g:deoplete#keyword_patterns = {}

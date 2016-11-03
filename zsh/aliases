@@ -7,6 +7,7 @@ alias -g MO='| more'
 alias -g VVT='| vvt | xclip'
 alias -g NULL='> /dev/null 2>&1>'
 alias -g JSON='| python -m json.tool'
+alias vim='nvim'
 
 alias vim='nvim'
 # Diff remote file
