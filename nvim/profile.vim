@@ -3,9 +3,8 @@ nnoremap <space> <nop>
 
 filetype plugin indent on
 
-"colorscheme molokai
-colorscheme distinguished
-
+colorscheme hybrid
+set background=dark
 
 syntax enable
 syntax sync fromstart
@@ -41,6 +40,8 @@ set nocompatible
 set relativenumber
 set nocursorline
 set lazyredraw
+
+set list "show non-printing chars
 
 " no lagg :O
 set re=1
@@ -419,6 +420,9 @@ nnoremap <F5> :<C-U>make<CR>
 " pls... fu
 highlight htmlItalic term=NONE cterm=NONE gui=NONE
 
+" Background fu
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
 
 
 " neomake {{{2

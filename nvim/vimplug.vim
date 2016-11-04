@@ -3,9 +3,11 @@ call plug#begin('~/.config/nvim/bundle')
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
+
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
+Plug 'flazz/vim-colorschemes'
 
 Plug 'floobits/floobits-neovim', { 'do': function('DoRemote') }
 
