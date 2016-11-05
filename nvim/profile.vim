@@ -758,3 +758,20 @@ let g:lightline = {
             \   'gitbranch': 'LightLineGitBranch'
             \ }
             \ }
+
+
+
+
+let g:startify_list_order = [
+      \ ['   MRU '. getcwd()], 'dir',
+      \ ['   MRU'],            'files',
+      \ ['   Sessions'],       'sessions',
+      \ ['   Bookmarks'],      'bookmarks',
+      \ ['   Commands'],       'commands',
+      \ ]
+let g:startify_skiplist = []
+
+let g:startify_bookmarks = [
+      \ { 'v': '~/.config/nvim' },
+      \ { 'z': '~/.zsh/.zshrc' },
+      \ ]

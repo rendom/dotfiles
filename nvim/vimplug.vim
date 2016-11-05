@@ -4,6 +4,7 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
+Plug 'mhinz/vim-startify'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
