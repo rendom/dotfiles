@@ -34,7 +34,10 @@ sub getHeaderRow {
 }
 
 sub printHeader {
-    print prettyPrintRow(getHeaderRow());
+    my $count;
+    foreach my $col (getHeaderRow()) {
+        print colored(['red'], "[", $count++, "] "), $col, "\n"
+    }
 }
 
 sub validateCsv {
