@@ -443,8 +443,8 @@ if filereadable(getcwd() . '/Makefile')
                 \ '| head -n 1 | tr -d "\n"')
 endif
 
-let g:neomake_place_signs = 0
-let g:neomake_airline = 1
+let g:neomake_place_signs = 1
+let g:neomake_airline = 0
 let g:neomake_verbose = 0
 let g:neomake_echo_current_error = 1
 
@@ -731,3 +731,42 @@ if s:compile_commands !=# ''
                 \ fnamemodify(s:compile_commands, ':h')
 endif
 " 2}}}
+
+
+
+" lightline
+function! LightLineGitBranch()
+  if exists("*gitbranch#name")
+    let branch = gitbranch#name()
+    return branch !=# '' ? branch : ''
+  endif
+  return ''
+endfunction
+
+let g:lightline = {
+            \ 'colorscheme': 'wombat',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+            \ },
+            \ 'component_function': {
+            \   'gitbranch': 'LightLineGitBranch'
+            \ }
+            \ }
+
+
+
+
+let g:startify_list_order = [
+      \ ['   MRU '. getcwd()], 'dir',
+      \ ['   MRU'],            'files',
+      \ ['   Sessions'],       'sessions',
+      \ ['   Bookmarks'],      'bookmarks',
+      \ ['   Commands'],       'commands',
+      \ ]
+let g:startify_skiplist = []
+
+let g:startify_bookmarks = [
+      \ { 'v': '~/.config/nvim' },
+      \ { 'z': '~/.zsh/.zshrc' },
+      \ ]

@@ -4,13 +4,11 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
+Plug 'mhinz/vim-startify'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-
-Plug 'floobits/floobits-neovim', { 'do': function('DoRemote') }
-
 "Plug 'pbogut/deoplete-padawan'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
@@ -20,7 +18,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'talek/obvious-resize'
-Plug 'bling/vim-airline'
+"Plug 'bling/vim-airline'
 Plug 'c0r73x/vimdir.vim'
 Plug 'dockyard/vim-easydir'
 Plug 'rendom/vvt.nu-vim'
@@ -86,6 +84,12 @@ Plug 'fatih/vim-go', { 'for': ['go'] }
 "Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
+
+
+" Statusline
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+
 
 if has("unix")
         let s:uname = system("uname")
