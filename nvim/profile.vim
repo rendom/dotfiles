@@ -79,11 +79,6 @@ let g:vimsyn_folding='af'
 let g:php_folding=1
 let g:php_sql_query=0
 
-
-
-
-
-
 "ultisnips
 let g:UltiSnipsDontReverseSearchPath = 1
 let g:UltiSnipsSnippetDirectories    = ["UltiSnips", "snips"]
