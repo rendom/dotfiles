@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+VIBRANCE=0
+CSVIBRANCE=1022
+
+function csmodeToggle(){
+    local SVIBRANCE=$VIBRANCE 
+    if [ ! "$(nvidia-settings -q '[gpu:0]/DigitalVibrance[DFP-4]' | grep $CSVIBRANCE)" ]; then
+        SVIBRANCE=$CSVIBRANCE
+    fi
+
+    setVibrance $SVIBRANCE
+}
+
+function setVibrance(){
+    local VIBRANCE=$1
+    nvidia-settings -a "[gpu:0]/DigitalVibrance[DFP-4]=$VIBRANCE" > /dev/null
+}
+
+
+local MODE=$1;
+
+if [[ "$MODE" == "--normal-mode" ]]; then
+    setVibrance $VIBRANCE
+    xrandr --output DP-1 --mode 1920x1080 -r 144
+elif [[ "$MODE" == "--cs-mode" ]]; then 
+    setVibrance $CSVIBRANCE
+    xrandr --output DP-1 --mode 1280x1024 -r 144
+else
+    csmodeToggle
+fi
