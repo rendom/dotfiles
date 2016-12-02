@@ -9,7 +9,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-"Plug 'pbogut/deoplete-padawan'
+Plug 'pbogut/deoplete-padawan'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -90,11 +90,11 @@ Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
+Plug 'xolox/vim-easytags'
 
 if has("unix")
         let s:uname = system("uname")
         if s:uname != "Darwin\n"
-                Plug 'xolox/vim-easytags'
                 let g:vvt_browser_command = 'echo "%URL%" | xclip'
         endif
 endif

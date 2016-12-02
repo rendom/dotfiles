@@ -77,7 +77,7 @@ let g:vimsyn_folding='af'
 
 " php hax
 let g:php_folding=1
-let g:php_sql_query=0
+let g:php_sql_query=1
 
 "ultisnips
 let g:UltiSnipsDontReverseSearchPath = 1
