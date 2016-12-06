@@ -68,6 +68,8 @@ set encoding=utf-8
 set splitbelow
 set splitright
 
+set inccommand=split
+
 
 " foldstuff
 set foldmethod=syntax
@@ -770,3 +772,13 @@ let g:startify_bookmarks = [
       \ { 'v': '~/.config/nvim' },
       \ { 'z': '~/.zsh/.zshrc' },
       \ ]
+
+
+
+" let g:ale_linter_aliases = {'vue': 'javascript'}
+let g:ale_linters = {
+\   'javascript': ['eslint', 'jscs', 'jshint', 'FlowType'],
+\   'php': ['php'],
+\}
+
+let g:tern#filetypes = ['javascript']
