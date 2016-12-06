@@ -85,17 +85,10 @@ nnoremap <A-a> <C-a>
 nnoremap <A-x> <C-x>
 
 
-if has("macunix")
-    nnoremap <C-j> <C-d>zz
-    nnoremap <C-k> <C-u>zz
-    vnoremap <C-j> <C-d>zz
-    vnoremap <C-k> <C-u>zz
-else
-    nnoremap <A-j> <C-d>zz
-    nnoremap <A-k> <C-u>zz
-    vnoremap <A-j> <C-d>zz
-    vnoremap <A-k> <C-u>zz
-endif
+nnoremap <A-j> <C-d>zz
+nnoremap <A-k> <C-u>zz
+vnoremap <A-j> <C-d>zz
+vnoremap <A-k> <C-u>zz
 
 nnoremap <A-n> :cnext<cr>
 nnoremap <A-p> :cprevious<cr>

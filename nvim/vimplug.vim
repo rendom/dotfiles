@@ -47,14 +47,15 @@ Plug 'wellle/visual-split.vim'
 "Plug 'phpfmt/vim-phpfmt', { 'for' : ['php'] }
 Plug 'junegunn/vim-peekaboo'
 
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
+"Plug 'benjie/neomake-local-eslint.vim'
 "Plug 'gilligan/vim-lldb'
+Plug 'w0rp/ale'
+
 
 " Javascript
-Plug 'marijnh/tern_for_vim', {
-            \ 'for' : ['javascript'],
-            \ 'do' : 'npm install'
-            \ }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
