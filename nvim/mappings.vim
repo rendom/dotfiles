@@ -49,10 +49,13 @@ vnoremap <right> >>
 nmap - <Plug>(choosewin)
 
 "resize
-nnoremap <silent> <C-k> :ObviousResizeUp<CR>
-nnoremap <silent> <C-j> :ObviousResizeDown<CR>
-nnoremap <silent> <C-h> :ObviousResizeLeft<CR>
-nnoremap <silent> <C-l> :ObviousResizeRight<CR>
+nnoremap <silent> <C-K> :ObviousResizeUp<CR>
+nnoremap <silent> <C-J> :ObviousResizeDown<CR>
+nnoremap <silent> <C-H> :ObviousResizeLeft<CR>
+nnoremap <silent> <C-L> :ObviousResizeRight<CR>
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 nmap <leader>- <Plug>(choosewin)
 

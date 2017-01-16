@@ -9,7 +9,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-Plug 'pbogut/deoplete-padawan'
+Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -52,9 +52,10 @@ Plug 'junegunn/vim-peekaboo'
 "Plug 'gilligan/vim-lldb'
 Plug 'w0rp/ale'
 
+Plug 'metakirby5/codi.vim'
 
 " Javascript
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
 
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -76,6 +77,8 @@ Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 "Plug 'mkusher/padawan.vim', { 'for': ['php'] }
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
+Plug 'vim-scripts/SQLUtilities'
+
 
 
 "Golang

@@ -89,16 +89,19 @@ let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 3
 
+let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_refresh_delay = 0
 call denite#custom#var('file_rec', 'command',
       \ ['ag', '--follow', '--nocolor', '--nogroup', '--column', '-g', ''])
 
-call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
-call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
-call denite#custom#map('_', "\<esc>", 'enter_mode:normal')
+call denite#custom#map('_', "\<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('_', "\<C-k>", '<denite:move_to_prev_line>')
+call denite#custom#map('_', "\<esc>", '<denite:enter_mode:normal>')
+
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
-      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+            \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
 call denite#custom#option('default', 'prompt', '>')
 
@@ -107,13 +110,13 @@ nnoremap <silent> <leader>t :<C-U>Denite file_rec<cr>
 nnoremap <silent> <leader>g :<C-U>Denite grep<cr>
 nnoremap <silent> <leader>l :<C-U>Denite line<cr>
 nnoremap <silent> <leader>q :<C-U>Denite qflist<cr>
-
+ 
 call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#var('grep', 'separator', [])
 call denite#custom#var('grep', 'default_opts',
-        \ ['--nocolor', '--follow', '--nogroup', '--column'])
+         \ ['--nocolor', '--follow', '--nogroup', '--column'])
 
 " " unite {{{1
 " nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
@@ -781,4 +784,6 @@ let g:ale_linters = {
 \   'php': ['php'],
 \}
 
-let g:tern#filetypes = ['javascript']
+let g:tern#filetypes = ['javascript', 'vue']
+
+set noshowmode
