@@ -111,12 +111,21 @@ nnoremap <silent> <leader>g :<C-U>Denite grep<cr>
 nnoremap <silent> <leader>l :<C-U>Denite line<cr>
 nnoremap <silent> <leader>q :<C-U>Denite qflist<cr>
  
+
 call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 
+            \ 'default_opts',
+            \ [
+            \   '-i',
+            \   '--nocolor',
+            \   '--follow',
+            \   '--vimgrep'
+            \ ])
 call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#var('grep', 'separator', [])
-call denite#custom#var('grep', 'default_opts',
-         \ ['--nocolor', '--follow', '--nogroup', '--column'])
+
 
 " " unite {{{1
 " nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
@@ -780,7 +789,7 @@ let g:startify_bookmarks = [
 
 " let g:ale_linter_aliases = {'vue': 'javascript'}
 let g:ale_linters = {
-\   'javascript': ['eslint', 'jscs', 'jshint', 'FlowType'],
+\   'javascript': ['eslint', 'jshint'],
 \   'php': ['php'],
 \}
 
