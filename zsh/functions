@@ -1,5 +1,17 @@
 GITSTAT=''
 
+function hartisan() {
+    local PROJECT=$(grep -A1 -e "$(dirs)$" ~/.homestead/Homestead.yaml |\
+        tail -n1 | sed -E 's/.*to: (.*)/\1/g')
+
+    if [ -z "$PROJECT" ]; then
+        echo "Project not found"
+        return 1;
+    fi
+
+    ssh vagrant@192.168.10.10 -C "cd $PROJECT && ./artisan $@"
+}
+
 function git-add-remote(){
    git remote add origin "$@"
 }
