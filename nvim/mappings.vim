@@ -140,6 +140,8 @@ nmap <silent> <leader>ff :FSHere<cr>
 " fu ex mode
 nmap Q <Nop>
 
+" get file path..
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Search @ visual select
 vnoremap // y/<C-R>"<CR>
