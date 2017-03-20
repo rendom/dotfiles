@@ -95,6 +95,7 @@ call denite#custom#var('file_rec', 'command',
       \ ['ag', '--follow', '--nocolor', '--nogroup', '--column', '-g', ''])
 
 call denite#custom#map('_', "\<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('_', "\<C-s>", '<denite:do_action:vsplit>')
 call denite#custom#map('_', "\<C-k>", '<denite:move_to_prev_line>')
 call denite#custom#map('_', "\<esc>", '<denite:enter_mode:normal>')
 
