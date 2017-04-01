@@ -9,7 +9,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-"Plug 'pbogut/deoplete-padawan'
+Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -47,14 +47,16 @@ Plug 'wellle/visual-split.vim'
 "Plug 'phpfmt/vim-phpfmt', { 'for' : ['php'] }
 Plug 'junegunn/vim-peekaboo'
 
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
+"Plug 'benjie/neomake-local-eslint.vim'
 "Plug 'gilligan/vim-lldb'
+Plug 'w0rp/ale'
+
+Plug 'metakirby5/codi.vim'
 
 " Javascript
-Plug 'marijnh/tern_for_vim', {
-            \ 'for' : ['javascript'],
-            \ 'do' : 'npm install'
-            \ }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
+
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
@@ -75,6 +77,8 @@ Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 "Plug 'mkusher/padawan.vim', { 'for': ['php'] }
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
+Plug 'vim-scripts/SQLUtilities'
+
 
 
 "Golang
@@ -90,11 +94,11 @@ Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
+Plug 'xolox/vim-easytags'
 
 if has("unix")
         let s:uname = system("uname")
         if s:uname != "Darwin\n"
-                Plug 'xolox/vim-easytags'
                 let g:vvt_browser_command = 'echo "%URL%" | xclip'
         endif
 endif

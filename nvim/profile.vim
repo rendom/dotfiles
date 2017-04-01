@@ -68,6 +68,8 @@ set encoding=utf-8
 set splitbelow
 set splitright
 
+set inccommand=split
+
 
 " foldstuff
 set foldmethod=syntax
@@ -77,7 +79,7 @@ let g:vimsyn_folding='af'
 
 " php hax
 let g:php_folding=1
-let g:php_sql_query=0
+let g:php_sql_query=1
 
 "ultisnips
 let g:UltiSnipsDontReverseSearchPath = 1
@@ -87,16 +89,20 @@ let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 3
 
+let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_refresh_delay = 0
 call denite#custom#var('file_rec', 'command',
       \ ['ag', '--follow', '--nocolor', '--nogroup', '--column', '-g', ''])
 
-call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
-call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
-call denite#custom#map('_', "\<esc>", 'enter_mode:normal')
+call denite#custom#map('_', "\<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('_', "\<C-s>", '<denite:do_action:vsplit>')
+call denite#custom#map('_', "\<C-k>", '<denite:move_to_prev_line>')
+call denite#custom#map('_', "\<esc>", '<denite:enter_mode:normal>')
+
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
-      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+            \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
 call denite#custom#option('default', 'prompt', '>')
 
@@ -105,13 +111,22 @@ nnoremap <silent> <leader>t :<C-U>Denite file_rec<cr>
 nnoremap <silent> <leader>g :<C-U>Denite grep<cr>
 nnoremap <silent> <leader>l :<C-U>Denite line<cr>
 nnoremap <silent> <leader>q :<C-U>Denite qflist<cr>
+ 
 
 call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 
+            \ 'default_opts',
+            \ [
+            \   '-i',
+            \   '--nocolor',
+            \   '--follow',
+            \   '--vimgrep'
+            \ ])
 call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#var('grep', 'separator', [])
-call denite#custom#var('grep', 'default_opts',
-        \ ['--nocolor', '--follow', '--nogroup', '--column'])
+
 
 " " unite {{{1
 " nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
@@ -770,3 +785,15 @@ let g:startify_bookmarks = [
       \ { 'v': '~/.config/nvim' },
       \ { 'z': '~/.zsh/.zshrc' },
       \ ]
+
+
+
+" let g:ale_linter_aliases = {'vue': 'javascript'}
+let g:ale_linters = {
+\   'javascript': ['eslint', 'jshint'],
+\   'php': ['php'],
+\}
+
+let g:tern#filetypes = ['javascript', 'vue']
+
+set noshowmode

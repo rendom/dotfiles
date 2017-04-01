@@ -33,6 +33,7 @@ function finder() { find . -iname "*$1*" }
 alias f='finder'
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
+alias ":e"="vim"
 
 if [ -z "$TMUX" ]; then
     alias cls="echo -ne '\033c'"

@@ -49,10 +49,13 @@ vnoremap <right> >>
 nmap - <Plug>(choosewin)
 
 "resize
-nnoremap <silent> <C-k> :ObviousResizeUp<CR>
-nnoremap <silent> <C-j> :ObviousResizeDown<CR>
-nnoremap <silent> <C-h> :ObviousResizeLeft<CR>
-nnoremap <silent> <C-l> :ObviousResizeRight<CR>
+nnoremap <silent> <C-K> :ObviousResizeUp<CR>
+nnoremap <silent> <C-J> :ObviousResizeDown<CR>
+nnoremap <silent> <C-H> :ObviousResizeLeft<CR>
+nnoremap <silent> <C-L> :ObviousResizeRight<CR>
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 nmap <leader>- <Plug>(choosewin)
 
@@ -85,17 +88,10 @@ nnoremap <A-a> <C-a>
 nnoremap <A-x> <C-x>
 
 
-if has("macunix")
-    nnoremap <C-j> <C-d>zz
-    nnoremap <C-k> <C-u>zz
-    vnoremap <C-j> <C-d>zz
-    vnoremap <C-k> <C-u>zz
-else
-    nnoremap <A-j> <C-d>zz
-    nnoremap <A-k> <C-u>zz
-    vnoremap <A-j> <C-d>zz
-    vnoremap <A-k> <C-u>zz
-endif
+nnoremap <A-j> <C-d>zz
+nnoremap <A-k> <C-u>zz
+vnoremap <A-j> <C-d>zz
+vnoremap <A-k> <C-u>zz
 
 nnoremap <A-n> :cnext<cr>
 nnoremap <A-p> :cprevious<cr>
@@ -144,6 +140,8 @@ nmap <silent> <leader>ff :FSHere<cr>
 " fu ex mode
 nmap Q <Nop>
 
+" get file path..
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " Search @ visual select
 vnoremap // y/<C-R>"<CR>
