@@ -36,3 +36,4 @@
 *.dds
 *.pdf
 vendor/
+node_modules
