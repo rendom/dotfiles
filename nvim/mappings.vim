@@ -120,10 +120,10 @@ cnoremap <A-l> <t_kr>
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  deoplete#close_popup()
-inoremap <expr><C-e>  deoplete#cancel_popup()
+" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  deoplete#close_popup()
+" inoremap <expr><C-e>  deoplete#cancel_popup()
 
 
 "foldstuff

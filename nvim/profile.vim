@@ -27,7 +27,7 @@ set nowrap
 set linebreak
 
 set backspace=2 
-set synmaxcol=120
+set synmaxcol=160
 set colorcolumn=80,120
 
 set noesckeys
@@ -797,3 +797,9 @@ let g:ale_linters = {
 let g:tern#filetypes = ['javascript', 'vue']
 
 set noshowmode
+" let g:LanguageClient_serverCommands = {
+"     \ 'php': ['node', '/Users/nojjan/gitstuff/github/languageservers/crane/client/server/server.js'],
+"     \ }
+
+"autocmd FileType php LanguageClientStart
+

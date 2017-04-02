@@ -5,11 +5,17 @@ function! DoRemote(arg)
 endfunction
 
 Plug 'mhinz/vim-startify'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
-Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
+
+Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+"Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
+"Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
+"Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -50,12 +56,12 @@ Plug 'junegunn/vim-peekaboo'
 "Plug 'neomake/neomake'
 "Plug 'benjie/neomake-local-eslint.vim'
 "Plug 'gilligan/vim-lldb'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
+"Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 
 Plug 'metakirby5/codi.vim'
 
 " Javascript
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
 
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -78,7 +84,7 @@ Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
 Plug 'vim-scripts/SQLUtilities'
-
+Plug 'AndrewRadev/splitjoin.vim'
 
 
 "Golang
