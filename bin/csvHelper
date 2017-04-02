@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use Text::ASCIITable;
 
 use Getopt::Std;
 use Term::ANSIColor;
@@ -9,7 +10,7 @@ use Term::ANSIColor;
 $Getopt::Std::STANDARD_HELP_VERSION = 1;
 our $VERSION = 0.1;
 my %options=();
-getopts('hvs:c:', \%options);
+getopts('hvts:c:', \%options);
 
 sub HELP_MESSAGE {
     print "\ncsvTool <filename>\n";
@@ -31,6 +32,18 @@ close($file);
 
 sub getHeaderRow {
     return split($separator, $lines[0])
+}
+
+sub printAsciiTable {
+    my $table = Text::ASCIITable->new();
+    $table->setCols(getHeaderRow());
+    foreach my $line (@lines) {
+        $line =~ s/\r\n|\n//g;
+        my @cols = split($separator, $line);
+        $table->addRow(@cols)
+    }
+
+    print $table;
 }
 
 sub printHeader {
@@ -83,6 +96,9 @@ if($options{h}) {
     exit 0;
 } elsif ($options{v}){
     validateCsv();
+    exit 0;
+} elsif ($options{t}) {
+    printAsciiTable();
     exit 0;
 } else {
     foreach my $row (@lines) {
