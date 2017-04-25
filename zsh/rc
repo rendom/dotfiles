@@ -34,6 +34,7 @@ if ! zgen saved; then
     zgen load trapd00r/zsh-syntax-highlighting-filetypes
     zgen load zsh-users/zsh-autosuggestions
     zgen load tarrasch/zsh-bd
+    zgen load felixr/docker-zsh-completion
     zgen save
 fi
 
