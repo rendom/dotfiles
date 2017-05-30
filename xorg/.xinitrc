@@ -19,7 +19,7 @@ export EDITOR="vim"
 export BROWSER="firefox"
 export __GL_SYNC_DISPLAY_DEVICE=DV-I-1
 export __VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DVI-I-1
-#export PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:$PATH
 
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -48,7 +48,8 @@ urxvtd &
 #compton --config $HOME/.compton.conf &
 #compton --backend glx --config $HOME/.compton.conf &
 #compton --backend glx --config $HOME/.compton.conf --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method exchange &
-compton --xrender-sync-fence & \
+compton --xrender-sync-fence --backend glx \
+    --config $HOME/.compton.conf \
     echo $! > $RUN_PATH/herbstluftwm/compton.pid
 
 pulseaudio --start &

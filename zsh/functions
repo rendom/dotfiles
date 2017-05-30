@@ -139,10 +139,10 @@ gcommit() {
     git commit $(echo "${selectedCommits}" | sed "s/.* //")
 }
 scrotupl(){
-   scrot 'scrotupl_scrot.png' -e 'imgupload $f && rm ~/scrotupl_scrot.png' 
+    scrot $(mktemp --suffix=.png) -e 'imgupload $f && rm $f' 
 }
 dragupl(){
-    scrot -s 'scrotupl_scrot.png' -e 'imgupload $f && rm ~/scrotupl_scrot.png'
+    scrot -s $(mktemp --suffix=.png) -e 'imgupload $f; rm $f'
 }
 
 twitch_start_stream() {
