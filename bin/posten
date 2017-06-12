@@ -1,40 +1,64 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import sys, urllib.request
+import sys
+import urllib.request
+import os
 import xml.etree.ElementTree as ET
 
-apiUrl="http://server.logistik.posten.se/servlet/PacTrack?kolliid="
+from datetime import datetime
+
+rows, columns = os.popen('stty size', 'r').read().split()
+
+apiUrl = "http://server.logistik.posten.se/servlet/PacTrack?kolliid="
 
 if len(sys.argv) < 2:
     print("\033[91mNo kollid? WTF? ./posten 6661488666SE\033[0m")
     sys.exit()
 searchString = sys.argv[1]
 
-r = urllib.request.Request(apiUrl+searchString)
+r = urllib.request.Request(apiUrl + searchString)
 r = urllib.request.urlopen(r)
 response = r.read()
 
 root = ET.fromstring(response)
 
-def printRow(event, error=0):
-    if(error == 1):
-        print("\033[91m", end="")
-        print("[ERROR]---------------------------------------------------------------------")
-    else:
-        print("----------------------------------------------------------------------------")
-    date=event.find("date").text
-    time=event.find("time").text
-    location=event.find("location").text
-    description=event.find("description").text
-    print("Datetime: %s %s " %(date, time))
-    print("Location: %s" %(location))
-    print("Description: \033[0;34m%s \033[0m" %(description))
-    
-    if(error == 1):
-        print("\033[0m")
 
-for event in root[1][0].iter('event'):
-    printRow(event)
+def iterCount(i):
+    return sum(1 for e in i)
+
+
+def printRow(event, error=0, last=False):
+    if(error == 1):
+        sys.stdout.write("\033[0;31m")
+
+    date = event.find("date").text
+    time = event.find("time").text
+    dt = datetime.strptime("%s%s" % (date, time), "%Y%m%d%H%M")
+    location = event.find("location").text
+    description = event.find("description").text
+
+    color = "\033[0;30m"
+    if last is True:
+        color = "\033[0;34m"
+
+    print("%sDatetime:    \033[1m%s\033[0m" % (
+        color,
+        dt.strftime("%Y-%m-%d %H:%M")
+    ))
+
+    print("%sLocation:    \033[1m%s\033[0m" % (color, location))
+    print("%sDescription: \033[1m%s\033[0m" % (color, description))
+
+    sys.stdout.write("\033[0m")
+    print(('{0:-^%s}' % columns).format(''))
+
+
+events = list(root[1][0].iter('event'))
+count = iterCount(events)
+
+for i in reversed(range(0, count)):
+    printRow(events[i], 0, i == (count - 1))
+
 for error in root[1][0].iter('errorevent'):
-    printRow(error,1)
+    printRow(error, 1)

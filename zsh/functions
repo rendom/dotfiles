@@ -12,6 +12,14 @@ function hartisan() {
     ssh vagrant@192.168.10.10 -C "cd $PROJECT && ./artisan $@"
 }
 
+function spotlight() {
+    local FILE=$(mdfind $@ | fzf)
+
+    if [ ! -z "$FILE" ]; then
+        open $FILE
+    fi
+}
+
 function git-add-remote(){
    git remote add origin "$@"
 }
