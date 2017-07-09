@@ -2,7 +2,7 @@
 
 local VIBRANCE=0
 local CSVIBRANCE=1022
-local CSDISPLAY="DP-2"
+local CSDISPLAY="DVI-D-0"
 
 function csmodeToggle(){
     local SVIBRANCE=$VIBRANCE 
