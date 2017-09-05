@@ -143,5 +143,9 @@ nmap Q <Nop>
 " get file path..
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
 " Search @ visual select
 vnoremap // y/<C-R>"<CR>

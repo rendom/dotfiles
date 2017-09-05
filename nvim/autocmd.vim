@@ -63,3 +63,4 @@ autocmd BufReadPost *
 
 autocmd FileType go call GoSetEnvirmentVariables()
 autocmd FileType php set synmaxcol=120
+autocmd FileType php LanguageClientStart
