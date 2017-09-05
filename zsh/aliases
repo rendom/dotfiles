@@ -11,8 +11,13 @@ alias vim='nvim'
 
 alias reload="source $HOME/.zshrc"
 alias vim='nvim'
+alias hosts='sudo vim /etc/hosts'
 # Diff remote file
 #vimdiff <(scp server:fil /dev/stdout) fil
+
+
+alias fix="git diff --name-only | uniq"
+alias fixvim="git diff --name-only | uniq | xargs $EDITOR"
 
 better_cd(){
   builtin cd "$@" 2> /dev/null && return 0
@@ -34,6 +39,7 @@ alias f='finder'
 alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
 alias ":e"="vim"
+alias gitbranches="git for-each-ref --format='%(color:green)%(committerdate:iso8601)%(color:reset) %(committerdate:relative) %(color:red)%(refname:short)%(color:reset)' --sort -committerdate"
 
 if [ -z "$TMUX" ]; then
     alias cls="echo -ne '\033c'"
