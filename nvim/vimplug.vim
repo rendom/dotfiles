@@ -47,7 +47,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'ironhouzi/vim-stim'
 Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
-Plug 'fboender/bexec'
 Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
 Plug 'wellle/visual-split.vim'
 "Plug 'phpfmt/vim-phpfmt', { 'for' : ['php'] }
@@ -60,6 +59,7 @@ Plug 'junegunn/vim-peekaboo'
 "Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 
 Plug 'metakirby5/codi.vim'
+Plug 'janko-m/vim-test'
 
 " Javascript
 
@@ -85,6 +85,7 @@ Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
 Plug 'vim-scripts/SQLUtilities'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'StanAngeloff/php.vim'
 
 
 "Golang

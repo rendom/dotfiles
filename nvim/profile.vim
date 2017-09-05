@@ -30,7 +30,7 @@ set backspace=2
 set synmaxcol=160
 set colorcolumn=80,120
 
-set noesckeys
+"set noesckeys
 set ttimeout
 set ttimeoutlen=50
 
@@ -801,5 +801,11 @@ set noshowmode
 "     \ 'php': ['node', '/Users/nojjan/gitstuff/github/languageservers/crane/client/server/server.js'],
 "     \ }
 
-"autocmd FileType php LanguageClientStart
 
+function! VagrantTransform(cmd) abort
+  return 'execHomesteadProject '.a:cmd
+endfunction
+
+let g:test#custom_transformations = {'vagrant': function('VagrantTransform')}
+let g:test#transformation = 'vagrant'
+let g:test#php#phpunit#executable = 'vendor/bin/phpunit'
