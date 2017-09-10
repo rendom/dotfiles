@@ -9,12 +9,10 @@ Plug 'mhinz/vim-startify'
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 "Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-"Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
 "Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
@@ -49,7 +47,6 @@ Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
 Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
 Plug 'wellle/visual-split.vim'
-"Plug 'phpfmt/vim-phpfmt', { 'for' : ['php'] }
 Plug 'junegunn/vim-peekaboo'
 
 "Plug 'neomake/neomake'
@@ -78,14 +75,12 @@ Plug 'mattn/emmet-vim', { 'for': ['html'] }
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-"Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
-"Plug 'mattn/emmet-vim', { 'for': ['html', 'php', 'css', 'less'] }
-"Plug 'mkusher/padawan.vim', { 'for': ['php'] }
+Plug 'StanAngeloff/php.vim'
+
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
 Plug 'vim-scripts/SQLUtilities'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'StanAngeloff/php.vim'
 
 
 "Golang
@@ -107,6 +102,8 @@ if has("unix")
         let s:uname = system("uname")
         if s:uname != "Darwin\n"
                 let g:vvt_browser_command = 'echo "%URL%" | xclip'
+        else
+            Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
         endif
 endif
 
