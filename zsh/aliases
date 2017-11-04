@@ -16,6 +16,10 @@ alias hosts='sudo vim /etc/hosts'
 #vimdiff <(scp server:fil /dev/stdout) fil
 
 
+
+alias {week,vecka}='date +%V'
+
+
 alias fix="git diff --name-only | uniq"
 alias fixvim="git diff --name-only | uniq | xargs $EDITOR"
 
