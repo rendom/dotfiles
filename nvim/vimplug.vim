@@ -20,7 +20,7 @@ Plug 'xolox/vim-misc'
 "Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tomtom/quickfixsigns_vim'
+"Plug 'tomtom/quickfixsigns_vim'
 Plug 'talek/obvious-resize'
 "Plug 'bling/vim-airline'
 Plug 'c0r73x/vimdir.vim'
@@ -52,7 +52,7 @@ Plug 'junegunn/vim-peekaboo'
 "Plug 'neomake/neomake'
 "Plug 'benjie/neomake-local-eslint.vim'
 "Plug 'gilligan/vim-lldb'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 "Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 
 Plug 'metakirby5/codi.vim'
@@ -84,7 +84,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 
 "Golang
-Plug 'fatih/vim-go', { 'for': ['go'] }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 "Unite
 "Plug 'Shougo/unite.vim'
