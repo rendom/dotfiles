@@ -15,7 +15,7 @@ Xft.rgba: rgb
 
 Xcursor.theme: Adwaita
 
-dzen2.font: tamsyn:size=6
+dzen2.font: Misc Tamsyn Misc:size=6
 
 URxvt.pointerBlank: true
 
@@ -29,10 +29,10 @@ URxvt.externalBorder:3
 URxvt.letterSpace: 0
 URxvt.depth: 32
 
-URxvt.font: xft:terminus:size=7, xft:Noto Sans Kannada
-URxvt.boldFont: xft:terminus:size=7, xft:Noto Sans Kannada
-URxvt.italicFont: xft:terminus:size=7, xft:Noto Sans Kannada
-URxvt.boldItalicFont: xft:terminus:size=7, xft:Noto Sans Kannada
+URxvt.font: xft:spectrum berry:size=7, xft:Noto Sans Kannada
+URxvt.boldFont: xft:spectrum berry::size=7, xft:Noto Sans Kannada
+URxvt.italicFont: xft:spectrum berry:size=7, xft:Noto Sans Kannada
+URxvt.boldItalicFont: xft:spectrum berry:size=7, xft:Noto Sans Kannada
 
 URxvt.iso14755: false
 URxvt.meta8: false
@@ -68,10 +68,10 @@ URxvt.keysym.M-C-p: perl:clipboard:paste_escaped
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
 
-URxvt.keysym.C-1: command:\033]710;xft:tamsyn:size=6,xft:NotoSansKannada\007\033]711;xft:tamsyn:size=6,xft:NotoSansKannada\007\033]712;xft:tamsyn:size=6,xft:NotoSansKannada\007\033]713;xft:tamsyn:size=6,xft:NotoSansKannada\007
-URxvt.keysym.C-2: command:\033]710;xft:berry:size=5,xft:NotoSansKannada\007\033]711;xft:berry:size=5,xft:NotoSansKannada\007\033]712;xft:berry:size=5,xft:NotoSansKannada\007\033]713;xft:berry:size=5,xft:NotoSansKannada\007
-URxvt.keysym.C-3: command:\033]710;xft:terminus:size=7,xft:NotoSansKannada\007\033]711;xft:terminus:size=7,xft:NotoSansKannada\007\033]712;xft:terminus:size=7,xft:NotoSansKannada\007\033]713;xft:terminus:size=7,xft:NotoSansKannada\007
-URxvt.keysym.C-4: command:\033]710;xft:terminus:size=8,xft:NotoSansKannada\007\033]711;xft:terminus:size=8,xft:NotoSansKannada\007\033]712;xft:terminus:size=8,xft:NotoSansKannada\007\033]713;xft:terminus:size=8,xft:NotoSansKannada\007
+URxvt.keysym.C-1: command:\033]710;xft:Misc Tamsyn:size=6,xft:NotoSansKannada\007\033]711;xft:Misc Tamsyn:size=6,xft:NotoSansKannada\007\033]712;xft:Misc Tamsyn:size=6,xft:NotoSansKannada\007\033]713;xft:Misc Tamsyn:size=6,xft:NotoSansKannada\007
+URxvt.keysym.C-2: command:\033]710;xft:spectrum berry:size=5,xft:NotoSansKannada\007\033]711;xft:spectrum berry:size=5,xft:NotoSansKannada\007\033]712;xft:spectrum berry:size=5,xft:NotoSansKannada\007\033]713;xft:spectrum berry:size=5,xft:NotoSansKannada\007
+URxvt.keysym.C-3: command:\033]710;xft:xos4 Terminus:size=7,xft:NotoSansKannada\007\033]711;xft:xos4 Terminus:size=7,xft:NotoSansKannada\007\033]712;xft:xos4 Terminus:size=7,xft:NotoSansKannada\007\033]713;xft:xos4 Terminus:size=7,xft:NotoSansKannada\007
+URxvt.keysym.C-4: command:\033]710;xft:xos4 Terminus:size=8,xft:NotoSansKannada\007\033]711;xft:xos4 Terminus:size=8,xft:NotoSansKannada\007\033]712;xft:xos4 Terminus:size=8,xft:NotoSansKannada\007\033]713;xft:xos4 Terminus:size=8,xft:NotoSansKannada\007
 URxvt.keysym.C-5: command:\033]710;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007\033]711;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007\033]712;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007\033]713;xft:DejaVuSansMono:size=7,xft:NotoSansKannada\007
 URxvt.keysym.C-6: command:\033]710;xft:DejaVuSansMono:size=8,xft:NotoSansKannada\007\033]711;xft:DejaVuSansMono:size=8,xft:NotoSansKannada\007\033]712;xft:DejaVuSansMono:size=8,xft:NotoSansKannada\007\033]713;xft:DejaVuSansMono:size=8,xft:NotoSansKannada\007
 URxvt.keysym.C-7: command:\033]710;xft:DejaVuSansMono:size=9,xft:NotoSansKannada\007\033]711;xft:DejaVuSansMono:size=9,xft:NotoSansKannada\007\033]712;xft:DejaVuSansMono:size=9,xft:NotoSansKannada\007\033]713;xft:DejaVuSansMono:size=9,xft:NotoSansKannada\007
