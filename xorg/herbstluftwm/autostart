@@ -1,6 +1,6 @@
 #!/bin/bash
 #forked @c0r73x hlwm config.
-
+export $PATH:~/bin
 killall herbstclient 2>/dev/null
 
 function hc() {
@@ -247,7 +247,7 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     panel_width=${geometry[2]}
 
     #$HOME/gitstuff/github/panel/panel | dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
-    $HOME/go/src/github.com/rendom/panel/panel --monitor=$monitor | lemonbar -B"#000000" -f"tamsyn-6" -g$panel_width+$x  &
+    $HOME/go/src/github.com/rendom/panel/panel --monitor=$monitor | lemonbar -B"#000000" -f"Misc Tamsyn-6" -g$panel_width+$x  &
     #$XDG_CONFIG_HOME/herbstluftwm/panel.rb $monitor | 
     #    dzen2 -w $panel_width -x $x -ta 'l' -fn "$font" &
 done
