@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+COLORNAME="$1"
+xrdb -query \
+    | sed 's/^!.*//' \
+    | sed '/^$/d' \
+    | grep "\*$COLORNAME" \
+    | awk -F\  '{if($1=="#define") { print $3 } else { print $2 }}' \
+    | head -1
