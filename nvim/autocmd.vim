@@ -64,3 +64,5 @@ autocmd BufReadPost *
 "autocmd FileType go call GoSetEnvirmentVariables()
 autocmd FileType php set synmaxcol=200
 autocmd FileType php LanguageClientStart
+autocmd FileType javascript LanguageClientStart
+autocmd FileType vue LanguageClientStart
