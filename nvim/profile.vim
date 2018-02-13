@@ -27,7 +27,7 @@ set nowrap
 set linebreak
 
 set backspace=2 
-set synmaxcol=160
+set synmaxcol=200
 set colorcolumn=80,120
 
 "set noesckeys
@@ -797,10 +797,11 @@ let g:ale_linters = {
 let g:tern#filetypes = ['javascript', 'vue']
 
 set noshowmode
-" let g:LanguageClient_serverCommands = {
-"     \ 'php': ['node', '/Users/nojjan/gitstuff/github/languageservers/crane/client/server/server.js'],
-"     \ }
-
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
+    \ 'javascript.jsx': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
+    \ 'vue': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
+    \ }
 
 function! VagrantTransform(cmd) abort
   return 'execHomesteadProject '.a:cmd

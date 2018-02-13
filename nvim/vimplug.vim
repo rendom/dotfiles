@@ -7,13 +7,11 @@ endfunction
 Plug 'mhinz/vim-startify'
 
 Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 "Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -33,7 +31,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 "Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
@@ -52,11 +51,13 @@ Plug 'junegunn/vim-peekaboo'
 "Plug 'neomake/neomake'
 "Plug 'benjie/neomake-local-eslint.vim'
 "Plug 'gilligan/vim-lldb'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 "Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 
 Plug 'metakirby5/codi.vim'
 Plug 'janko-m/vim-test'
+
+Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Javascript
 
@@ -75,7 +76,8 @@ Plug 'mattn/emmet-vim', { 'for': ['html'] }
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-Plug 'StanAngeloff/php.vim'
+"Plug 'StanAngeloff/php.vim'
+" Plug 'joonty/vim-phpqa', { 'for' : 'php' }
 
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
