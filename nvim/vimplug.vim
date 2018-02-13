@@ -6,7 +6,13 @@ endfunction
 
 Plug 'mhinz/vim-startify'
 
+Plug 'DougBeney/pickachu'
+
 Plug 'roxma/nvim-completion-manager'
+Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
+Plug 'roxma/ncm-phpactor'
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
@@ -44,7 +50,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'ironhouzi/vim-stim'
 Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
-Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
 Plug 'wellle/visual-split.vim'
 Plug 'junegunn/vim-peekaboo'
 
@@ -81,7 +86,7 @@ Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
 
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
-Plug 'vim-scripts/SQLUtilities'
+
 Plug 'AndrewRadev/splitjoin.vim'
 
 
@@ -98,14 +103,18 @@ Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
+" Plug 'osyo-manga/vim-anzu'
+
 Plug 'xolox/vim-easytags'
+Plug 'hecal3/vim-leader-guide'
+
 
 if has("unix")
         let s:uname = system("uname")
         if s:uname != "Darwin\n"
                 let g:vvt_browser_command = 'echo "%URL%" | xclip'
         else
-            Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+            " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
         endif
 endif
 

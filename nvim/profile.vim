@@ -32,7 +32,8 @@ set colorcolumn=80,120
 
 "set noesckeys
 set ttimeout
-set ttimeoutlen=50
+set ttimeoutlen=0
+set ttyfast
 
 set laststatus=2
 
@@ -788,10 +789,11 @@ let g:startify_bookmarks = [
 
 
 
-" let g:ale_linter_aliases = {'vue': 'javascript'}
+let g:ale_linter_aliases = {'vue': 'javascript'}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'jshint'],
-\   'php': ['php'],
+\   'vue': ['eslint'],
+\   'php': ['php -l', 'phpmd'],
 \}
 
 let g:tern#filetypes = ['javascript', 'vue']
@@ -802,6 +804,9 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
     \ 'vue': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
     \ }
+let g:LanguageClient_autoStart = 1
+
+" autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 function! VagrantTransform(cmd) abort
   return 'execHomesteadProject '.a:cmd
