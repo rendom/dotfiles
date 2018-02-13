@@ -202,11 +202,18 @@ call denite#custom#var('grep', 'final_opts', [])
 
 "vim go
 let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-"let g:neomake_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+"let g:go_metalinter_autosave = 1
+"let g:go_metalinter_deadline = "3s"
+"let g:go_fmt_fail_silently = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_structs = 1
 
 
 let g:formatdef_custom_cpp = '"astyle
