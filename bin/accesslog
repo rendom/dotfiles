@@ -1,0 +1,89 @@
+#!/usr/bin/env php
+
+<?php
+
+// accesslog -f <file>
+
+$options = getopt("f:s::a::");
+
+function printHelp() {
+    printf("-f access.log\t\tPath to Apache access log file\n-s <date>\t\tList date per ip\n");
+}
+
+if(!isset($options["f"])) {
+    printHelp();
+    exit;
+}
+//  "(\S+) (\S+) (\S+)" (\S+)/
+const PATTERN='/^(\S+).+\[([^\]]+)\] "(\S+) (\S+)/';
+$LOGFILE = $options["f"];
+$results = [];
+
+function processRow($row, &$results) {
+    preg_match(PATTERN, $row, $matches);
+    list($all, $ip, $date, $method, $uri) = $matches;
+
+    if(!isset($results[$ip])) {
+        $results[$ip] = ["hits" => 0, "urls" => []];
+    }
+
+    $results[$ip]["hits"]++;
+    if(!isset($results[$ip]["urls"][$uri])) {
+        $results[$ip]["urls"][$uri] = 0;
+    }
+
+    $results[$ip]["urls"][$uri]++;
+}
+
+function printResults(&$results) {
+    foreach($results as $ip => $item) {
+        printf("[%s] \t%d\n", $ip, $item["hits"]);
+    }
+}
+
+function printSummary(&$results) {
+    array_splice($results, 10);
+
+    foreach($results as $ip => $item) {
+        $urls = $item["urls"];
+        array_splice($urls, 10); 
+        uasort($urls, function($b, $a) {
+            return $a - $b;
+        });
+
+        printf("[%s] %d\n", $ip, $item["hits"]);
+        foreach($urls as $url => $hits) {
+            printf("\t[%s] %d\n", $url, $hits);
+        }
+    }
+}
+
+// preg_match(PATTERN, $log)
+
+if(!file_exists($LOGFILE)) {
+    printf("File not found: %s\n", $LOGFILE);
+    exit;
+}
+
+$handle = fopen($LOGFILE, 'r');
+if(!$handle) {
+    printf("Unable to read file: %s\n", $LOGFILE);
+    exit;
+}
+
+while(($row = fgets($handle)) !== false) {
+    processRow($row, $results);
+}
+
+fclose($handle);
+
+
+uasort($results, function($a, $b) {
+    return $b["hits"] - $a["hits"];
+});
+
+if(isset($options["s"])) {
+    printSummary($results);
+} else {
+    printResults($results);
+}
