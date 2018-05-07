@@ -8,7 +8,10 @@ Plug 'mhinz/vim-startify'
 
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 "Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
@@ -81,6 +84,8 @@ Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
 Plug 'vim-scripts/SQLUtilities'
 Plug 'AndrewRadev/splitjoin.vim'
+
+Plug 'jparise/vim-graphql', { 'for' : ['graphql'] }
 
 
 "Golang
