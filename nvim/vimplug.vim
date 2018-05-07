@@ -6,6 +6,8 @@ endfunction
 
 Plug 'mhinz/vim-startify'
 
+Plug 'DougBeney/pickachu'
+
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 Plug 'autozimu/LanguageClient-neovim', {
@@ -16,7 +18,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 "Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 Plug 'flazz/vim-colorschemes'
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -36,7 +37,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 "Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
@@ -48,7 +50,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'ironhouzi/vim-stim'
 Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
-Plug 'jaxbot/browserlink.vim', { 'for' : ['javascript'] }
 Plug 'wellle/visual-split.vim'
 Plug 'junegunn/vim-peekaboo'
 
@@ -60,6 +61,8 @@ Plug 'w0rp/ale'
 
 Plug 'metakirby5/codi.vim'
 Plug 'janko-m/vim-test'
+
+Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Javascript
 
@@ -78,11 +81,12 @@ Plug 'mattn/emmet-vim', { 'for': ['html'] }
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
 Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-Plug 'StanAngeloff/php.vim'
+"Plug 'StanAngeloff/php.vim'
+" Plug 'joonty/vim-phpqa', { 'for' : 'php' }
 
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
-Plug 'vim-scripts/SQLUtilities'
+
 Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'jparise/vim-graphql', { 'for' : ['graphql'] }
@@ -101,14 +105,23 @@ Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
+" Plug 'osyo-manga/vim-anzu'
+
 Plug 'xolox/vim-easytags'
+Plug 'hecal3/vim-leader-guide'
+
 
 if has("unix")
         let s:uname = system("uname")
         if s:uname != "Darwin\n"
                 let g:vvt_browser_command = 'echo "%URL%" | xclip'
         else
+            " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+            "Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
+            Plug 'roxma/ncm-phpactor'
             Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
+
         endif
 endif
 

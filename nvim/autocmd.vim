@@ -20,6 +20,8 @@ if has('autocmd')
     "     autocmd BufWritePost,BufReadPre * :Neomake
     " augroup END
 
+            "autocmd FileType php
+            "            \ setlocal omnifunc=phpcomplete#CompletePHP
     augroup omnicomplete
         autocmd!
         if exists('+omnifunc')
@@ -31,8 +33,6 @@ if has('autocmd')
                         \ setlocal omnifunc=csscomplete#CompleteCSS
             autocmd FileType xml
                         \ setlocal omnifunc=xmlcomplete#CompleteTags
-            autocmd FileType php
-                        \ setlocal omnifunc=phpcomplete#CompletePHP
             autocmd FileType c,cpp
                         \ setlocal omnifunc=ccomplete#Complete
             autocmd FileType ruby
@@ -61,6 +61,8 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
-autocmd FileType go call GoSetEnvirmentVariables()
-autocmd FileType php set synmaxcol=120
+"autocmd FileType go call GoSetEnvirmentVariables()
+autocmd FileType php set synmaxcol=200
 autocmd FileType php LanguageClientStart
+autocmd FileType javascript LanguageClientStart
+autocmd FileType vue LanguageClientStart

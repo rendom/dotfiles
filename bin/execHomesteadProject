@@ -1,0 +1,9 @@
+PROJECT=$(grep -A1 -e "$(dirs)$" ~/.homestead/Homestead.yaml |\
+    tail -n1 | sed -E 's/.*to: (.*)/\1/g')
+
+if [ -z "$PROJECT" ]; then
+    echo "Project not found"
+    exit 1;
+fi
+
+ssh vagrant@192.168.10.10 -t -C "cd $PROJECT; $@"

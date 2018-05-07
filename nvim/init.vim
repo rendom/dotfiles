@@ -1,5 +1,8 @@
 set shell=/bin/sh
-let $PYTHONPATH='/usr/lib64/python2.7/site-packages/lldb'
+"let $PYTHONPATH='/usr/lib64/python2.7/site-packages/lldb'
+let g:python_host_skip_check=1 
+let g:python3_host_skip_check=1 
+let g:python_host_prog = '/usr/local/bin/python3'
 
 if $XDG_CACHE_HOME ==# ''
     let $XDG_CACHE_HOME=$HOME.'/.cache'

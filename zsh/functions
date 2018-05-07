@@ -1,16 +1,18 @@
 GITSTAT=''
 
-function hartisan() {
-    local PROJECT=$(grep -A1 -e "$(dirs)$" ~/.homestead/Homestead.yaml |\
-        tail -n1 | sed -E 's/.*to: (.*)/\1/g')
-
-    if [ -z "$PROJECT" ]; then
-        echo "Project not found"
-        return 1;
-    fi
-
-    ssh vagrant@192.168.10.10 -C "cd $PROJECT && ./artisan $@"
+function news() {
+    local NEWS=$(curl -s "https://newsapi.org/v2/top-headlines?apiKey=${NEWSAPIORG_KEY}&country=sv" | jq -r '.articles[] | .title, .url | @text')
+    echo $NEWS
 }
+
+function hprojectssh() {
+    execHomesteadProject "$@"
+}
+
+function hartisan() {
+    hprojectssh "./artisan $@"
+}
+
 
 function spotlight() {
     local FILE=$(mdfind $@ | fzf)
