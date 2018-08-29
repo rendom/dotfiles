@@ -8,7 +8,13 @@ Plug 'mhinz/vim-startify'
 
 Plug 'DougBeney/pickachu'
 
-"Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 "Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
 "Plug 'roxma/ncm-phpactor'
@@ -121,6 +127,8 @@ Plug 'johnsyweb/vim-makeshift'
 
 Plug 'AndrewRadev/splitjoin.vim'
 
+Plug 'jparise/vim-graphql', { 'for' : ['graphql'] }
+
 
 "Golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -147,6 +155,11 @@ if has("unix")
                 let g:vvt_browser_command = 'echo "%URL%" | xclip'
         else
             " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+            "Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
+            Plug 'roxma/ncm-phpactor'
+            Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
+
         endif
 endif
 

@@ -60,7 +60,7 @@ rec(){
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias ls='ls -LhFX --color=always --group-directories-first'
     alias lr='ls -R'
-    alias ll='ls++ -LhFX --potsf'
+    alias ll='lsext -l'
     alias la='ll -A'
     alias lx='ll -BX'
     alias lz='ll -rS'
