@@ -117,13 +117,13 @@ cnoremap <A-l> <t_kr>
 "      \ pumvisible() ?
 "      \ deoplete#mappings#close_popup() : "\<tab>"
 "        let g:deoplete#enable_smart_case=1
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  deoplete#close_popup()
-" inoremap <expr><C-e>  deoplete#cancel_popup()
+"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  deoplete#close_popup()
+"inoremap <expr><C-e>  deoplete#cancel_popup()
 
 
 "foldstuff
