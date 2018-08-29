@@ -71,7 +71,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias l='ls -1'
     alias la='ls -lhAF'
-    alias ll='ls -lhF'
+    alias ll='lsext -l'
     alias lt="ls -lhtrF"
 	alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 	alias 'wakeup'='pmset -g log|grep -e " Sleep  " -e " Wake  " | tail -n10'
