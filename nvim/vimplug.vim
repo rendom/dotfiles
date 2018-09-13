@@ -8,12 +8,12 @@ Plug 'mhinz/vim-startify'
 
 Plug 'DougBeney/pickachu'
 
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
 "Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
@@ -100,7 +100,7 @@ Plug 'w0rp/ale'
 Plug 'metakirby5/codi.vim'
 Plug 'janko-m/vim-test'
 
-Plug 'tenfyzhong/CompleteParameter.vim'
+"Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Javascript
 

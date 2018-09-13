@@ -797,12 +797,13 @@ let g:startify_bookmarks = [
       \ { 'z': '~/.zsh/.zshrc' },
       \ ]
 
-
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_typescript_eslint_executable = 'eslint_d'
 
 let g:ale_linter_aliases = {'vue': 'javascript'}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'jshint'],
-\   'vue': ['eslint'],
+\   'vue': ['vls'],
 \   'php': ['php -l', 'phpmd'],
 \}
 
