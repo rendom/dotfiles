@@ -3,6 +3,9 @@ nnoremap <space> <nop>
 
 filetype plugin indent on
 
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 
+
 colorscheme hybrid
 set background=dark
 
@@ -90,8 +93,8 @@ let g:UltiSnipsJumpForwardTrigger    = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger   = "<C-h>"
 let g:UltiSnipsUsePythonVersion      = 3
 
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_refresh_delay = 0
+" let g:deoplete#auto_complete_delay = 0
+" let g:deoplete#auto_refresh_delay = 0
 call denite#custom#var('file_rec', 'command',
       \ ['ag', '--follow', '--nocolor', '--nogroup', '--column', '-g', ''])
 
@@ -706,54 +709,54 @@ let g:quickfixsigns#vcsdiff#highlight = {
             \ }
 
 let g:quickfixsigns#marks#texthl = 'QFS_MARKS'
+" let g:deoplete#enable_at_startup = 1
 " 2}}}
 
 
-" deoplete {{{2
-let g:deoplete#enable_at_startup = 1
-
-let g:deoplete#auto_completion_start_length = 2
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_delay = 50
-
-try
-    call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
-    call deoplete#custom#set('_', 'sorters', ['sorter_word', 'default'])
-catch
-endtry
-
-let g:deoplete#delimiters = ['/', '.', '::', ':', '#', '->']
-
-" deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-
-let s:clang = substitute(
-            \ system('clang --version'), 
-            \ '.*version \([0-9.]\+\).*', '\1', '')
-
-let g:deoplete#sources#clang#clang_header = 
-            \ '/usr/lib/clang/' . s:clang . '/include'
-
-let g:deoplete#sources#clang#sort_algo = 'priority'
-let g:deoplete#sources#clang#std#c = 'c11'
-let g:deoplete#sources#clang#std#cpp = 'c++14'
-
-let g:deoplete#enable_debug = 0
-let g:deoplete#sources#clang#debug#log_file = '~/deoplete-clang.log'
-set iskeyword-=.
-" Define keyword
-if !exists('g:deoplete#keyword_patterns')
-    let g:deoplete#keyword_patterns = {}
-endif
-
-" compile_commands.json directory path
-" Not file path. Need build directory path
-if s:compile_commands !=# ''
-    let g:deoplete#sources#clang#clang_complete_database = 
-                \ fnamemodify(s:compile_commands, ':h')
-endif
-" 2}}}
+"     " deoplete {{{2
+"     
+" let g:deoplete#auto_completion_start_length = 2
+" let g:deoplete#enable_ignore_case = 1
+" let g:deoplete#enable_smart_case = 1
+"     let g:deoplete#auto_complete_delay = 50
+"     
+"     "try
+"     "    call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
+"     "    call deoplete#custom#set('_', 'sorters', ['sorter_word', 'default'])
+"     "catch
+"     "endtry
+"     
+"     let g:deoplete#delimiters = ['/', '.', '::', ':', '#', '->']
+"     
+"     " deoplete-clang
+"     let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+"     
+"     let s:clang = substitute(
+"                 \ system('clang --version'), 
+"                 \ '.*version \([0-9.]\+\).*', '\1', '')
+"     
+"     let g:deoplete#sources#clang#clang_header = 
+"                 \ '/usr/lib/clang/' . s:clang . '/include'
+"     
+"     let g:deoplete#sources#clang#sort_algo = 'priority'
+"     let g:deoplete#sources#clang#std#c = 'c11'
+"     let g:deoplete#sources#clang#std#cpp = 'c++14'
+"     
+"     let g:deoplete#enable_debug = 0
+"     let g:deoplete#sources#clang#debug#log_file = '~/deoplete-clang.log'
+"     set iskeyword-=.
+"     " Define keyword
+"     if !exists('g:deoplete#keyword_patterns')
+"         let g:deoplete#keyword_patterns = {}
+"     endif
+"     
+"     " compile_commands.json directory path
+"     " Not file path. Need build directory path
+"     if s:compile_commands !=# ''
+"         let g:deoplete#sources#clang#clang_complete_database = 
+"                     \ fnamemodify(s:compile_commands, ':h')
+"     endif
+"     " 2}}}
 
 
 
@@ -794,26 +797,27 @@ let g:startify_bookmarks = [
       \ { 'z': '~/.zsh/.zshrc' },
       \ ]
 
-
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_typescript_eslint_executable = 'eslint_d'
 
 let g:ale_linter_aliases = {'vue': 'javascript'}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'jshint'],
-\   'vue': ['eslint'],
+\   'vue': ['vls'],
 \   'php': ['php -l', 'phpmd'],
 \}
 
 let g:tern#filetypes = ['javascript', 'vue']
 
 set noshowmode
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
-    \ 'javascript.jsx': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
-    \ 'vue': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
-    \ }
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_serverCommands = {
+"     \ 'javascript': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
+"     \ 'javascript.jsx': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
+"     \ 'vue': ['$HOME/gitstuff/github/js-langserver/lib/language-server-stdio.js'],
+"     \ }
+"let g:LanguageClient_autoStart = 1
 
-" autocmd FileType php setlocal omnifunc=phpactor#Complete
+autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 function! VagrantTransform(cmd) abort
   return 'execHomesteadProject '.a:cmd

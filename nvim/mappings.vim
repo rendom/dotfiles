@@ -3,6 +3,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 nnoremap , ;
 nnoremap <Tab> %
@@ -117,13 +118,13 @@ cnoremap <A-l> <t_kr>
 "      \ pumvisible() ?
 "      \ deoplete#mappings#close_popup() : "\<tab>"
 "        let g:deoplete#enable_smart_case=1
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  deoplete#close_popup()
-" inoremap <expr><C-e>  deoplete#cancel_popup()
+"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  deoplete#close_popup()
+"inoremap <expr><C-e>  deoplete#cancel_popup()
 
 
 "foldstuff

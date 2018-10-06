@@ -29,6 +29,8 @@ source $HOME/.config/nvim/functions.vim
 source $HOME/.config/nvim/profile.vim
 source $HOME/.config/nvim/mappings.vim
 source $HOME/.config/nvim/autocmd.vim
+" source $HOME/.config/nvim/coc.vim
+source $HOME/.config/nvim/ncm.vim
 
 set backupdir=$XDG_CACHE_HOME/vim/backup//
 set undodir=$XDG_CACHE_HOME/vim/undo//

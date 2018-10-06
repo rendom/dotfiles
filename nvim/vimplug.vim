@@ -8,15 +8,53 @@ Plug 'mhinz/vim-startify'
 
 Plug 'DougBeney/pickachu'
 
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+"Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
+"Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
+"Plug 'roxma/ncm-phpactor'
+" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+
+"Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
+"Plug 'kristijanhusak/deoplete-phpactor'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+
+" coc.nvim
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
+
+"NCM2
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-vim'
+Plug 'ncm2/ncm2-vim', { 'for' : 'vim' } | Plug 'Shougo/neco-vim', { 'for' : 'vim' }
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
+"ncm2 phpactor
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+Plug 'phpactor/ncm2-phpactor'
+
+"Languageserver
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-"Plug 'zchee/deoplete-go', { 'for' : 'go', 'do': 'make'}
-"Plug 'zchee/deoplete-clang', { 'for' : ['c', 'cpp'] }
+
+
+
 Plug 'flazz/vim-colorschemes'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
@@ -48,7 +86,7 @@ Plug 'derekwyatt/vim-fswitch', { 'for' : ['c', 'cpp'] }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
 Plug 'ironhouzi/vim-stim'
-Plug 'rstacruz/vim-closer'
+" Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
 Plug 'wellle/visual-split.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -62,7 +100,7 @@ Plug 'w0rp/ale'
 Plug 'metakirby5/codi.vim'
 Plug 'janko-m/vim-test'
 
-Plug 'tenfyzhong/CompleteParameter.vim'
+"Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Javascript
 
