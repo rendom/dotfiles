@@ -154,11 +154,22 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	        if [[ ! -e /usr/bin/cave ]]; then
 	            alias check='sudo layman -S && sudo eix-sync && sudo glsa-check -l'
                 alias checkfulhax='sudo layman -s fulhax'
-	
+
+                alias update='\
+                emerge -1 portage && \
+                emerge -uDN world --keep-going'
+
+                alias postupdate='\
+                emerge @preserved-rebuild; \
+                emerge --depclean; \
+                sudo revdep-rebuild; \
+                sudo eclean-dist; \
+                sudo portpeek -arf'
+
 	            alias emerge='sudo emerge'
-	            alias update='emerge -1 portage && emerge -auDN world'
-	            alias postupdate='emerge @preserved-rebuild; \
-                emerge --depclean; sudo revdep-rebuild'
+	            #alias update='emerge -1 portage && emerge -auDN world'
+	            #alias postupdate='emerge @preserved-rebuild; \
+                #emerge --depclean; sudo revdep-rebuild'
 	            alias newuse='emerge -auD --newuse @world'
 	        else
 	            alias cave='sudo cave'
