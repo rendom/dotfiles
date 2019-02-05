@@ -56,6 +56,8 @@ if has('autocmd')
     " augroup END
 endif
 
+autocmd FileType vue noremap <buffer> <c-f> :%!vue-formatter<CR>
+
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |

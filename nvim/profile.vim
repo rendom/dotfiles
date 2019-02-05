@@ -15,7 +15,6 @@ syntax sync clear
 syntax sync minlines=0
 syntax sync maxlines=256
 
-
 set nu
 set history=1000
 set undolevels=1000
@@ -34,16 +33,16 @@ set synmaxcol=200
 set colorcolumn=80,120
 
 "set noesckeys
-set ttimeout
-set ttimeoutlen=0
-set ttyfast
+" set ttimeout
+" set ttimeoutlen=0
+" set ttyfast
 
 set laststatus=2
 
-set nocompatible
+" set nocompatible
 set relativenumber
 set nocursorline
-set lazyredraw
+" set lazyredraw
 
 set list "show non-printing chars
 
@@ -82,8 +81,11 @@ set foldlevel=100
 let g:vimsyn_folding='af'
 
 " php hax
-let g:php_folding=1
-let g:php_sql_query=1
+let g:php_folding=0
+let g:php_sql_query=0
+let g:php_sql_heredoc=0
+let g:php_sql_nowdoc=0
+let g:php_html_load=0
 
 "ultisnips
 let g:UltiSnipsDontReverseSearchPath = 1
@@ -202,9 +204,10 @@ call denite#custom#var('grep', 'final_opts', [])
 " endfunction
 " " 2}}}
 
+let g:polyglot_disabled = ['go']
 
 "vim go
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -313,6 +316,9 @@ let g:formatters_json = ['custom_json']
 
 let g:formatdef_custom_ruby = '"rbeautify -s -c 4"'
 let g:formatters_ruby = ['custom_ruby']
+
+let g:formatdef_custom_vue = 'vue-formatter'
+let g:formatters_vue = ['custom_vue']
 " "Neocomplete
 " let g:neocomplete#enable_at_startup                    = 1
 " let g:neocomplete#enable_smart_case                    = 1
@@ -389,7 +395,7 @@ else
   let g:vvt_browser_command = 'echo "%URL%" | xclip'
 endif
 
-let g:choosewin_overlay_enable = 1
+let g:choosewin_overlay_enable = 0
 let g:choosewin_color_overlay = {
             \ 'gui'   : ['blue', 'blue' ],
             \ 'cterm' : [ 'blue', 'blue' ]
@@ -402,32 +408,32 @@ let g:choosewin_color_land = {
             \ 'gui'   : ['yellow', 'yellow' ],
             \ 'cterm' : [ 'yellow', 'yellow' ]
             \}
-let g:choosewin_overlay_enable          = 1
+let g:choosewin_overlay_enable          = 0
 let g:choosewin_overlay_clear_multibyte = 1
 let g:choosewin_blink_on_land           = 0 " dont' blink at land
-let g:choosewin_statusline_replace      = 0 " don't replace statusline
+let g:choosewin_statusline_replace      = 1 " don't replace statusline
 let g:choosewin_tabline_replace         = 0 " don't replace tabline
 
 
-function! MyOnCompleteDone() " {{{2
-    if !exists('v:completed_item') || empty(v:completed_item)
-        return
-    endif
-
-    let complete_str = v:completed_item.word
-    if complete_str ==# ''
-        return
-    endif
-
-    let abbr = v:completed_item.menu
-    let startIdx = match(abbr,'(')
-    let endIdx = match(abbr,')')
-    if endIdx - startIdx > 1
-        echo v:completed_item.menu
-    endif
-endfunction
-
-autocmd CompleteDone * call MyOnCompleteDone()
+" function! MyOnCompleteDone() " {{{2
+"     if !exists('v:completed_item') || empty(v:completed_item)
+"         return
+"     endif
+" 
+"     let complete_str = v:completed_item.word
+"     if complete_str ==# ''
+"         return
+"     endif
+" 
+"     let abbr = v:completed_item.menu
+"     let startIdx = match(abbr,'(')
+"     let endIdx = match(abbr,')')
+"     if endIdx - startIdx > 1
+"         echo v:completed_item.menu
+"     endif
+" endfunction
+" 
+" autocmd CompleteDone * call MyOnCompleteDone()
 
 
 if has('unnamedplus')
@@ -800,12 +806,24 @@ let g:startify_bookmarks = [
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_typescript_eslint_executable = 'eslint_d'
 
-let g:ale_linter_aliases = {'vue': 'javascript'}
+" let g:ale_linter_aliases = {'vue': 'javascript'}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'jshint'],
 \   'vue': ['vls'],
-\   'php': ['php -l', 'phpmd'],
+\   'php': ['php-cs', 'phpcs'],
 \}
+" TODO: 'psalm'
+let g:ale_fixers = ['php_cs_fixer', 'eslint']
+
+"let g:ale_php_psalm_executable = '/Users/nojjan/gitstuff/github/psalm/vendor/bin/psalm-language-server'
+let g:ale_virtualtext_cursor = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_filetype_changed = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_delay = 50
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 
 let g:tern#filetypes = ['javascript', 'vue']
 
@@ -817,7 +835,7 @@ set noshowmode
 "     \ }
 "let g:LanguageClient_autoStart = 1
 
-autocmd FileType php setlocal omnifunc=phpactor#Complete
+" autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 function! VagrantTransform(cmd) abort
   return 'execHomesteadProject '.a:cmd
@@ -826,3 +844,13 @@ endfunction
 let g:test#custom_transformations = {'vagrant': function('VagrantTransform')}
 let g:test#transformation = 'vagrant'
 let g:test#php#phpunit#executable = 'vendor/bin/phpunit'
+
+
+" Don't run messdetector on save (default = 1)
+let g:phpqa_messdetector_autorun = 0
+
+" Don't run codesniffer on save (default = 1)
+let g:phpqa_codesniffer_autorun = 0
+
+" Show code coverage on load (default = 0)
+let g:phpqa_codecoverage_autorun = 0

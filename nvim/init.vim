@@ -1,3 +1,6 @@
+"let g:loaded_netrwPlugin = 1
+let g:loaded_matchit = 1
+
 set shell=/bin/sh
 "let $PYTHONPATH='/usr/lib64/python2.7/site-packages/lldb'
 let g:python_host_skip_check=1 
@@ -29,8 +32,8 @@ source $HOME/.config/nvim/functions.vim
 source $HOME/.config/nvim/profile.vim
 source $HOME/.config/nvim/mappings.vim
 source $HOME/.config/nvim/autocmd.vim
-" source $HOME/.config/nvim/coc.vim
-source $HOME/.config/nvim/ncm.vim
+source $HOME/.config/nvim/coc.vim
+"source $HOME/.config/nvim/ncm.vim
 
 set backupdir=$XDG_CACHE_HOME/vim/backup//
 set undodir=$XDG_CACHE_HOME/vim/undo//

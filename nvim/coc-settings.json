@@ -1,0 +1,16 @@
+{
+    "coc.preferences.numberSelect": false,
+    "coc.preferences.diagnostic.refreshOnInsertMode": false,
+    "coc.preferences.diagnostic.virtualText": false,
+    "coc.preferences.diagnostic.displayByAle": true,
+    "coc.preferences.codeLens.enable": true,
+    "languageserver": {
+        "phplang": {
+            "codeLens": true,
+            "command": "phplangserver",
+            "args": [],
+            "filetypes": ["php"]
+        }
+    }
+
+}
