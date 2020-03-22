@@ -30,6 +30,7 @@ set wildmenu
 source $HOME/.config/nvim/vimplug.vim
 source $HOME/.config/nvim/functions.vim
 source $HOME/.config/nvim/profile.vim
+source $HOME/.config/nvim/denite.vim
 source $HOME/.config/nvim/mappings.vim
 source $HOME/.config/nvim/autocmd.vim
 source $HOME/.config/nvim/coc.vim

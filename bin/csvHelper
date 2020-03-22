@@ -57,13 +57,15 @@ sub validateCsv {
     my $count = getHeaderRow();
     my $failed = 0;
 
+    my $i = 0;
     foreach my $line (@lines) {
+        $i++;
         $line =~ s/\r\n|\n//g;
         my @cols = split($separator, $line);
         my $lineCount = @cols;
     
         if($lineCount ne $count) {
-            print "Failed: $lineCount columns expects $count\n";
+            print "Row: $i Failed: $lineCount columns expects $count\n";
             print colored(['red'], prettyPrintRow(@cols));
             $failed=1;
         }

@@ -40,14 +40,14 @@ set colorcolumn=80,120
 set laststatus=2
 
 " set nocompatible
-set relativenumber
+"set relativenumber
 set nocursorline
 " set lazyredraw
 
 set list "show non-printing chars
 
 " no lagg :O
-set re=1
+"set re=1
 
 " ignore case in search
 set ignorecase
@@ -97,42 +97,6 @@ let g:UltiSnipsUsePythonVersion      = 3
 
 " let g:deoplete#auto_complete_delay = 0
 " let g:deoplete#auto_refresh_delay = 0
-call denite#custom#var('file_rec', 'command',
-      \ ['ag', '--follow', '--nocolor', '--nogroup', '--column', '-g', ''])
-
-call denite#custom#map('_', "\<C-j>", '<denite:move_to_next_line>')
-call denite#custom#map('_', "\<C-s>", '<denite:do_action:vsplit>')
-call denite#custom#map('_', "\<C-k>", '<denite:move_to_prev_line>')
-call denite#custom#map('_', "\<esc>", '<denite:enter_mode:normal>')
-
-
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
-            \ ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#option('default', 'prompt', '>')
-
-nnoremap <silent> <leader>b :<C-U>Denite buffer<cr>
-nnoremap <silent> <leader>t :<C-U>Denite file_rec<cr>
-nnoremap <silent> <leader>g :<C-U>Denite grep<cr>
-nnoremap <silent> <leader>l :<C-U>Denite line<cr>
-nnoremap <silent> <leader>q :<C-U>Denite qflist<cr>
- 
-
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 
-            \ 'default_opts',
-            \ [
-            \   '-i',
-            \   '--nocolor',
-            \   '--follow',
-            \   '--vimgrep'
-            \ ])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
 
 " " unite {{{1
 " nnoremap <silent> <leader>b :<C-U>Unite buffer<cr>
@@ -204,11 +168,12 @@ call denite#custom#var('grep', 'final_opts', [])
 " endfunction
 " " 2}}}
 
-let g:polyglot_disabled = ['go']
+let g:polyglot_disabled = ['go', 'vue', 'typescript', 'ts']
 
 "vim go
-"let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
+let g:go_gocode_enabled = 0
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -775,14 +740,33 @@ function! LightLineGitBranch()
   return ''
 endfunction
 
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'cocstatus': 'coc#status'
+"      \ },
+
 let g:lightline = {
             \ 'colorscheme': 'wombat',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+            \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+            \   'right':[
+            \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+            \     [ 'blame' ]
+            \   ],
             \ },
             \ 'component_function': {
-            \   'gitbranch': 'LightLineGitBranch'
+            \   'cocstatus': 'coc#status',
+            \   'gitbranch': 'LightLineGitBranch',
+            \   'blame': 'LightlineGitBlame',
             \ }
             \ }
 
@@ -809,11 +793,19 @@ let g:ale_typescript_eslint_executable = 'eslint_d'
 " let g:ale_linter_aliases = {'vue': 'javascript'}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'jshint'],
-\   'vue': ['vls'],
-\   'php': ['php-cs', 'phpcs'],
+\   'php': [],
 \}
 " TODO: 'psalm'
-let g:ale_fixers = ['php_cs_fixer', 'eslint']
+" let g:ale_fixers = ['php_cs_fixer', 'eslint']
+" let g:ale_fixers.javascript = ['eslint']
+
+
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint',
+\   ],
+\   'php': ['php_cs_fixer']
+\}
 
 "let g:ale_php_psalm_executable = '/Users/nojjan/gitstuff/github/psalm/vendor/bin/psalm-language-server'
 let g:ale_virtualtext_cursor = 1
@@ -825,7 +817,7 @@ let g:ale_lint_delay = 50
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 
-let g:tern#filetypes = ['javascript', 'vue']
+let g:tern#filetypes = ['javascript']
 
 set noshowmode
 " let g:LanguageClient_serverCommands = {
@@ -854,3 +846,7 @@ let g:phpqa_codesniffer_autorun = 0
 
 " Show code coverage on load (default = 0)
 let g:phpqa_codecoverage_autorun = 0
+
+runtime macros/sandwich/keymap/surround.vim
+let g:sandwich_no_default_key_mappings = 1
+let g:vue_disable_pre_processors=1

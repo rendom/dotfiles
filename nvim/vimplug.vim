@@ -30,12 +30,18 @@ Plug 'DougBeney/pickachu'
 "Plug 'kristijanhusak/deoplete-phpactor'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
+
+"Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " coc.nvim
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'neoclide/coc-denite'
-
+Plug 'neoclide/coc-denite' 
+"Plug 'ncm2/float-preview.nvim'
 "NCM2
 " Plug 'ncm2/ncm2'
 " Plug 'roxma/nvim-yarp'
@@ -57,14 +63,12 @@ Plug 'neoclide/coc-denite'
 "     \ }
 
 
-
 Plug 'flazz/vim-colorschemes'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
 "Plug 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+
 "Plug 'tomtom/quickfixsigns_vim'
 Plug 'talek/obvious-resize'
 "Plug 'bling/vim-airline'
@@ -73,7 +77,10 @@ Plug 'dockyard/vim-easydir'
 Plug 'rendom/vvt.nu-vim'
 Plug 'rking/ag.vim'
 "Plug 'tpope/vim-fugitive'
+
 Plug 'jreybert/vimagit'
+
+
 Plug 't9md/vim-choosewin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kopischke/vim-fetch'
@@ -96,19 +103,19 @@ Plug 'junegunn/vim-peekaboo'
 "Plug 'neomake/neomake'
 "Plug 'benjie/neomake-local-eslint.vim'
 "Plug 'gilligan/vim-lldb'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 "Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 
-Plug 'metakirby5/codi.vim'
+"Plug 'metakirby5/codi.vim'
 Plug 'janko-m/vim-test'
 
 "Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Javascript
 
-Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
+"Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
+"Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+"Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
 Plug 'posva/vim-vue'
 
 "webdev
@@ -116,13 +123,10 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
 Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
 "Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
-Plug 'mattn/emmet-vim', { 'for': ['html'] }
+"Plug 'mattn/emmet-vim', { 'for': ['html'] }
 
 "PHP
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': 'php' }
-Plug 'markwu/vim-laravel4-snippets', { 'for': 'php' }
-"Plug 'StanAngeloff/php.vim'
-Plug 'joonty/vim-phpqa', { 'for' : 'php' }
 
 Plug 'konfekt/fastfold'
 Plug 'johnsyweb/vim-makeshift'
@@ -132,13 +136,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jparise/vim-graphql', { 'for' : ['graphql'] }
 
 
-"Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 Plug 'sheerun/vim-polyglot'
 
 "Unite
-"Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 
@@ -147,17 +147,13 @@ Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
-" Plug 'osyo-manga/vim-anzu'
 
-Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-easytags'
 Plug 'hecal3/vim-leader-guide'
 
 
 " vim-coverage
 Plug 'google/vim-maktaba'
-Plug 'google/vim-coverage'
-" Also add Glaive, which is used to configure coverage's maktaba flags. See
-" `:help :Glaive` for usage.
 Plug 'google/vim-glaive'
 
 

@@ -1,16 +1,32 @@
 {
-    "coc.preferences.numberSelect": false,
-    "coc.preferences.diagnostic.refreshOnInsertMode": false,
-    "coc.preferences.diagnostic.virtualText": false,
-    "coc.preferences.diagnostic.displayByAle": true,
-    "coc.preferences.codeLens.enable": true,
-    "languageserver": {
-        "phplang": {
-            "codeLens": true,
-            "command": "phplangserver",
-            "args": [],
-            "filetypes": ["php"]
-        }
-    }
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.hoverTarget": "float",
 
+    "git.addGBlameToBufferVar": true,
+
+    "suggest.enablePreview": true,
+    "snippets.ultisnips.enable": true,
+    "snippets.loadFromExtensions": true,
+    "suggest.numberSelect": false,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.virtualText": false,
+    "diagnostic.messageTarget":"float",
+    "codeLens.enable": true,
+    "signature.target": "float",
+    "languageserver": { 
+        "golang": {
+            "command": "gopls",
+            "filetypes": ["go"]
+        }
+    },
+    "diagnostic-languageserver.filetypes": {
+        "php": "phpcs",
+        "javascript": "eslint",
+        "vue": "eslint",
+        "tuescrypt": "eslint"
+
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+    }
 }
