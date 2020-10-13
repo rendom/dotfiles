@@ -39,7 +39,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " coc.nvim
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+"Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-denite' 
 "Plug 'ncm2/float-preview.nvim'
 "NCM2

@@ -19,6 +19,8 @@ silent !mkdir -p $XDG_CACHE_HOME/vim/undo > /dev/null 2>&1
 silent !mkdir -p $XDG_CACHE_HOME/vim/tags > /dev/null 2>&1
 silent !mkdir -p $XDG_CACHE_HOME/vim/java > /dev/null 2>&1
 
+let g:polyglot_disabled = ['go', 'vue', 'typescript', 'ts']
+
 "jumphax
 set iskeyword+=_,$,@,%,#
 

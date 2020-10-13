@@ -168,8 +168,6 @@ let g:UltiSnipsUsePythonVersion      = 3
 " endfunction
 " " 2}}}
 
-let g:polyglot_disabled = ['go', 'vue', 'typescript', 'ts']
-
 "vim go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
