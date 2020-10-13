@@ -44,6 +44,11 @@ alias cd='better_cd'
 alias rm='mv -f --backup=numbered --target-directory ~/trash/'
 alias ":e"="vim"
 alias gitbranches="git for-each-ref --format='%(color:green)%(committerdate:iso8601)%(color:reset) %(committerdate:relative) %(color:red)%(refname:short)%(color:reset)' --sort -committerdate"
+alias gitbrancheslocal="git for-each-ref --format='%(color:green)%(committerdate:iso8601)%(color:reset) %(committerdate:relative) %(color:red)%(refname:short)%(color:reset)' --sort -committerdate refs/heads/"
+
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgh='kubectl get hpa --all-namespaces'
 
 if [ -z "$TMUX" ]; then
     alias cls="echo -ne '\033c'"

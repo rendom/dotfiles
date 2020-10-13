@@ -1,5 +1,8 @@
 # Random conf with stuff stolen from c0r73x :)
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nv
+
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
@@ -7,6 +10,9 @@ export MPV_HOME=$HOME/.config/mpv
 
 source $HOME/.zsh/autojump
 source $HOME/.zsh/functions
+
+export NVM_AUTO_USE=true
+export NVM_LAZY_LOAD=true
 
 fpath=(~/.zsh/plugins /usr/local/share/zsh/site-functions $fpath)
 
@@ -35,6 +41,7 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-autosuggestions
     zgen load tarrasch/zsh-bd
     zgen load felixr/docker-zsh-completion
+    # zgen load lukechilds/zsh-nvm
     zgen save
 fi
 
@@ -48,4 +55,55 @@ export PROMPT_COMMAND="${PROMPT_COMMAND} ${PROMPT_TITLE}; "
 source $HOME/.zsh/aliases
 #source $HOME/.zsh/style
 
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# 
+# # place this after nvm initialization!
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+# 
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+# 
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+source <(kubectl completion zsh)
+
 # vim: set ft=zsh :
+

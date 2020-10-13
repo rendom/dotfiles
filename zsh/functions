@@ -550,4 +550,8 @@ function portopen(){
     fi
 }
 
+function pruneDocker() {
+    docker system prune
+}
+
 #  vim: set ts=4 sw=4 tw=79 ft=zsh fdm=marker et :
