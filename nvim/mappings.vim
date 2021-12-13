@@ -46,6 +46,15 @@ noremap <right> >>
 vnoremap <left> <<
 vnoremap <right> >>
 
+" better indent and outdent {{{1
+nnoremap < <<
+nnoremap > >>
+" 1}}}
+" reselect visual block after indent/outdent {{{1
+vnoremap < <gv
+vnoremap > >gv
+" 1}}}
+
 "choosewin
 nmap - <Plug>(choosewin)
 

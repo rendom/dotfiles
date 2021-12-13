@@ -1,12 +1,17 @@
 let mapleader = "\<space>"
 nnoremap <space> <nop>
 
+set termguicolors
+
 filetype plugin indent on
 
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 
 
-colorscheme hybrid
+colorscheme neon
+"colorscheme nightfox
+hi link TSConstructor TSType
+
 set background=dark
 
 syntax enable
@@ -169,7 +174,11 @@ let g:UltiSnipsUsePythonVersion      = 3
 " " 2}}}
 
 "vim go
-let g:go_fmt_command = "goimports"
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+let g:go_fmt_command="gopls"
+let g:go_gopls_gofumpt=1
+"let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_gocode_enabled = 0
 let g:go_highlight_fields = 1

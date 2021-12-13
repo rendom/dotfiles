@@ -6,8 +6,11 @@ endfunction
 
 " Plug 'c0r73x/vim-readdir'
 
+Plug 'sindrets/diffview.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'DougBeney/pickachu'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'romgrk/nvim-treesitter-context'
 
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
@@ -64,7 +67,9 @@ Plug 'neoclide/coc-denite'
 "     \ }
 
 
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
+Plug 'rafamadriz/neon'
+"Plug 'EdenEast/nightfox.nvim'
 "Plug 'vim-scripts/cSyntaxAfter'
 Plug 'xolox/vim-misc'
 "Plug 'Shougo/neocomplete.vim'
@@ -79,7 +84,11 @@ Plug 'rendom/vvt.nu-vim'
 Plug 'rking/ag.vim'
 "Plug 'tpope/vim-fugitive'
 
+
+" Git stuff
 Plug 'jreybert/vimagit'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'TimUntersberger/neogit'
 
 
 Plug 't9md/vim-choosewin'
@@ -89,7 +98,7 @@ Plug 'kopischke/vim-fetch'
 Plug 'machakann/vim-sandwich'
 "Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on' : 'NERDTreeToggle' }
 Plug 'Chiel92/vim-autoformat', { 'on' : 'Autoformat' }
 "Plug 'AndrewRadev/linediff.vim'
 Plug 'derekwyatt/vim-fswitch', { 'for' : ['c', 'cpp'] }
@@ -99,7 +108,7 @@ Plug 'ironhouzi/vim-stim'
 " Plug 'rstacruz/vim-closer'
 "Plug 'tpope/vim-sleuth'
 Plug 'wellle/visual-split.vim'
-Plug 'junegunn/vim-peekaboo'
+"Plug 'junegunn/vim-peekaboo'
 
 "Plug 'neomake/neomake'
 "Plug 'benjie/neomake-local-eslint.vim'
@@ -117,12 +126,12 @@ Plug 'janko-m/vim-test'
 "Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 "Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 "Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
 
 "webdev
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
-Plug 'groenewege/vim-less', { 'for': ['less'] }
-Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
+" Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
+" Plug 'groenewege/vim-less', { 'for': ['less'] }
+" Plug 'digitaltoad/vim-jade', { 'for': ['jade'] }
 "Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': ['html', 'php'] }
 "Plug 'mattn/emmet-vim', { 'for': ['html'] }
 

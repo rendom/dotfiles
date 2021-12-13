@@ -1,23 +1,36 @@
 {
     "coc.preferences.colorSupport": true,
     "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.floatActions": true,
     "coc.preferences.hoverTarget": "float",
 
     "git.addGBlameToBufferVar": true,
 
     "suggest.enablePreview": true,
+    "suggest.floatEnable": true,
     "snippets.ultisnips.enable": true,
     "snippets.loadFromExtensions": true,
     "suggest.numberSelect": false,
+
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.virtualText": false,
     "diagnostic.messageTarget":"float",
+    "diagnostic.checkCurrentLine": true,
+
     "codeLens.enable": true,
     "signature.target": "float",
+
+    "go.goplsOptions": {
+        "staticcheck": true
+    },
+
     "languageserver": { 
-        "golang": {
-            "command": "gopls",
-            "filetypes": ["go"]
+        "golangci-lint-languageserver": {
+            "command": "golangci-lint-langserver",
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "command": ["golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json"]
+            }
         }
     },
     "diagnostic-languageserver.filetypes": {
@@ -25,7 +38,6 @@
         "javascript": "eslint",
         "vue": "eslint",
         "tuescrypt": "eslint"
-
     },
     "diagnostic-languageserver.formatFiletypes": {
     }
