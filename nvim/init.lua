@@ -58,10 +58,6 @@ require 'options'
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
--- [[ Configure Telescope ]]
--- (fuzzy finder)
--- require 'telescope-setup'
-
 -- [[ Configure Treesitter ]]
 -- (syntax parser for highlighting)
 require 'treesitter-setup'
