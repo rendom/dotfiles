@@ -80,14 +80,14 @@ nmap <leader>- <Plug>(choosewin)
 "nnoremap P "ap
 
 "go stuff
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>B <Plug>(go-build)
-au FileType go nmap <leader>T <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-au FileType go nmap <Leader>i <Plug>(go-info)
+" au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+" au FileType go nmap <Leader>gd <Plug>(go-doc)
+" au FileType go nmap <leader>r <Plug>(go-run)
+" au FileType go nmap <leader>B <Plug>(go-build)
+" au FileType go nmap <leader>T <Plug>(go-test)
+" au FileType go nmap <leader>c <Plug>(go-coverage)
+" au FileType go nmap <Leader>e <Plug>(go-rename)
+" au FileType go nmap <Leader>i <Plug>(go-info)
 
 
 "au FileType javascript nmap <Leader>r :Autoformat<CR>
@@ -153,9 +153,9 @@ nmap Q <Nop>
 " get file path..
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " Search @ visual select
 vnoremap // y/<C-R>"<CR>

@@ -354,6 +354,11 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+"nnoremap <leader>t :<C-u>CocList files<CR>
+"nnoremap <leader>g :<C-u>CocList grep<CR>
+"nnoremap <leader>b :<C-u>CocList buffer<CR>
+
 hi CocHighlightText ctermfg=253 guifg=#cfcfcf ctermbg=240 guibg=#83a598
 "hi CocHighlightText deco=reverse
 "call s:h('CocHighlightText', { 'deco': 'reverse' })
@@ -362,3 +367,5 @@ hi CocHighlightText ctermfg=253 guifg=#cfcfcf ctermbg=240 guibg=#83a598
 "call s:h('CocInfoSign',      { 'link': 'InfoMarker' })
 "call s:h('CocInfoSign',      { 'fg': s:purple })
 "call s:h('CocUnderline',     { 'bg': s:darkbrown, 'fg': s:lightyellow, 'deco': 'underline' })
+
+let g:coc_node_path="/opt/homebrew/bin/node"

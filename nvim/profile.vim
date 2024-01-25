@@ -4,15 +4,25 @@ nnoremap <space> <nop>
 set termguicolors
 
 filetype plugin indent on
+set mouse=
 
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 
 
-colorscheme neon
+" colorscheme neon
 "colorscheme nightfox
-hi link TSConstructor TSType
+"hi link TSConstructor TSType
+" set background=dark
 
-set background=dark
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+" The configuration options should be placed before `colorscheme sonokai`.
+" let g:sonokai_style = 'atlantis'
+" let g:sonokai_better_performance = 1
+" colorscheme sonokai
+" colorscheme material
 
 syntax enable
 syntax sync fromstart
@@ -173,124 +183,124 @@ let g:UltiSnipsUsePythonVersion      = 3
 " endfunction
 " " 2}}}
 
-"vim go
-let g:go_diagnostics_enabled = 0
-let g:go_metalinter_enabled = []
-let g:go_fmt_command="gopls"
-let g:go_gopls_gofumpt=1
-"let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_gocode_enabled = 0
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-"let g:go_metalinter_autosave = 1
-"let g:go_metalinter_deadline = "3s"
-"let g:go_fmt_fail_silently = 1
-"let g:go_highlight_functions = 1
-"let g:go_highlight_methods = 1
-"let g:go_highlight_structs = 1
+"   "vim go
+"   let g:go_diagnostics_enabled = 0
+"   let g:go_metalinter_enabled = []
+"   let g:go_fmt_command="gopls"
+"   let g:go_gopls_gofumpt=1
+"   "let g:go_fmt_command = "goimports"
+"   let g:go_highlight_types = 1
+"   let g:go_gocode_enabled = 0
+"   let g:go_highlight_fields = 1
+"   let g:go_highlight_functions = 1
+"   let g:go_highlight_methods = 1
+"   let g:go_highlight_operators = 1
+"   let g:go_highlight_extra_types = 1
+"   "let g:go_metalinter_autosave = 1
+"   "let g:go_metalinter_deadline = "3s"
+"   "let g:go_fmt_fail_silently = 1
+"   "let g:go_highlight_functions = 1
+"   "let g:go_highlight_methods = 1
+"   "let g:go_highlight_structs = 1
 
 
-let g:formatdef_custom_cpp = '"astyle
-            \ -A10
-            \ -S
-            \ -N
-            \ -w
-            \ -Y
-            \ -H
-            \ -m0
-            \ -xC78
-            \ -xL
-            \ -p
-            \ -U
-            \ -k3
-            \ -W3
-            \ -j
-            \ -c
-            \ -xy
-            \ -xp
-            \ -xw
-            \ -xW
-            \ -xy
-            \ -w
-            \ -Y
-            \ -q
-            \ -z2
-            \ -f"'
-let g:formatters_cpp = ['custom_cpp']
-let g:formatters_c   = ['custom_cpp']
-let g:formatters_java   = ['custom_cpp']
-
-let g:formatdef_custom_javascript = '"js-beautify
-            \ --type js
-            \ -i
-            \ -j
-            \ --brace-style=collapse
-            \ -k
-            \ -x
-            \ -X
-            \ -w 78
-            \ -f -"'
-let g:formatters_javascript = ['custom_javascript']
-
-let g:formatdef_custom_css = '"js-beautify
-            \ --type css
-            \ -i
-            \ -j
-            \ --brace-style=collapse
-            \ -k
-            \ -x
-            \ -w 78
-            \ -f -"'
-let g:formatters_css = ['custom_css']
-
-let g:formatdef_custom_html = '"js-beautify
-            \ --type html
-            \ -i
-            \ -I
-            \ -S
-            \ -j
-            \ --brace-style=collapse
-            \ -k
-            \ -x
-            \ -w 78
-            \ -f -"'
-let g:formatters_html = ['custom_html']
-let g:formatters_eruby  = ['custom_html']
-
-let g:formatdef_custom_perl = '"perltidy
-            \ -l=78
-            \ -i=4
-            \ -cti=0
-            \ -pt=2
-            \ -sbt=2
-            \ -ci=2
-            \ -nsfs
-            \ -nsak=*
-            \ -ce
-            \ -sbl
-            \ -asbl
-            \ -vt=0
-            \ -sot
-            \ -cab=0
-            \ -wba=.
-            \ -boc
-            \ -bbs
-            \ -bbb
-            \ -mbl=1"'
-let g:formatters_perl = ['custom_perl']
-
-let g:formatdef_custom_json = '"jq -M \".\""'
-let g:formatters_json = ['custom_json']
-
-let g:formatdef_custom_ruby = '"rbeautify -s -c 4"'
-let g:formatters_ruby = ['custom_ruby']
-
-let g:formatdef_custom_vue = 'vue-formatter'
-let g:formatters_vue = ['custom_vue']
+" let g:formatdef_custom_cpp = '"astyle
+"             \ -A10
+"             \ -S
+"             \ -N
+"             \ -w
+"             \ -Y
+"             \ -H
+"             \ -m0
+"             \ -xC78
+"             \ -xL
+"             \ -p
+"             \ -U
+"             \ -k3
+"             \ -W3
+"             \ -j
+"             \ -c
+"             \ -xy
+"             \ -xp
+"             \ -xw
+"             \ -xW
+"             \ -xy
+"             \ -w
+"             \ -Y
+"             \ -q
+"             \ -z2
+"             \ -f"'
+" let g:formatters_cpp = ['custom_cpp']
+" let g:formatters_c   = ['custom_cpp']
+" let g:formatters_java   = ['custom_cpp']
+" 
+" let g:formatdef_custom_javascript = '"js-beautify
+"             \ --type js
+"             \ -i
+"             \ -j
+"             \ --brace-style=collapse
+"             \ -k
+"             \ -x
+"             \ -X
+"             \ -w 78
+"             \ -f -"'
+" let g:formatters_javascript = ['custom_javascript']
+" 
+" let g:formatdef_custom_css = '"js-beautify
+"             \ --type css
+"             \ -i
+"             \ -j
+"             \ --brace-style=collapse
+"             \ -k
+"             \ -x
+"             \ -w 78
+"             \ -f -"'
+" let g:formatters_css = ['custom_css']
+" 
+" let g:formatdef_custom_html = '"js-beautify
+"             \ --type html
+"             \ -i
+"             \ -I
+"             \ -S
+"             \ -j
+"             \ --brace-style=collapse
+"             \ -k
+"             \ -x
+"             \ -w 78
+"             \ -f -"'
+" let g:formatters_html = ['custom_html']
+" let g:formatters_eruby  = ['custom_html']
+" 
+" let g:formatdef_custom_perl = '"perltidy
+"             \ -l=78
+"             \ -i=4
+"             \ -cti=0
+"             \ -pt=2
+"             \ -sbt=2
+"             \ -ci=2
+"             \ -nsfs
+"             \ -nsak=*
+"             \ -ce
+"             \ -sbl
+"             \ -asbl
+"             \ -vt=0
+"             \ -sot
+"             \ -cab=0
+"             \ -wba=.
+"             \ -boc
+"             \ -bbs
+"             \ -bbb
+"             \ -mbl=1"'
+" let g:formatters_perl = ['custom_perl']
+" 
+" let g:formatdef_custom_json = '"jq -M \".\""'
+" let g:formatters_json = ['custom_json']
+" 
+" let g:formatdef_custom_ruby = '"rbeautify -s -c 4"'
+" let g:formatters_ruby = ['custom_ruby']
+" 
+" let g:formatdef_custom_vue = 'vue-formatter'
+" let g:formatters_vue = ['custom_vue']
 " "Neocomplete
 " let g:neocomplete#enable_at_startup                    = 1
 " let g:neocomplete#enable_smart_case                    = 1
@@ -357,12 +367,12 @@ endif
 if has("macunix")
   let g:quickfixsigns_classes = ['qfl', 'loc', 'marks', 'breakpoints']
   let g:vvt_browser_command = 'echo "%URL%" | pbcopy'
-  function! CopyShit(line1, line2)
-    let foo = getline(a:line1, a:line2)
-    let ret = system('pbcopy', foo)
-  endfunction
+  "function! CopyShit(line1, line2)
+  "  let foo = getline(a:line1, a:line2)
+  "  let ret = system('pbcopy', foo)
+  "endfunction
 
-  command! -range CopyShit <line1>,<line2>call SourceRange()
+  "command! -range CopyShit <line1>,<line2>call SourceRange()
 else
   let g:vvt_browser_command = 'echo "%URL%" | xclip'
 endif
@@ -739,43 +749,43 @@ let g:quickfixsigns#marks#texthl = 'QFS_MARKS'
 
 
 " lightline
-function! LightLineGitBranch()
-  if exists("*gitbranch#name")
-    let branch = gitbranch#name()
-    return branch !=# '' ? branch : ''
-  endif
-  return ''
-endfunction
-
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  return blame
-  return winwidth(0) > 120 ? blame : ''
-endfunction
-
-"      \   'left': [ [ 'mode', 'paste' ],
-"      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-"      \ },
-"      \ 'component_function': {
-"      \   'cocstatus': 'coc#status'
-"      \ },
-
-let g:lightline = {
-            \ 'colorscheme': 'wombat',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ],
-            \   'right':[
-            \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
-            \     [ 'blame' ]
-            \   ],
-            \ },
-            \ 'component_function': {
-            \   'cocstatus': 'coc#status',
-            \   'gitbranch': 'LightLineGitBranch',
-            \   'blame': 'LightlineGitBlame',
-            \ }
-            \ }
+" function! LightLineGitBranch()
+"   if exists("*gitbranch#name")
+"     let branch = gitbranch#name()
+"     return branch !=# '' ? branch : ''
+"   endif
+"   return ''
+" endfunction
+" 
+" function! LightlineGitBlame() abort
+"   let blame = get(b:, 'coc_git_blame', '')
+"   return blame
+"   return winwidth(0) > 120 ? blame : ''
+" endfunction
+" 
+" "      \   'left': [ [ 'mode', 'paste' ],
+" "      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+" "      \ },
+" "      \ 'component_function': {
+" "      \   'cocstatus': 'coc#status'
+" "      \ },
+" 
+" let g:lightline = {
+"             \ 'colorscheme': 'wombat',
+"             \ 'active': {
+"             \   'left': [ [ 'mode', 'paste' ],
+"             \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+"             \   'right':[
+"             \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+"             \     [ 'blame' ]
+"             \   ],
+"             \ },
+"             \ 'component_function': {
+"             \   'cocstatus': 'coc#status',
+"             \   'gitbranch': 'LightLineGitBranch',
+"             \   'blame': 'LightlineGitBlame',
+"             \ }
+"             \ }
 
 
 
@@ -857,3 +867,9 @@ let g:phpqa_codecoverage_autorun = 0
 runtime macros/sandwich/keymap/surround.vim
 let g:sandwich_no_default_key_mappings = 1
 let g:vue_disable_pre_processors=1
+
+lua <<EOF
+package.path = "#{package.path};#{os.getenv('HOME')}/.luarocks/share/lua/5.1/?.lua"
+package.path = "#{package.path};#{os.getenv('HOME')}/.luarocks/lib/lua/5.1/?.so"
+require('nvim-coverage')
+EOF

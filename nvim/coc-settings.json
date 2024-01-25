@@ -20,9 +20,19 @@
     "codeLens.enable": true,
     "signature.target": "float",
 
+    "workspace.workspaceFolderCheckCwd": false,
+    "tsserver.npm":"/opt/homebrew/bin/npm",
+    "tsserver.tsdk":"/opt/homebrew/lib/node_modules/typescript/lib",
+    "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript"],
+
+    "html.autoClosingTags": false,
+    "html.completion.attributeDefaultValue":"empty",
+
     "go.goplsOptions": {
         "staticcheck": true
     },
+
+    "list.source.grep.command": "ag",
 
     "languageserver": { 
         "golangci-lint-languageserver": {
