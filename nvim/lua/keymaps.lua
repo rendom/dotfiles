@@ -42,9 +42,8 @@ vim.keymap.set({'v'}, '<', '<gv', { noremap = true })
 vim.keymap.set({'v'}, '>', '>gv', { noremap = true })
 
 
--- vim.keymap.set('n', '<leader>ew', '<cmd>e <C-R>=expand("%:p:h") . "/" <CR>')
 -- vnoremap // y/<C-R>"<CR>
--- map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+vim.keymap.set({'n'}, '<leader>ew', '":e " .. expand("%:p:h") .. "/"', { expr = true })
 
 
 -- vim: ts=2 sts=2 sw=2 et
