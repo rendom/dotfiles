@@ -1,4 +1,4 @@
-/bundle
-/swap
-.netrwhist
-.init.vim-rplugin~
+tags
+test.sh
+.luarc.json
+nvim
