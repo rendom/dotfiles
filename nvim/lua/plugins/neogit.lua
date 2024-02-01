@@ -8,7 +8,7 @@ return {
   init = function()
 
     vim.cmd([[
-      cnoreabbrev Magit Neogit
+      cnoreabbrev Magit Neogit kind=vsplit
     ]])
   end
 }
