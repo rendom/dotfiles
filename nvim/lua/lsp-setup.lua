@@ -15,8 +15,12 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  -- client.server_capabilities.inlayHintProvider)
-  vim.lsp.inlay_hint.enable(true)
+  -- print(vim.bo.filetype);
+  if vim.bo.filetype ~= "vue" and vim.bo.filetype ~="javascript" and vim.bo.filetype ~="typescript" then
+    vim.lsp.inlay_hint.enable(true)
+  end
+  -- if client.server_capabilities.inlayHintProvider then
+  -- end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')

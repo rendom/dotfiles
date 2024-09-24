@@ -13,7 +13,12 @@ return {
           "go",
           "gomod",
           "gowork",
-          "gosum"
+          "gosum",
+          "markdown",
+          "markdown_inline",
+          "html",
+          "sql",
+          "swift",
         },
       })
     end

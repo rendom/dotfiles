@@ -6,6 +6,7 @@ return {
   -- See `:help lualine.txt`
   opts = {
     options = {
+      globalstatus = true,
       icons_enabled = false,
       theme = 'onedark',
       component_separators = '|',
