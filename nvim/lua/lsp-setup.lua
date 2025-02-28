@@ -15,12 +15,14 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  -- print(vim.bo.filetype);
-  if vim.bo.filetype ~= "vue" and vim.bo.filetype ~="javascript" and vim.bo.filetype ~="typescript" then
-    vim.lsp.inlay_hint.enable(true)
+  if 
+    client.server_capabilities.inlayHintProvider
+    and vim.lsp.inlay_hint
+  then
+    if vim.bo.filetype ~= "vue" and vim.bo.filetype ~="javascript" and vim.bo.filetype ~="typescript" then
+      vim.lsp.inlay_hint.enable(true)
+    end
   end
-  -- if client.server_capabilities.inlayHintProvider then
-  -- end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -94,6 +96,27 @@ require('mason-lspconfig').setup()
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+
+
+--local lspconfig = require 'lspconfig'
+--local configs = require 'lspconfig/configs'
+--
+--if not configs.golangcilsp then
+-- 	configs.golangcilsp = {
+--		default_config = {
+--			cmd = {'golangci-lint-langserver'},
+--			root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
+--			init_options = {
+--					command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json", "--issues-exit-code=1" };
+--			}
+--		};
+--	}
+--end
+--lspconfig.golangci_lint_ls.setup {
+--	filetypes = {'go','gomod'}
+--}
+
+
 local servers = {
   -- clangd = {},
   gopls = {
@@ -123,14 +146,28 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+
+  -- golangci_lint_ls = {
+  --   init_options = {
+  --     command = {
+  --       'golangci-lint',
+  --       'run',
+  --       '--enable-all',
+  --       '--disable',
+  --       '--out-format',
+  --       'json',
+  --       '--issues-exit-code=1'
+  --     },
+  --   },
+  -- },
 }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -148,6 +185,16 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+
+  ["golangci_lint_ls"] = function ()
+    require("lspconfig").golangci_lint_ls.setup {
+      cmd = {'golangci-lint-langserver'},
+			root_dir = require('lspconfig').util.root_pattern('.git', 'go.mod'),
+			init_options = {
+					command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json", "--issues-exit-code=1" };
+			}
+    }
+  end
 }
 
 -- vim: ts=2 sts=2 sw=2 et

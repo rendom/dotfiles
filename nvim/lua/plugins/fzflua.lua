@@ -1,0 +1,16 @@
+return {}
+--return {
+--  "ibhagwan/fzf-lua",
+--  -- optional for icon support
+--  dependencies = { "nvim-tree/nvim-web-devicons" },
+--  -- or if using mini.icons/mini.nvim
+--  -- dependencies = { "echasnovski/mini.icons" },
+--  -- opts = {
+--  --   -- "borderless",
+--  -- },
+--  keys = {
+--    { "<leader>t", "<cmd>FzfLua files<cr>", desc = "List files" },
+--    { "<leader>g", "<cmd>FzfLua grep<cr>", desc = "Grep" },
+--    { "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "Buffer" },
+--  },
+--}
